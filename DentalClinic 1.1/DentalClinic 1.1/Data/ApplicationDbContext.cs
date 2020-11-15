@@ -19,10 +19,12 @@ namespace DentalClinic_1._1.Data
         {
 
         }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-          
+
+           
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "Users");

@@ -12,6 +12,22 @@
     <Compile Remove="Data\Migrations\20201113112903_Add custom properties.Designer.cs" />
     <Compile Remove="Data\Migrations\20201113113803_Rename tables.cs" />
     <Compile Remove="Data\Migrations\20201113113803_Rename tables.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115115647_Add table Town.cs" />
+    <Compile Remove="Data\Migrations\20201115115647_Add table Town.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115120911_Add table Town.cs" />
+    <Compile Remove="Data\Migrations\20201115120911_Add table Town.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115121111_Add table Town.cs" />
+    <Compile Remove="Data\Migrations\20201115121111_Add table Town.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115123648_Add table Town.cs" />
+    <Compile Remove="Data\Migrations\20201115123648_Add table Town.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115123903_Add table Town.cs" />
+    <Compile Remove="Data\Migrations\20201115123903_Add table Town.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115124100_Add table Town.cs" />
+    <Compile Remove="Data\Migrations\20201115124100_Add table Town.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115125330_sf.cs" />
+    <Compile Remove="Data\Migrations\20201115125330_sf.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201115141457_Add table Town.cs" />
+    <Compile Remove="Data\Migrations\20201115141457_Add table Town.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

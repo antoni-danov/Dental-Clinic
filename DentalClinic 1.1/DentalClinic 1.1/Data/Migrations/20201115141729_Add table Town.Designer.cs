@@ -4,14 +4,16 @@ using DentalClinic_1._1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DentalClinic_1._1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201115141729_Add table Town")]
+    partial class AddtableTown
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,9 +78,6 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SpecializationId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TownId")
                         .HasColumnType("int");
 
@@ -99,26 +98,9 @@ namespace DentalClinic_1._1.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("SpecializationId");
-
                     b.HasIndex("TownId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Specialization");
                 });
 
             modelBuilder.Entity("DentalClinic_1._1.Models.Town", b =>
@@ -273,10 +255,6 @@ namespace DentalClinic_1._1.Data.Migrations
 
             modelBuilder.Entity("DentalClinic_1._1.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("DentalClinic_1._1.Models.Specialization", "Specialization")
-                        .WithMany("Users")
-                        .HasForeignKey("SpecializationId");
-
                     b.HasOne("DentalClinic_1._1.Models.Town", "Town")
                         .WithMany("Users")
                         .HasForeignKey("TownId");
