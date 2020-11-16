@@ -10,17 +10,24 @@ namespace DentalClinic_1._1.Controllers
 {
     public class AdministratorController : Controller
     {
-        private readonly UsersService usersService;
+        private readonly IUsersService usersService;
 
-        public AdministratorController(UsersService usersService)
+        public AdministratorController(IUsersService usersService)
         {
             this.usersService = usersService;
         }
+        
+        public IActionResult AddPatient()
+        {
+            return View();
+        }
+        [HttpPost]
         public IActionResult AddPatient(AddUserViewModel input)
         {
             usersService.CreateUser(input);
-            return Redirect("/");
+            return Redirect("/Administrator/All");
         }
+
         public IActionResult All()
         {
             if (!User.Identity.IsAuthenticated == true)
