@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DentalClinic_1._1.Services.Administrator;
-using DentalClinic_1._1.ViewModels.Administrator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1.Controllers
 {
     public class AdministratorController : Controller
     {
-        private readonly UsersService usersService;
-
-        public AdministratorController(UsersService usersService)
+        public IActionResult AddPatient()
         {
             this.usersService = usersService;
         }
