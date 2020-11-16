@@ -8,7 +8,8 @@ namespace DentalClinic_1._1.Services.Administrator
 {
     public interface IUsersService
     {
-        public void CreateUser(AddUserViewModel input);
+        public string CreateUser(AddUserViewModel input);
+        public IEnumerable<AddUserViewModel> All();
 
     }
 }

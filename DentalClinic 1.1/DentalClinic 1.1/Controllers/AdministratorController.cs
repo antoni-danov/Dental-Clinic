@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DentalClinic_1._1.Services.Administrator;
+using DentalClinic_1._1.ViewModels.Administrator;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1.Controllers
 {
     public class AdministratorController : Controller
     {
-        public IActionResult AddPatient()
+        private readonly UsersService usersService;
+
+        public AdministratorController(UsersService usersService)
         {
             this.usersService = usersService;
         }
@@ -16,6 +20,15 @@ namespace DentalClinic_1._1.Controllers
         {
             usersService.CreateUser(input);
             return Redirect("/");
+        }
+        public IActionResult All()
+        {
+            if (!User.Identity.IsAuthenticated == true)
+            {
+                return this.Redirect("/Users/Login");
+            }
+            var patients = this.usersService.All();
+            return View(patients);
         }
         public IActionResult RemovePatient()
         {
