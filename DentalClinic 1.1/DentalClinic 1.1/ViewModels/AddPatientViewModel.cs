@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.ViewModels
 {
-    public class AddUserViewModel
+    public class AddPatientViewModel
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }

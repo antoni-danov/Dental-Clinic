@@ -17,7 +17,7 @@ namespace DentalClinic_1._1.Services.Administrator
             this.db = db;
         }
 
-        public string CreateUser(AddUserViewModel input)
+        public string CreateUser(AddPatientViewModel input)
         {
             var user = new ApplicationUser
             {
@@ -35,10 +35,10 @@ namespace DentalClinic_1._1.Services.Administrator
             return user.Id;
         }
 
-        public IEnumerable<AddUserViewModel> All()
+        public IEnumerable<AddPatientViewModel> All()
         {
             var patients = this.db.Users.Select
-                (p => new AddUserViewModel
+                (p => new AddPatientViewModel
                 {
                     Firstname = p.Firstname,
                     Lastname = p.Lastname,

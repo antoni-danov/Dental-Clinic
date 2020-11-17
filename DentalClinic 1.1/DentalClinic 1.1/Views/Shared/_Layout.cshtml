@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dental Clinic</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/User.css" rel="stylesheet" />
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-sketchy.css"/>*@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -29,33 +30,57 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
-                        </li>
                         @if (User.Identity.IsAuthenticated == true)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddPatient">Add Patient</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemovePatient">Remove Patient</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddDentist">Add Dentist</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemoveDentist">Remove Dentist</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddSpecialization">Add Specialization</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemoveSpecialization">Remove Specialization</a>
-                            </li>
+                            if (User.IsInRole("Administrator"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
+                                </li>
+                                <div class="dropdown">
+                                    <button class="dropbtn">Patient</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Add Patient</a>
+                                        <a href="#">Remove Patient</a>
+                                    </div>
+                                </div>
+                                @*<li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddPatient">Add Patient</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemovePatient">Remove Patient</a>
+                                    </li>*@
+                                <div class="dropdown">
+                                    <button class="dropbtn">Dentist</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Add Dentist</a>
+                                        <a href="#">Remove Dentist</a>
+                                    </div>
+                                </div>
+                                @*<li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddDentist">Add Dentist</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemoveDentist">Remove Dentist</a>
+                                    </li>*@
+                                <div class="dropdown">
+                                    <button class="dropbtn">Specialization</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Add Specialization</a>
+                                        <a href="#">Remove Specialization</a>
+                                    </div>
+                                </div>
+                                @*<li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddSpecialization">Add Specialization</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemoveSpecialization">Remove Specialization</a>
+                                    </li>*@
+                            }
                         }
                         @*<li class="nav-item">
-            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>*@
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
                     </ul>
                 </div>
             </div>
