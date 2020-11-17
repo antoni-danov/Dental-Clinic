@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DentalClinic_1._1.Services.Administrator;
-using DentalClinic_1._1.ViewModels.Administrator;
+using DentalClinic_1._1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1.Controllers
@@ -27,7 +27,6 @@ namespace DentalClinic_1._1.Controllers
             usersService.CreateUser(input);
             return Redirect("/Administrator/All");
         }
-
         public IActionResult All()
         {
             if (!User.Identity.IsAuthenticated == true)

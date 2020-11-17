@@ -1,6 +1,6 @@
 ﻿using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
-using DentalClinic_1._1.ViewModels.Administrator;
+using DentalClinic_1._1.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

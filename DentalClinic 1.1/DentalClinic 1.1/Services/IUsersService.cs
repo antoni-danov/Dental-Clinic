@@ -1,4 +1,4 @@
-﻿using DentalClinic_1._1.ViewModels.Administrator;
+﻿using DentalClinic_1._1.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
