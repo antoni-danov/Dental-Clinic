@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DentalClinic_1._1.Services.Administrator;
-using DentalClinic_1._1.ViewModels.Administrator;
+using DentalClinic_1._1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1.Controllers
@@ -16,26 +16,35 @@ namespace DentalClinic_1._1.Controllers
         {
             this.usersService = usersService;
         }
-        
+
         public IActionResult AddPatient()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AddPatient(AddUserViewModel input)
+        public IActionResult AddPatient(AddPatientViewModel input)
         {
-            usersService.CreateUser(input);
+            var user = usersService.CreateUser(input);
+
             return Redirect("/Administrator/All");
         }
-
-        public IActionResult All()
+        public IActionResult AllPatients()
         {
             if (!User.Identity.IsAuthenticated == true)
             {
                 return this.Redirect("/Users/Login");
             }
-            var patients = this.usersService.All();
+            var patients = this.usersService.AllPatients();
             return View(patients);
+        }
+        public IActionResult AllDentists()
+        {
+            if (!User.Identity.IsAuthenticated == true)
+            {
+                return this.Redirect("/Users/Login");
+            }
+            var dentists = this.usersService.AllDentists();
+            return View(dentists);
         }
         public IActionResult RemovePatient()
         {
