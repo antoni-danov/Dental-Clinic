@@ -37,6 +37,18 @@ namespace DentalClinic_1._1.Controllers
             var patients = this.usersService.AllPatients();
             return View(patients);
         }
+        public IActionResult RemovePatient()
+        {
+            return View();
+        }     
+        public IActionResult AddDentist()
+        {
+            return View();
+        }
+        public IActionResult RemoveDentist()
+        {
+            return View();
+        }
         public IActionResult AllDentists()
         {
             if (!User.Identity.IsAuthenticated == true)
@@ -46,18 +58,7 @@ namespace DentalClinic_1._1.Controllers
             var dentists = this.usersService.AllDentists();
             return View(dentists);
         }
-        public IActionResult RemovePatient()
-        {
-            return View();
-        }
-        public IActionResult AddDentist()
-        {
-            return View();
-        }
-        public IActionResult RemoveDentist()
-        {
-            return View();
-        }
+
         public IActionResult AddSpecialization()
         {
             return View();
