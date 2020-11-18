@@ -1,7 +1,8 @@
-﻿.dropbtn {
-    background-color: black;
+﻿
+.dropbtn {
+    background-color: #343a40;
     color: white;
-    padding: 16px;
+    padding: 8px;
     font-size: 16px;
     border: none;
 }
@@ -36,5 +37,5 @@
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: darkgoldenrod;
 }

@@ -28,14 +28,23 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("/Administrator/All");
         }
-        public IActionResult All()
+        public IActionResult AllPatients()
         {
             if (!User.Identity.IsAuthenticated == true)
             {
                 return this.Redirect("/Users/Login");
             }
-            var patients = this.usersService.All();
+            var patients = this.usersService.AllPatients();
             return View(patients);
+        }
+        public IActionResult AllDentists()
+        {
+            if (!User.Identity.IsAuthenticated == true)
+            {
+                return this.Redirect("/Users/Login");
+            }
+            var dentists = this.usersService.AllDentists();
+            return View(dentists);
         }
         public IActionResult RemovePatient()
         {

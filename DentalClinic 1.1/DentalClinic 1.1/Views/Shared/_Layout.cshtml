@@ -24,12 +24,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                        </li>
                         @if (User.Identity.IsAuthenticated == true)
                         {
                             if (User.IsInRole("Administrator"))
@@ -40,8 +34,10 @@
                                 <div class="dropdown">
                                     <button class="dropbtn">Patient</button>
                                     <div class="dropdown-content">
-                                        <a href="#">Add Patient</a>
-                                        <a href="#">Remove Patient</a>
+                                        <a href="/Administrator/AddPatient">Add Patient</a>
+                                        <a href="/Administrator/RemovePatient">Remove Patient</a>
+                                        <a href="/Administrator/AllPatients">All Patients</a>
+
                                     </div>
                                 </div>
                                 @*<li class="nav-item">
@@ -53,8 +49,9 @@
                                 <div class="dropdown">
                                     <button class="dropbtn">Dentist</button>
                                     <div class="dropdown-content">
-                                        <a href="#">Add Dentist</a>
-                                        <a href="#">Remove Dentist</a>
+                                        <a href="/Administrator/AddDentist">Add Dentist</a>
+                                        <a href="/Administrator/RemoveDentist">Remove Dentist</a>
+                                        <a href="/Administrator/AllDentists">All Dentists</a>
                                     </div>
                                 </div>
                                 @*<li class="nav-item">
@@ -66,8 +63,8 @@
                                 <div class="dropdown">
                                     <button class="dropbtn">Specialization</button>
                                     <div class="dropdown-content">
-                                        <a href="#">Add Specialization</a>
-                                        <a href="#">Remove Specialization</a>
+                                        <a href="/Administrator/AddSpecialization">Add Specialization</a>
+                                        <a href="/Administrator/RemoveSpecialization">Remove Specialization</a>
                                     </div>
                                 </div>
                                 @*<li class="nav-item">
@@ -78,6 +75,12 @@
                                     </li>*@
                             }
                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
                         @*<li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>*@
