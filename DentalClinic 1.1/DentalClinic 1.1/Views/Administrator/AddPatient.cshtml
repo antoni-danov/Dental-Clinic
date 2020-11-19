@@ -2,22 +2,68 @@
 @{
     ViewData["Title"] = "AddPatient";
 }
+<link href="~/css/InputForm.css" rel="stylesheet" />
 
 <h1>Add Patient</h1>
-<form action="/" method="post">
-    <label for="psw"><b>First name</b></label>
-    <input type="text" placeholder="First Name" name="first name" id="first name" required>
-    <label for="psw"><b>Last name</b></label>
-    <input type="text" placeholder="Last Name" name="last name" id="last name" required>
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Email" name="email" id="email" required>
-    <label for="email"><b>Birth date</b></label>
-    <input type="date" placeholder="Birth date" name="birth date" id="birth date" required>
-    <label for="email"><b>Address</b></label>
-    <input type="text" placeholder="Address" name="address" id="address" required>
-    <label for="email"><b>Town</b></label>
-    <input type="text" placeholder="Town" name="town" id="town" required>
-    <label for="email"><b>PhoneNumber</b></label>
-    <input type="text" placeholder="Phone number" name="phone number" id="phone number" required>
-    <button class="btn btn-success" value="Submit">Submit</button>
-</form>
+<div class=" container">
+    <form action="/" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="psw"><b>First name</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="First Name" name="first name" id="first name" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="psw"><b>Last name</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Last Name" name="last name" id="last name" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="email"><b>Email</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Email" name="email" id="email" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="email"><b>Birth date</b></label>
+            </div>
+            <div class="col-75">
+                <input type="date" placeholder="Birth date" name="birth date" id="birth date" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="email"><b>Address</b></label>
+            </div>
+            <div class="col-75">
+
+                <input type="text" placeholder="Address" name="address" id="address" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="town"><b>Town</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Town" name="town" id="town" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="email"><b>PhoneNumber</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Phone number" name="phone number" id="phone number" required>
+            </div>
+        </div>
+        <button class="btn btn-success" value="Submit">Submit</button>
+    </form>
+</div>

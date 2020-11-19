@@ -2,15 +2,37 @@
 @{
     ViewData["Title"] = "AddSpecialization";
 }
+<link href="~/css/InputForm.css" rel="stylesheet" />
 
 <h1>Add Specialization</h1>
-<label for="name"><b>Name of specialization</b></label>
-<input type="name" placeholder="Name" name="name" id="name">
-<label for="Description"><b>Description</b></label>
-<textarea id="description" name="description"
-          rows="5" cols="33">
-
-    </textarea>
-<label for="psw"><b>Specialist</b></label>
-<input type="dentist" placeholder="Specialist" name="Specialist" id="Specialist" required>
-<button class="btn btn-success">Submit</button>
+<div class=" container">
+    <form action="/" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="psw"><b>Name of Specialization</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Specialization" name="Specialization" id="Specialization" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="description"><b>Description</b></label>
+            </div>
+            <div class="col-75">
+                <textarea id="description" name="description"
+                          rows="5" cols="33">
+        </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="psw"><b>Specialist</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Specialist" name="Specialist" id="Specialist" required>
+            </div>
+        </div>
+        <button class="btn btn-success">Submit</button>
+    </form>
+</div>
