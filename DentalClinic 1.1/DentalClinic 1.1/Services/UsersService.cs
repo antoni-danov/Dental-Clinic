@@ -2,6 +2,7 @@
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
+using DentalClinic_1._1.ViewModels.Specialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace DentalClinic_1._1.Services.Administrator
             this.db = db;
         }
 
-        public string CreateUser(AddPatientViewModel input)
+        public string CreatePatient(AddPatientViewModel input)
         {
             var user = new ApplicationUser
             {
@@ -48,9 +49,10 @@ namespace DentalClinic_1._1.Services.Administrator
                     Town = p.Town,
                     PhoneNumber = p.PhoneNumber
                 }).ToList();
-           
+
             return patients;
         }
+
         public IEnumerable<AddDentistViewModel> AllDentists()
         {
             var dentists = this.db.Users.Select
@@ -65,6 +67,32 @@ namespace DentalClinic_1._1.Services.Administrator
                 }).ToList();
 
             return dentists;
+        }
+
+        public string CreateDentist(AddDentistViewModel input)
+        {
+            var dentist = new ApplicationUser
+            {
+                Firstname = input.Firstname,
+                Lastname = input.Lastname,
+                Email = input.Email,
+                Birthdate = input.Birthdate,
+                Address = input.Address,
+                Town = input.Town,
+                PhoneNumber = input.PhoneNumber,
+                Description = input.Description
+            };
+
+            this.db.Users.Add(dentist);
+            this.db.SaveChanges();
+
+            return dentist.Id;
+        }
+
+        //TODO
+        public string CreateSpecialization(AddSpecializationViewModel input)
+        {
+            throw new NotImplementedException();
         }
     }
 }

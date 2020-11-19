@@ -5,6 +5,7 @@
     <UserSecretsId>aspnet-DentalClinic_1._1-193CFFA9-5291-46F6-B852-6E5BA96E16A4</UserSecretsId>
     <RootNamespace>DentalClinic_1._1</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <ApplicationIcon>favicon-test.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
