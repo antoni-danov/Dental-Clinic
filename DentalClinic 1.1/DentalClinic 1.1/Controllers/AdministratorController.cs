@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DentalClinic_1._1.Services.Administrator;
 using DentalClinic_1._1.ViewModels;
+using DentalClinic_1._1.ViewModels.Dentist;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1.Controllers
@@ -26,7 +27,7 @@ namespace DentalClinic_1._1.Controllers
         {
             var user = usersService.CreatePatient(input);
 
-            return Redirect("/Administrator/All");
+            return Redirect("/Administrator/AllPatients");
         }
         public IActionResult AllPatients()
         {
@@ -44,6 +45,12 @@ namespace DentalClinic_1._1.Controllers
         public IActionResult AddDentist()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult AddDentist(AddDentistViewModel input)
+        {
+            var dentist = this.usersService.CreateDentist(input);
+            return Redirect("/Administrator/AllDentists");
         }
         public IActionResult RemoveDentist()
         {

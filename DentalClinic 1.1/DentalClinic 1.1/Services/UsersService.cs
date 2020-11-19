@@ -2,6 +2,7 @@
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
+using DentalClinic_1._1.ViewModels.Specialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace DentalClinic_1._1.Services.Administrator
                     Town = p.Town,
                     PhoneNumber = p.PhoneNumber
                 }).ToList();
-           
+
             return patients;
         }
 
@@ -86,6 +87,12 @@ namespace DentalClinic_1._1.Services.Administrator
             this.db.SaveChanges();
 
             return dentist.Id;
+        }
+
+        //TODO
+        public string CreateSpecialization(AddSpecializationViewModel input)
+        {
+            throw new NotImplementedException();
         }
     }
 }
