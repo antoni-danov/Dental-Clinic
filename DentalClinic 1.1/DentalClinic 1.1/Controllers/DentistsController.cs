@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1.Controllers
 {
-    [Authorize(Roles = "Dentist")]
+    [Authorize(Roles = "Administrator, Dentist")]
     public class DentistsController : Controller
     {
         public IActionResult Patients()

@@ -16,12 +16,12 @@ namespace DentalClinic_1._1.Controllers
     public class AdministratorController : Controller
     {
         private readonly IUsersService usersService;
-        private readonly RoleManager<string> roleManager;
-        private readonly UserManager<string> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public AdministratorController(IUsersService usersService,
-                                       RoleManager<string> roleManager,
-                                       UserManager<string> userManager)
+                                       RoleManager<IdentityRole> roleManager,
+                                       UserManager<ApplicationUser> userManager)
         {
             this.usersService = usersService;
             this.roleManager = roleManager;
