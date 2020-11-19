@@ -24,7 +24,7 @@ namespace DentalClinic_1._1.Controllers
         [HttpPost]
         public IActionResult AddPatient(AddPatientViewModel input)
         {
-            var user = usersService.CreateUser(input);
+            var user = usersService.CreatePatient(input);
 
             return Redirect("/Administrator/All");
         }
