@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using DentalClinic_1._1.Services.Administrator;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1
 {
@@ -38,7 +39,10 @@ namespace DentalClinic_1._1
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(configure => 
+            {
+                configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
             services.AddRazorPages();
         }
 
