@@ -42,12 +42,6 @@
 
                                     </div>
                                 </div>
-                                @*<li class="nav-item">
-                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddPatient">Add Patient</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemovePatient">Remove Patient</a>
-                                    </li>*@
                                 <div class="dropdown">
                                     <button class="dropbtn">Dentist</button>
                                     <div class="dropdown-content">
@@ -56,12 +50,6 @@
                                         <a href="/Administrator/AllDentists">All Dentists</a>
                                     </div>
                                 </div>
-                                @*<li class="nav-item">
-                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddDentist">Add Dentist</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemoveDentist">Remove Dentist</a>
-                                    </li>*@
                                 <div class="dropdown">
                                     <button class="dropbtn">Specialization</button>
                                     <div class="dropdown-content">
@@ -69,12 +57,30 @@
                                         <a href="/Administrator/RemoveSpecialization">Remove Specialization</a>
                                     </div>
                                 </div>
-                                @*<li class="nav-item">
-                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="AddSpecialization">Add Specialization</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" asp-area="" asp-controller="Administrator" asp-action="RemoveSpecialization">Remove Specialization</a>
-                                    </li>*@
+                            }
+                            else if (User.IsInRole("Patient"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="Dentists">Dentists</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="Appointments">Appointments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="GetAppointment">Get Appointment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="History">History</a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Dentist"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Dentist" asp-action="Patients">Patients</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Dentist" asp-action="Appointments">Appointments</a>
+                                </li>
                             }
                         }
                         <li class="nav-item">

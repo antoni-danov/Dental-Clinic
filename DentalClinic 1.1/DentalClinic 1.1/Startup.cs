@@ -35,14 +35,19 @@ namespace DentalClinic_1._1
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequiredLength = 8;
+                options.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
-            services.AddControllersWithViews(configure => 
-            {
-                configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            });
+            services.AddControllersWithViews(configure =>
+                {
+                    configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                });
             services.AddRazorPages();
         }
 
