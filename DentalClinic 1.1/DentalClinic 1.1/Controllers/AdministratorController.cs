@@ -39,14 +39,13 @@ namespace DentalClinic_1._1.Controllers
             var user = usersService.CreatePatient(input);
 
             var roleName = "Patient";
-            var roleExist = await roleManager.RoleExistsAsync(roleName);
+            var userManage = await userManager.GetUserAsync(User);
 
-            if (roleExist)
+            if(!User.IsInRole(roleName))
             {
-                var userManage = await userManager.GetUserAsync(User);
                 var result = await userManager.AddToRoleAsync(userManage, roleName);
             }
-
+           
             return Redirect("/Administrator/AllPatients");
         }
         public IActionResult AllPatients()

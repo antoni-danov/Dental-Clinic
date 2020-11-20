@@ -41,6 +41,7 @@ namespace DentalClinic_1._1
                 options.Password.RequiredLength = 8;
                 options.User.RequireUniqueEmail = true;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
