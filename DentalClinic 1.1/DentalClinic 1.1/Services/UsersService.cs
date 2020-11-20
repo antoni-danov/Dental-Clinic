@@ -35,12 +35,7 @@ namespace DentalClinic_1._1.Services.Administrator
                 PhoneNumber = input.PhoneNumber
             };
 
-           var result = this.userManager.CreateAsync(user);
-
-            //if(!result.Succeeded)
-            //{
-            //   var error = result.Errors; 
-            //}
+            var result = this.userManager.CreateAsync(user);
 
             return user.Id.ToString();
         }
