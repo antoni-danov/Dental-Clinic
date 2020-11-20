@@ -2,8 +2,21 @@
 @{
     ViewData["Title"] = "RemoveSpecialization";
 }
+<link href="~/css/InputForm.css" rel="stylesheet" />
 
 <h1>Remove Specialization</h1>
-<label for="psw"><b>Specialization</b></label>
-<input type="text" placeholder="Specialization" name="Specialization" id="Specialization" required>
-<button class="btn btn-success">Remove</button>
+
+<div>
+    <form action="/" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="email"><b>Specialization</b></label>
+            </div>
+
+            <div class="col-75">
+                <input type="text" placeholder="Specialization" name="Specialization" id="Specialization" required>
+            </div>
+        </div>
+        <button class="btn btn-success">Remove</button>
+    </form>
+</div>
