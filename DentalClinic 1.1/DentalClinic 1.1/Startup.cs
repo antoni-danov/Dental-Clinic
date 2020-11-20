@@ -39,6 +39,7 @@ namespace DentalClinic_1._1
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequiredLength = 8;
+                options.Lockout.MaxFailedAccessAttempts = 5;
                 options.User.RequireUniqueEmail = true;
             })
                 .AddRoles<IdentityRole>()
@@ -71,8 +72,8 @@ namespace DentalClinic_1._1
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthentication(); //middleware
+            app.UseAuthorization(); //middleware
 
             app.UseEndpoints(endpoints =>
             {
