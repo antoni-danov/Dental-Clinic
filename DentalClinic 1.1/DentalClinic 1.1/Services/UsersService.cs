@@ -3,6 +3,8 @@ using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Specialization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,12 @@ namespace DentalClinic_1._1.Services.Administrator
     public class UsersService : IUsersService
     {
         private readonly ApplicationDbContext db;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public UsersService(ApplicationDbContext db)
+        public UsersService(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             this.db = db;
+            this.userManager = userManager;
         }
 
         public string CreatePatient(AddPatientViewModel input)
@@ -31,10 +35,14 @@ namespace DentalClinic_1._1.Services.Administrator
                 PhoneNumber = input.PhoneNumber
             };
 
-            this.db.Users.Add(user);
-            this.db.SaveChanges();
+           var result = this.userManager.CreateAsync(user);
 
-            return user.Id;
+            //if(!result.Succeeded)
+            //{
+            //   var error = result.Errors; 
+            //}
+
+            return user.Id.ToString();
         }
 
         public IEnumerable<AddPatientViewModel> AllPatients()
@@ -94,5 +102,6 @@ namespace DentalClinic_1._1.Services.Administrator
         {
             throw new NotImplementedException();
         }
+
     }
 }

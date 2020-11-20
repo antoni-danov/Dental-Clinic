@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using DentalClinic_1._1.Services.Administrator;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1
 {
@@ -34,11 +35,20 @@ namespace DentalClinic_1._1
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequiredLength = 8;
+                options.User.RequireUniqueEmail = true;
+            })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(configure =>
+                {
+                    configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                });
             services.AddRazorPages();
         }
 
