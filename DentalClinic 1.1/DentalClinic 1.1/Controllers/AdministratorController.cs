@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DentalClinic_1._1.Models;
-using DentalClinic_1._1.Services;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
@@ -16,15 +15,12 @@ namespace DentalClinic_1._1.Controllers
     [Authorize(Roles = "Administrator")]
     public class AdministratorController : Controller
     {
-        private readonly IUsersService usersService;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public AdministratorController(IUsersService usersService,
-                                       RoleManager<IdentityRole> roleManager,
+        public AdministratorController(RoleManager<IdentityRole> roleManager,
                                        UserManager<ApplicationUser> userManager)
         {
-            this.usersService = usersService;
             this.roleManager = roleManager;
             this.userManager = userManager;
         }
@@ -36,43 +32,23 @@ namespace DentalClinic_1._1.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
-
-            //var user = usersService.CreatePatient(input);
-
             var roleName = "Patient";
-            var appUser = new ApplicationUser
-            {
-                Firstname = input.Firstname,
-                Lastname = input.Lastname,
-                Email = input.Email,
-                Birthdate = input.Birthdate,
-                Town = input.Town,
-                PhoneNumber = input.PhoneNumber
-
-            };
-            var user = await userManager.CreateAsync(appUser);
-
             var userManage = await userManager.GetUserAsync(User);
 
-            if(!User.IsInRole(roleName))
+            if (!User.IsInRole(roleName))
             {
                 var result = await userManager.AddToRoleAsync(userManage, roleName);
             }
-           
-            return Redirect("/Administrator/AllPatients");
+
+            return View();
         }
         public IActionResult AllPatients()
         {
-            if (!User.Identity.IsAuthenticated == true)
-            {
-                return this.Redirect("/Users/Login");
-            }
-            var patients = this.usersService.AllPatients();
-            return View(patients);
+            return View();
         }
         public IActionResult RemovePatient()
         {
-            
+
             return View();
         }
         public IActionResult AddDentist()
@@ -82,17 +58,14 @@ namespace DentalClinic_1._1.Controllers
         [HttpPost]
         public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
-            var dentist = this.usersService.CreateDentist(input);
-
             var roleName = "Dentist";
-            var roleExist = await roleManager.RoleExistsAsync(roleName);
+            var userManage = await userManager.GetUserAsync(User);
 
-            if (roleExist)
+            if (!User.IsInRole(roleName))
             {
-                var userManage = await userManager.GetUserAsync(User);
                 var result = await userManager.AddToRoleAsync(userManage, roleName);
             }
-            return Redirect("/Administrator/AllDentists");
+            return View();
         }
         public IActionResult RemoveDentist()
         {
@@ -100,12 +73,7 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult AllDentists()
         {
-            if (!User.Identity.IsAuthenticated == true)
-            {
-                return this.Redirect("/Users/Login");
-            }
-            var dentists = this.usersService.AllDentists();
-            return View(dentists);
+            return View();
         }
 
         public IActionResult AddSpecialization()
@@ -116,7 +84,8 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-        public IActionResult AllSpecializations()
+       
+        public IActionResult AllSpecialties()
         {
             return View();
         }

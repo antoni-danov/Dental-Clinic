@@ -55,6 +55,7 @@
                                     <div class="dropdown-content">
                                         <a href="/Administrator/AddSpecialization">Add Specialization</a>
                                         <a href="/Administrator/RemoveSpecialization">Remove Specialization</a>
+                                        <a href="/Administrator/AllSpecialties">List of Specialties</a>
                                     </div>
                                 </div>
                             }
@@ -76,10 +77,10 @@
                             else if (User.IsInRole("Dentist"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Dentist" asp-action="Patients">Patients</a>
+                                    <a class="nav-link text-white" href="/Dentists/Patients">Patients</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Dentist" asp-action="Appointments">Appointments</a>
+                                    <a class="nav-link text-white" href="/Dentists/Appointments">Appointments</a>
                                 </li>
                             }
                         }
