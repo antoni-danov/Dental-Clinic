@@ -6,6 +6,7 @@ using DentalClinic_1._1.Models;
 using DentalClinic_1._1.Services.Administrator;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
+using DentalClinic_1._1.ViewModels.Patient;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,9 +37,21 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
 
-            var user = usersService.CreatePatient(input);
+            //var user = usersService.CreatePatient(input);
 
             var roleName = "Patient";
+            var appUser = new ApplicationUser
+            {
+                Firstname = input.Firstname,
+                Lastname = input.Lastname,
+                Email = input.Email,
+                Birthdate = input.Birthdate,
+                Town = input.Town,
+                PhoneNumber = input.PhoneNumber
+
+            };
+            var user = await userManager.CreateAsync(appUser);
+
             var userManage = await userManager.GetUserAsync(User);
 
             if(!User.IsInRole(roleName))

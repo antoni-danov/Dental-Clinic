@@ -2,6 +2,7 @@
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
+using DentalClinic_1._1.ViewModels.Patient;
 using DentalClinic_1._1.ViewModels.Specialization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,22 +24,22 @@ namespace DentalClinic_1._1.Services.Administrator
             this.userManager = userManager;
         }
 
-        public string CreatePatient(AddPatientViewModel input)
-        {
-            var user = new ApplicationUser
-            {
-                Firstname = input.Firstname,
-                Lastname = input.Lastname,
-                Email = input.Email,
-                Birthdate = input.Birthdate,
-                Town = input.Town,
-                PhoneNumber = input.PhoneNumber
-            };
+        //public string CreatePatient(AddPatientViewModel input)
+        //{
+        //    var user = new ApplicationUser
+        //    {
+        //        Firstname = input.Firstname,
+        //        Lastname = input.Lastname,
+        //        Email = input.Email,
+        //        Birthdate = input.Birthdate,
+        //        Town = input.Town,
+        //        PhoneNumber = input.PhoneNumber
+        //    };
 
-            var result = this.userManager.CreateAsync(user);
+        //    var result = this.userManager.CreateAsync(user);
 
-            return user.Id.ToString();
-        }
+        //    return user.Id.ToString();
+        //}
 
         public IEnumerable<AddPatientViewModel> AllPatients()
         {
@@ -98,5 +99,6 @@ namespace DentalClinic_1._1.Services.Administrator
             throw new NotImplementedException();
         }
 
+       
     }
 }
