@@ -17,6 +17,7 @@ namespace DentalClinic_1._1.Services.Administrator
         public string CreateDentist(AddDentistViewModel input);
         public IEnumerable<AddDentistViewModel> AllDentists();
         public string CreateSpecialization(AddSpecializationViewModel input);
+        public Task<IActionResult> RemovePatient(string userId);
 
 
     }

@@ -99,6 +99,9 @@ namespace DentalClinic_1._1.Services.Administrator
             throw new NotImplementedException();
         }
 
-       
+        public Task<IActionResult> RemovePatient(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -72,6 +72,7 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult RemovePatient()
         {
+            
             return View();
         }
         public IActionResult AddDentist()
