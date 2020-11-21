@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using DentalClinic_1._1.Services.Administrator;
+using DentalClinic_1._1.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1

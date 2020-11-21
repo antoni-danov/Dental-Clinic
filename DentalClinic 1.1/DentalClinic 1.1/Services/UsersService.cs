@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DentalClinic_1._1.Services.Administrator
+namespace DentalClinic_1._1.Services
 {
     public class UsersService : IUsersService
     {
@@ -41,20 +41,34 @@ namespace DentalClinic_1._1.Services.Administrator
         //    return user.Id.ToString();
         //}
 
-        public IEnumerable<AddPatientViewModel> AllPatients()
+        public IEnumerable<ApplicationUser> AllPatients()
         {
-            var patients = this.db.Users.Select
-                (p => new AddPatientViewModel
-                {
-                    Firstname = p.Firstname,
-                    Lastname = p.Lastname,
-                    Email = p.Email,
-                    Birthdate = p.Birthdate,
-                    Town = p.Town,
-                    PhoneNumber = p.PhoneNumber
-                }).ToList();
+            //var patients = this.db.Users.Select
+            //    (p => new AddPatientViewModel
+            //    {
+            //        Firstname = p.Firstname,
+            //        Lastname = p.Lastname,
+            //        Email = p.Email,
+            //        Birthdate = p.Birthdate,
+            //        Town = p.Town,
+            //        PhoneNumber = p.PhoneNumber
+            //    }).ToList();
+            var patients = this.db.Users.ToList();
 
             return patients;
+        }
+        public IEnumerable<GetAllDentistsViewModel> GetAllDentists()
+        {
+            var dentists = this.db.Users.Select
+                (x => new GetAllDentistsViewModel
+                {
+                    FirstName = x.Firstname,
+                    LastName = x.Lastname,
+                    Specialty = x.Specialization.Name.ToString()
+                })
+                .ToList();
+
+            return dentists;
         }
 
         public IEnumerable<AddDentistViewModel> AllDentists()
@@ -103,5 +117,6 @@ namespace DentalClinic_1._1.Services.Administrator
         {
             throw new NotImplementedException();
         }
+
     }
 }

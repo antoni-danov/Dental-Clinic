@@ -1,7 +1,16 @@
-﻿
+﻿@model DentalClinic_1._1.ViewModels.Dentist.GetAllDentistsViewModel
+
 @{
     ViewData["Title"] = "Dentists";
 }
 
 <h1>Dentists</h1>
 
+<table class="table table-striped table-sm">
+    <tr>
+        <td>@Model.FirstName</td>
+        <td>@Model.LastName</td>
+        <td>@Model.Specialty</td>
+    </tr>
+    
+</table>
