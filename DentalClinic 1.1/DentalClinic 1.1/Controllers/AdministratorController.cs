@@ -33,6 +33,18 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
             var roleName = "Patient";
+            var createPatient = new ApplicationUser
+            {
+                Firstname = input.Firstname,
+                Lastname = input.Lastname,
+                Email = input.Email,
+                Birthdate = input.Birthdate,
+                Address = input.Address,
+                Town = input.Town,
+                PhoneNumber = input.PhoneNumber
+
+            };
+            var user = await userManager.CreateAsync(createPatient);
             var userManage = await userManager.GetUserAsync(User);
 
             if (!User.IsInRole(roleName))
@@ -40,7 +52,7 @@ namespace DentalClinic_1._1.Controllers
                 var result = await userManager.AddToRoleAsync(userManage, roleName);
             }
 
-            return View();
+            return View(createPatient);
         }
         public IActionResult AllPatients()
         {
@@ -84,7 +96,7 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-       
+
         public IActionResult AllSpecialties()
         {
             return View();
