@@ -11,7 +11,7 @@ namespace DentalClinic_1._1.ViewModels.Dentist
     public class AllDentistsViewModel
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]

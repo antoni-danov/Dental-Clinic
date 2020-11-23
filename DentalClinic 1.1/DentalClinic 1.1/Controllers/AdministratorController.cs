@@ -80,7 +80,9 @@ namespace DentalClinic_1._1.Controllers
                     FirstName = patient.Firstname,
                     LastName = patient.Lastname,
                     PhoneNumber = patient.PhoneNumber,
-                    Email = patient.Email
+                    Email = patient.Email,
+                    Id = patient.Id
+
                 };
 
                 listOfPatients.Add(users);
@@ -121,7 +123,8 @@ namespace DentalClinic_1._1.Controllers
                     FirstName = dentist.Firstname,
                     LastName = dentist.Lastname,
                     PhoneNumber = dentist.PhoneNumber,
-                    Email = dentist.Email
+                    Email = dentist.Email,
+                    Id = dentist.Id
                 };
 
                 listOfDentists.Add(users);
@@ -137,9 +140,9 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-        public IActionResult AllSpecialties()
+        public async Task<IActionResult> AllSpecialties()
         {
-            //List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
+            List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
 
             //foreach (var specialty in )
             //{
