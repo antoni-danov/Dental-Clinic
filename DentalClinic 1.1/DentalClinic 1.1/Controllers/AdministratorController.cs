@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
+using DentalClinic_1._1.ViewModels.Specialization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DentalClinic_1._1.Controllers
 {
@@ -17,12 +20,15 @@ namespace DentalClinic_1._1.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext db;
 
         public AdministratorController(RoleManager<IdentityRole> roleManager,
-                                       UserManager<ApplicationUser> userManager)
+                                       UserManager<ApplicationUser> userManager,
+                                       ApplicationDbContext db)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.db = db;
         }
 
         public IActionResult AddPatient()
@@ -61,9 +67,26 @@ namespace DentalClinic_1._1.Controllers
 
             return View();
         }
-        public IActionResult AllPatients()
+        public async Task<IActionResult> AllPatients()
         {
-            return View();
+            List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
+            var patients = await userManager.GetUsersInRoleAsync("Patient");
+
+            foreach (var patient in patients)
+            {
+
+                var users = new AllPatientsViewModel
+                {
+                    FirstName = patient.Firstname,
+                    LastName = patient.Lastname,
+                    PhoneNumber = patient.PhoneNumber,
+                    Email = patient.Email
+                };
+
+                listOfPatients.Add(users);
+            }
+
+            return View(listOfPatients);
         }
         public IActionResult AddDentist()
         {
@@ -85,9 +108,26 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-        public IActionResult AllDentists()
+        public async Task<IActionResult> AllDentists()
         {
-            return View();
+            List<AllDentistsViewModel> listOfDentists = new List<AllDentistsViewModel>();
+            var dentists = await userManager.GetUsersInRoleAsync("Dentist");
+
+            foreach (var dentist in dentists)
+            {
+
+                var users = new AllDentistsViewModel
+                {
+                    FirstName = dentist.Firstname,
+                    LastName = dentist.Lastname,
+                    PhoneNumber = dentist.PhoneNumber,
+                    Email = dentist.Email
+                };
+
+                listOfDentists.Add(users);
+            }
+
+            return View(listOfDentists);
         }
         public IActionResult AddSpecialization()
         {
@@ -99,7 +139,22 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult AllSpecialties()
         {
-            return View();
+            //List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
+
+            //foreach (var specialty in )
+            //{
+
+            //    var models = new AllSpecializationViewModel
+            //    {
+            //        SpecialtyName = specialty,
+            //        DentistFirstName = specialty.Firstname,
+            //        DentistLastName = specialty.Lastname
+            //    };
+
+            //    listOfSpecializations.Add(models);
+            //}
+
+            return View( );
         }
     }
 }
