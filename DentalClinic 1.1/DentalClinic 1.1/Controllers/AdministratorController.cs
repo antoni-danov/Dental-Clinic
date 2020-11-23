@@ -54,22 +54,22 @@ namespace DentalClinic_1._1.Controllers
                 var result = await userManager.AddToRoleAsync(userManage, roleName);
             }
 
-            return View();
-        }
-        public IActionResult AllPatients()
-        {
-            return View();
+            return Redirect("/AllPatients");
         }
         public IActionResult RemovePatient()
         {
 
             return View();
         }
+        public IActionResult AllPatients()
+        {
+            return View();
+        }
         public IActionResult AddDentist()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
             var roleName = "Dentist";
@@ -89,7 +89,6 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-
         public IActionResult AddSpecialization()
         {
             return View();
@@ -98,7 +97,6 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-
         public IActionResult AllSpecialties()
         {
             return View();
