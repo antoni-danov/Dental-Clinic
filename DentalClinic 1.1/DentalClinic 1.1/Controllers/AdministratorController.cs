@@ -29,21 +29,23 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
             var roleName = "Patient";
+
             var createPatient = new ApplicationUser
             {
-                Firstname = input.Firstname,
-                Lastname = input.Lastname,
+                Firstname = input.FirstName,
+                Lastname = input.LastName,
                 Email = input.Email,
-                Birthdate = input.Birthdate,
+                Birthdate = input.BirthDate,
                 Address = input.Address,
                 Town = input.Town,
                 PhoneNumber = input.PhoneNumber
 
             };
+
             var user = await userManager.CreateAsync(createPatient);
             var userManage = await userManager.GetUserAsync(User);
 
@@ -52,7 +54,7 @@ namespace DentalClinic_1._1.Controllers
                 var result = await userManager.AddToRoleAsync(userManage, roleName);
             }
 
-            return View(createPatient);
+            return View();
         }
         public IActionResult AllPatients()
         {

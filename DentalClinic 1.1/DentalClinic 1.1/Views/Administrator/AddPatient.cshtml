@@ -9,64 +9,62 @@
     <form action="/" method="post">
         <div class="row">
             <div class="col-25">
-                <label for="text"><b>@Model.Firstname</b></label>
+                <label for="FirstName"><b>First name</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="First Name" name="first name" id="first name" required>
+                <input type="text" placeholder="First name" name="FirstName" id="FirstName" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="psw"><b>@Model.Lastname</b></label>
+                <label for="LastName"><b>Last name</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Last Name" name="last name" id="last name" required>
+                <input type="text" placeholder="Last Name" name="LastName" id="LastName" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>@Model.Email</b></label>
+                <label for="Email"><b>Email</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Email" name="email" id="email" required>
+                <input type="text" placeholder="Email" name="Email" id="Email" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>@Model.Birthdate</b></label>
+                <label for="BirthDate"><b>Birthdate</b></label>
             </div>
             <div class="col-75">
-                <input type="date" placeholder="Birth date" name="birth date" id="birth date" required>
+                <input type="date" placeholder="Birth date" name="BirthDate" id="BirthDate" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>@Model.Address</b></label>
+                <label for="Address"><b>Address</b></label>
             </div>
             <div class="col-75">
 
-                <input type="text" placeholder="Address" name="address" id="address" required>
+                <input type="text" placeholder="Address" name="Address" id="Address" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="town"><b>@Model.Town</b></label>
+                <label for="Town"><b>Town</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Town" name="town" id="town" required>
+                <input type="text" placeholder="Town" name="Town" id="Town" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>@Model.PhoneNumber</b></label>
+                <label for="PhoneNumber"><b>Phone Number</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Phone number" name="phone number" id="phone number" required>
+                <input type="text" placeholder="Phone number" name="PhoneNumber" id="PhoneNumber" required>
             </div>
         </div>
         <button class="btn btn-success" value="Submit">Submit</button>
-        <div>
-            <a class="center" asp-action="AllPatients">Back to List</a>
-        </div>
+        
     </form>
 </div>
