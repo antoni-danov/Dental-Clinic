@@ -1,4 +1,4 @@
-﻿@model DentalClinic_1._1.ViewModels.AddPatientViewModel
+﻿@model DentalClinic_1._1.ViewModels.Patient.AddPatientViewModel
 @{
     ViewData["Title"] = "AddPatient";
 }
@@ -9,61 +9,62 @@
     <form action="/" method="post">
         <div class="row">
             <div class="col-25">
-                <label for="text"><b>First name</b></label>
+                <label for="FirstName"><b>First name</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="First Name" name="first name" id="first name" required>
+                        <input type="text" placeholder="First name" name="input.FirstName" id="FirstName" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="psw"><b>Last name</b></label>
+                <label for="LastName"><b>Last name</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Last Name" name="last name" id="last name" required>
+                <input type="text" placeholder="Last Name" name="LastName" id="LastName" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>Email</b></label>
+                <label for="Email"><b>Email</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Email" name="email" id="email" required>
+                <input type="text" placeholder="Email" name="Email" id="Email" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>Birth date</b></label>
+                <label for="BirthDate"><b>Birthdate</b></label>
             </div>
             <div class="col-75">
-                <input type="date" placeholder="Birth date" name="birth date" id="birth date" required>
+                <input type="date" placeholder="Birth date" name="BirthDate" id="BirthDate" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>Address</b></label>
+                <label for="Address"><b>Address</b></label>
             </div>
             <div class="col-75">
 
-                <input type="text" placeholder="Address" name="address" id="address" required>
+                <input type="text" placeholder="Address" name="Address" id="Address" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="town"><b>Town</b></label>
+                <label for="Town"><b>Town</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Town" name="town" id="town" required>
+                <input type="text" placeholder="Town" name="Town" id="Town" required>
             </div>
         </div>
         <div class="row">
             <div class="col-25">
-                <label for="email"><b>PhoneNumber</b></label>
+                <label for="PhoneNumber"><b>Phone Number</b></label>
             </div>
             <div class="col-75">
-                <input type="text" placeholder="Phone number" name="phone number" id="phone number" required>
+                <input type="text" placeholder="Phone number" name="PhoneNumber" id="PhoneNumber" required>
             </div>
         </div>
         <button class="btn btn-success" value="Submit">Submit</button>
+        
     </form>
 </div>
