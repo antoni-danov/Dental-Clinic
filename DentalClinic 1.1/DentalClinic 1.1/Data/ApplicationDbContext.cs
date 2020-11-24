@@ -5,6 +5,8 @@ using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DentalClinic_1._1.ViewModels.Patient;
+using DentalClinic_1._1.ViewModels.Dentist;
 
 namespace DentalClinic_1._1.Data
 {
@@ -24,6 +26,7 @@ namespace DentalClinic_1._1.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<AllPatientsViewModel>().HasKey(x => x.Id);
            
             builder.Entity<ApplicationUser>(entity =>
             {
@@ -54,5 +57,15 @@ namespace DentalClinic_1._1.Data
                 entity.ToTable(name: "RoleClaim");
             });
         }
+
+        public DbSet<DentalClinic_1._1.ViewModels.Patient.AllPatientsViewModel> AllPatientsViewModel { get; set; }
+
+        public DbSet<DentalClinic_1._1.ViewModels.Dentist.AllDentistsViewModel> AllDentistsViewModel { get; set; }
+
+        public DbSet<DentalClinic_1._1.ViewModels.Patient.AddPatientViewModel> AddPatientViewModel { get; set; }
+
+        public DbSet<DentalClinic_1._1.Models.Specialization> Specializations { get; set; }
+        public DbSet<DentalClinic_1._1.Models.Town> Towns { get; set; }
+        public DbSet<DentalClinic_1._1.ViewModels.Dentist.AddDentistViewModel> AddDentistViewModel { get; set; }
     }
 }

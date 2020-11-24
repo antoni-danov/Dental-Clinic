@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
+using DentalClinic_1._1.ViewModels.Specialization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DentalClinic_1._1.Controllers
 {
@@ -17,12 +20,15 @@ namespace DentalClinic_1._1.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext db;
 
         public AdministratorController(RoleManager<IdentityRole> roleManager,
-                                       UserManager<ApplicationUser> userManager)
+                                       UserManager<ApplicationUser> userManager,
+                                       ApplicationDbContext db)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.db = db;
         }
 
         public IActionResult AddPatient()
@@ -42,28 +48,52 @@ namespace DentalClinic_1._1.Controllers
                 Birthdate = input.BirthDate,
                 Address = input.Address,
                 Town = input.Town,
-                PhoneNumber = input.PhoneNumber
-
+                PhoneNumber = input.PhoneNumber,
+                UserName = input.Email
             };
 
             var user = await userManager.CreateAsync(createPatient);
-            var userManage = await userManager.GetUserAsync(User);
-
-            if (!User.IsInRole(roleName))
+            if (!user.Succeeded)
             {
-                var result = await userManager.AddToRoleAsync(userManage, roleName);
+                // TODO: handle error
             }
 
-            return Redirect("/AllPatients");
+            var result = await userManager.AddToRoleAsync(createPatient, roleName);
+
+            if (!result.Succeeded)
+            {
+                //  TODO: handle
+            }
+
+            return Redirect("AllPatients");
         }
         public IActionResult RemovePatient()
         {
 
             return View();
         }
-        public IActionResult AllPatients()
+        public async Task<IActionResult> AllPatients()
         {
-            return View();
+            List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
+            var patients = await userManager.GetUsersInRoleAsync("Patient");
+
+            foreach (var patient in patients)
+            {
+
+                var users = new AllPatientsViewModel
+                {
+                    FirstName = patient.Firstname,
+                    LastName = patient.Lastname,
+                    PhoneNumber = patient.PhoneNumber,
+                    Email = patient.Email,
+                    Id = patient.Id
+
+                };
+
+                listOfPatients.Add(users);
+            }
+
+            return View(listOfPatients);
         }
         public IActionResult AddDentist()
         {
@@ -73,21 +103,61 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
             var roleName = "Dentist";
-            var userManage = await userManager.GetUserAsync(User);
 
-            if (!User.IsInRole(roleName))
+            var createDentist = new ApplicationUser
             {
-                var result = await userManager.AddToRoleAsync(userManage, roleName);
+                Firstname = input.Firstname,
+                Lastname = input.Lastname,
+                Email = input.Email,
+                Birthdate = input.Birthdate,
+                Address = input.Address,
+                Town = input.Town,
+                PhoneNumber = input.PhoneNumber,
+                Description = input.Description,
+                UserName = input.Email
+            };
+
+            var user = await userManager.CreateAsync(createDentist);
+
+            if (!user.Succeeded)
+            {
+                //TODO
             }
-            return View();
+
+            var result = await userManager.AddToRoleAsync(createDentist, roleName);
+            
+            if (!user.Succeeded)
+            {
+                //TODO
+            }
+
+            return Redirect("AllDentists");
         }
         public IActionResult RemoveDentist()
         {
             return View();
         }
-        public IActionResult AllDentists()
+        public async Task<IActionResult> AllDentists()
         {
-            return View();
+            List<AllDentistsViewModel> listOfDentists = new List<AllDentistsViewModel>();
+            var dentists = await userManager.GetUsersInRoleAsync("Dentist");
+
+            foreach (var dentist in dentists)
+            {
+
+                var users = new AllDentistsViewModel
+                {
+                    FirstName = dentist.Firstname,
+                    LastName = dentist.Lastname,
+                    PhoneNumber = dentist.PhoneNumber,
+                    Email = dentist.Email,
+                    Id = dentist.Id
+                };
+
+                listOfDentists.Add(users);
+            }
+
+            return View(listOfDentists);
         }
         public IActionResult AddSpecialization()
         {
@@ -97,8 +167,23 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-        public IActionResult AllSpecialties()
+        public async Task<IActionResult> AllSpecialties()
         {
+            List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
+            var specializations = db.Specializations.ToList();
+
+            foreach (var specialty in specializations)
+            {
+
+                var models = new AllSpecializationViewModel
+                {
+                    SpecialtyName = specialty.Name
+
+                };
+
+                listOfSpecializations.Add(models);
+            }
+
             return View();
         }
     }

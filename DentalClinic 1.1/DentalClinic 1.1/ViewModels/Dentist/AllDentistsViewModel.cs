@@ -8,13 +8,16 @@ using DentalClinic_1._1.Models;
 
 namespace DentalClinic_1._1.ViewModels.Dentist
 {
-    public class GetAllDentistsViewModel
+    public class AllDentistsViewModel
     {
+        [Key]
+        public string Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
-        public string Specialty { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+
     }
 }
