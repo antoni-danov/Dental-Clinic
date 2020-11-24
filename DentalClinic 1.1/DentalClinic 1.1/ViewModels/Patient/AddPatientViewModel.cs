@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.ViewModels.Patient
 {
-    public class AddPatientViewModel : PageModel
+    public class AddPatientViewModel
     {
-        [Required(ErrorMessage = "Enter First name.")]
+
+        [Key]
+        [Required]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Enter Last name.")]
+        [Required]
         public string LastName { get; set; }
         [Required(ErrorMessage = "Enter Email.")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Enter date of birth.")]
+        [Required]
         public DateTime BirthDate { get; set; }
         public string Address { get; set; }
-        [Required(ErrorMessage = "Enter Town name.")]
+        [Required]
         public Town Town { get; set; }
 
         [RegularExpression("^[0-9]{10}$")]
-        [Range(5, 10)]
-        [Required(ErrorMessage = "Enter Phone number.")]
+        [Required]
         public string PhoneNumber { get; set; }
     }
 }

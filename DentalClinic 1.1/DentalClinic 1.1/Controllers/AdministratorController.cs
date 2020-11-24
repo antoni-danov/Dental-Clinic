@@ -60,7 +60,7 @@ namespace DentalClinic_1._1.Controllers
                 var result = await userManager.AddToRoleAsync(userManage, roleName);
             }
 
-            return Redirect("/AllPatients");
+            return Redirect("AllPatients");
         }
         public IActionResult RemovePatient()
         {

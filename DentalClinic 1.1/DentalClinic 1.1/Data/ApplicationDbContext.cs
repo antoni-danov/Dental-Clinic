@@ -61,5 +61,7 @@ namespace DentalClinic_1._1.Data
         public DbSet<DentalClinic_1._1.ViewModels.Patient.AllPatientsViewModel> AllPatientsViewModel { get; set; }
 
         public DbSet<DentalClinic_1._1.ViewModels.Dentist.AllDentistsViewModel> AllDentistsViewModel { get; set; }
+
+        public DbSet<DentalClinic_1._1.ViewModels.Patient.AddPatientViewModel> AddPatientViewModel { get; set; }
     }
 }

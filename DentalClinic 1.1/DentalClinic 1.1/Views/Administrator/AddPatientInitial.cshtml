@@ -1,0 +1,71 @@
+﻿@model DentalClinic_1._1.ViewModels.Patient.AddPatientViewModel
+@{
+    ViewData["Title"] = "AddPatient";
+}
+<link href="~/css/InputForm.css" rel="stylesheet" />
+
+<h1>Add Patient</h1>
+
+<div class=" container">
+    <form action="/AddPatient" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="FirstName"><b>First name</b></label>
+            </div>
+            <div class="col-75">
+                        <input type="text" placeholder="First name" name="FirstName" id="FirstName" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="LastName"><b>Last name</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Last Name" name="LastName" id="LastName" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="Email"><b>Email</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Email" name="Email" id="Email" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="BirthDate"><b>Birthdate</b></label>
+            </div>
+            <div class="col-75">
+                <input type="date" placeholder="Birth date" name="BirthDate" id="BirthDate" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="Address"><b>Address</b></label>
+            </div>
+            <div class="col-75">
+
+                <input type="text" placeholder="Address" name="Address" id="Address" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="Town"><b>Town</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Town" name="Town" id="Town" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="PhoneNumber"><b>Phone Number</b></label>
+            </div>
+            <div class="col-75">
+                <input type="text" placeholder="Phone number" name="PhoneNumber" id="PhoneNumber" required>
+            </div>
+        </div>
+        <button class="btn btn-success" value="Submit">Submit</button>
+        
+    </form>
+</div>
