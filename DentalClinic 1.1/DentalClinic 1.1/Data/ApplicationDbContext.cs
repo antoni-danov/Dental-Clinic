@@ -66,5 +66,6 @@ namespace DentalClinic_1._1.Data
 
         public DbSet<DentalClinic_1._1.Models.Specialization> Specializations { get; set; }
         public DbSet<DentalClinic_1._1.Models.Town> Towns { get; set; }
+        public DbSet<DentalClinic_1._1.ViewModels.Dentist.AddDentistViewModel> AddDentistViewModel { get; set; }
     }
 }

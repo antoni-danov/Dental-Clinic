@@ -103,13 +103,35 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
             var roleName = "Dentist";
-            var userManage = await userManager.GetUserAsync(User);
 
-            if (!User.IsInRole(roleName))
+            var createDentist = new ApplicationUser
             {
-                var result = await userManager.AddToRoleAsync(userManage, roleName);
+                Firstname = input.Firstname,
+                Lastname = input.Lastname,
+                Email = input.Email,
+                Birthdate = input.Birthdate,
+                Address = input.Address,
+                Town = input.Town,
+                PhoneNumber = input.PhoneNumber,
+                Description = input.Description,
+                UserName = input.Email
+            };
+
+            var user = await userManager.CreateAsync(createDentist);
+
+            if (!user.Succeeded)
+            {
+                //TODO
             }
-            return View();
+
+            var result = await userManager.AddToRoleAsync(createDentist, roleName);
+            
+            if (!user.Succeeded)
+            {
+                //TODO
+            }
+
+            return Redirect("AllDentists");
         }
         public IActionResult RemoveDentist()
         {
@@ -149,7 +171,7 @@ namespace DentalClinic_1._1.Controllers
         {
             List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
             var specializations = db.Specializations.ToList();
-            
+
             foreach (var specialty in specializations)
             {
 
