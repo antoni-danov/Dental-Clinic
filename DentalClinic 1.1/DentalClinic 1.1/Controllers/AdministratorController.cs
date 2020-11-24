@@ -48,16 +48,21 @@ namespace DentalClinic_1._1.Controllers
                 Birthdate = input.BirthDate,
                 Address = input.Address,
                 Town = input.Town,
-                PhoneNumber = input.PhoneNumber
-
+                PhoneNumber = input.PhoneNumber,
+                UserName = input.Email
             };
 
             var user = await userManager.CreateAsync(createPatient);
-            var userManage = await userManager.GetUserAsync(User);
-
-            if (!User.IsInRole(roleName))
+            if (!user.Succeeded)
             {
-                var result = await userManager.AddToRoleAsync(userManage, roleName);
+                // TODO: handle error
+            }
+
+            var result = await userManager.AddToRoleAsync(createPatient, roleName);
+
+            if (!result.Succeeded)
+            {
+                //  TODO: handle
             }
 
             return Redirect("AllPatients");
@@ -143,21 +148,21 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AllSpecialties()
         {
             List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
+            var specializations = db.Specializations.ToList();
+            
+            foreach (var specialty in specializations)
+            {
 
-            //foreach (var specialty in )
-            //{
+                var models = new AllSpecializationViewModel
+                {
+                    SpecialtyName = specialty.Name
 
-            //    var models = new AllSpecializationViewModel
-            //    {
-            //        SpecialtyName = specialty,
-            //        DentistFirstName = specialty.Firstname,
-            //        DentistLastName = specialty.Lastname
-            //    };
+                };
 
-            //    listOfSpecializations.Add(models);
-            //}
+                listOfSpecializations.Add(models);
+            }
 
-            return View( );
+            return View();
         }
     }
 }
