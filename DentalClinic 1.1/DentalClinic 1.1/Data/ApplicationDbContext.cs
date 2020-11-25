@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DentalClinic_1._1.ViewModels.Patient;
 using DentalClinic_1._1.ViewModels.Dentist;
+using DentalClinic_1._1.ViewModels.Specialty;
 
 namespace DentalClinic_1._1.Data
 {
@@ -67,5 +68,6 @@ namespace DentalClinic_1._1.Data
         public DbSet<DentalClinic_1._1.Models.Specialization> Specializations { get; set; }
         public DbSet<DentalClinic_1._1.Models.Town> Towns { get; set; }
         public DbSet<DentalClinic_1._1.ViewModels.Dentist.AddDentistViewModel> AddDentistViewModel { get; set; }
-    }
+        public DbSet<DentalClinic_1._1.ViewModels.Specialty.AddSpecializationViewModel> AddSpecializationViewModel { get; set; }
+      }
 }
