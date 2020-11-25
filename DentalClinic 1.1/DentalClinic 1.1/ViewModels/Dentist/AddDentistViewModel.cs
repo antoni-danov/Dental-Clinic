@@ -26,6 +26,7 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         [Required]
         public string PhoneNumber { get; set; }
         public string Description { get; set; }
+        public Specialization SpecialtyName { get; set; }
 
     }
 }

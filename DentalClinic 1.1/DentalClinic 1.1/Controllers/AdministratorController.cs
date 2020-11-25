@@ -7,7 +7,7 @@ using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
-using DentalClinic_1._1.ViewModels.Specialization;
+using DentalClinic_1._1.ViewModels.Specialty;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -114,6 +114,7 @@ namespace DentalClinic_1._1.Controllers
                 Town = input.Town,
                 PhoneNumber = input.PhoneNumber,
                 Description = input.Description,
+                Specialization = input.SpecialtyName,
                 UserName = input.Email
             };
 
@@ -125,7 +126,7 @@ namespace DentalClinic_1._1.Controllers
             }
 
             var result = await userManager.AddToRoleAsync(createDentist, roleName);
-            
+
             if (!user.Succeeded)
             {
                 //TODO
@@ -163,11 +164,26 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult AddSpecialization(AddSpecializationViewModel input)
+        {
+            var specialty = new Specialization
+            {
+                Name = input.Name,
+                Description = input.Description
+            };
+
+            this.db.Specializations.Add(specialty);
+            db.SaveChanges();
+
+            return Redirect("AllSpecializations");
+        }
         public IActionResult RemoveSpecialization()
         {
             return View();
         }
-        public async Task<IActionResult> AllSpecialties()
+        public IActionResult AllSpecializations()
         {
             List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
             var specializations = db.Specializations.ToList();
@@ -177,14 +193,14 @@ namespace DentalClinic_1._1.Controllers
 
                 var models = new AllSpecializationViewModel
                 {
-                    SpecialtyName = specialty.Name
-
+                    SpecialtyName = specialty.Name,
+                    Description = specialty.Description
                 };
 
                 listOfSpecializations.Add(models);
             }
 
-            return View();
+            return View(listOfSpecializations);
         }
     }
 }
