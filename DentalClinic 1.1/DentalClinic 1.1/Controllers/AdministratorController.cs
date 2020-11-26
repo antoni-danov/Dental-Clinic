@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DentalClinic_1._1.Data;
+﻿using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
@@ -12,6 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.Controllers
 {
@@ -69,8 +68,13 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult RemovePatient()
         {
-
             return View();
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemovePatient(string userId)
+        {
+           
+            return Redirect("AllPatients");
         }
         public async Task<IActionResult> AllPatients()
         {
