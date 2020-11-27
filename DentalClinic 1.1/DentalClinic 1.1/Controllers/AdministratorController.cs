@@ -73,7 +73,6 @@ namespace DentalClinic_1._1.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePatient(string userId)
         {
-           
             return Redirect("AllPatients");
         }
         public async Task<IActionResult> AllPatients()
