@@ -38,6 +38,7 @@ namespace DentalClinic_1._1.ViewModels.Patient
 
         [Required]
         [RegularExpression(RegexPhoneNumber)]
+        [Phone]
         public string PhoneNumber { get; set; }
     }
 }

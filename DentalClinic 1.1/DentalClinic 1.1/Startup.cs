@@ -41,7 +41,7 @@ namespace DentalClinic_1._1
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.User.RequireUniqueEmail = true;
             })
-                .AddRoles<IdentityRole>()
+                               .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
