@@ -9,10 +9,15 @@ namespace DentalClinic_1._1.ViewModels.Specialty
 {
     public class AddSpecializationViewModel
     {
+        private const string RegexSpecialty = @"^[A-z]*$";
+
         [Key]
         [Required]
+        [StringLength(20, MinimumLength = 4)]
+        [RegularExpression(RegexSpecialty)]
         public string Name { get; set; }
         [Required]
+        [StringLength(250)]
         public string Description { get; set; }
         
     }
