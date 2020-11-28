@@ -66,14 +66,32 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllPatients");
         }
-        public IActionResult RemovePatient()
-        {
-            return View();
-        }
-        [HttpPost, ValidateAntiForgeryToken]
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePatient(string userId)
         {
-            return Redirect("AllPatients");
+            var user = await db.Users.FindAsync(userId);
+
+            if (user == null)
+            {
+                return View("User not found.");
+            }
+            else
+            {
+                var result = await userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("AllPatients");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View("AllPatients");
         }
         public async Task<IActionResult> AllPatients()
         {
@@ -137,9 +155,31 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllDentists");
         }
-        public IActionResult RemoveDentist()
+
+        [HttpDelete, ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveDentist(string userId)
         {
-            return View();
+            var user = await db.Users.FindAsync(userId);
+
+            if (user == null)
+            {
+                return View("User not found.");
+            }
+            else
+            {
+                var result = await userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("AllDentists");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return Redirect("AllDentists");
         }
         public async Task<IActionResult> AllDentists()
         {

@@ -5,7 +5,7 @@
 <link href="~/css/ContactForm.css" rel="stylesheet" />
 
 <div class="container">
-    <form id="contact" action="" method="post">
+    <form id="contact" action="contact" method="post">
         <h3>Contact Form</h3>
 
         <label for="Names">First and Last name</label>
@@ -15,7 +15,7 @@
         <input type="text" name="Email" placeholder="Enter your email" required />
         <br />
         <label for="PhoneNumber">Phone number</label>
-        <input type="tel" name="Phone number" placeholder="Enter your phone number" pattern="[0-9]{7}" required />
+        <input type="tel" name="Phone number" placeholder="ex.(+359)123 456789" required />
         <br />
         <label for="Dentist">Chose your Dentist to contact</label>
         <select name="Dentist">
@@ -25,7 +25,7 @@
         </select>
         <br />
         <label for="Message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us about your situation..." style="height:200px">
+        <textarea id="message" name="message" placeholder="Tell us about your situation..." style="height:100px">
            
         </textarea>
         <input type="submit" name="Send" value="Submit" />
