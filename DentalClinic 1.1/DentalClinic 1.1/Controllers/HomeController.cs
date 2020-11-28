@@ -31,7 +31,7 @@ namespace DentalClinic_1._1.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Urgence()
         {
             return View();
         }
