@@ -52,7 +52,7 @@ namespace DentalClinic_1._1.Controllers
             };
 
             var user = await userManager.CreateAsync(createPatient);
-            
+
             if (!user.Succeeded)
             {
                 // TODO: handle error
@@ -108,8 +108,8 @@ namespace DentalClinic_1._1.Controllers
                     PhoneNumber = patient.PhoneNumber,
                     Email = patient.Email,
                     Id = patient.Id
-
                 };
+
 
                 listOfPatients.Add(users);
             }
