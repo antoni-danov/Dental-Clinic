@@ -4,14 +4,16 @@ using DentalClinic_1._1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DentalClinic_1._1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201129155108_add delete behavior")]
+    partial class adddeletebehavior
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,8 +116,10 @@ namespace DentalClinic_1._1.Data.Migrations
 
             modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -173,8 +177,8 @@ namespace DentalClinic_1._1.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SpecialtyNameId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("SpecialtyNameId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TownId")
                         .HasColumnType("int");

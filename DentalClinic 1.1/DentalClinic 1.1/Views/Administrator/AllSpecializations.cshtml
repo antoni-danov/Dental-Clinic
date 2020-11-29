@@ -8,6 +8,7 @@
 
 <p>
     <a asp-action="AddSpecialization">Create New</a>
+<p> Number of spcializiations: @Model.Count()</p>
 </p>
 <table class="table">
     @foreach (var item in Model)

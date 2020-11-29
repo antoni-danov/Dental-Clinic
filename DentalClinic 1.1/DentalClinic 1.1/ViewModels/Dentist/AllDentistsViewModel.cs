@@ -18,6 +18,7 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public int Count { get;}
 
     }
 }

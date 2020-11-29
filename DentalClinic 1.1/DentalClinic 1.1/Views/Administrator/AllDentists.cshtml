@@ -8,6 +8,8 @@
 
 <p>
     <a asp-action="AddDentist">Add new Dentist</a>
+<p> Number of dentists in database: @Model.Count()</p>
+
 </p>
 <table class="table">
     @foreach (var item in Model)

@@ -8,10 +8,12 @@
 
 <p>
     <a asp-action="AddPatient">Add new Patient</a>
+<p> Number of patients in database: @Model.Count()</p>
 </p>
 <table class="table">
-@foreach (var item in Model) {
-      
+    @foreach (var item in Model)
+    {
+
         <div class="card mb-3">
             <div class="card-header">
                 UserId : @item.Id
@@ -22,9 +24,9 @@
             <div class="card-footer">
                 <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">
                     @*<a asp-action="EditUser" asp-controller="Administrator" asp-route-id="@item.Id" class="button btn-primary">Edit</a>*@
-                    <button type ="submit" class="button btn-danger">Delete</button>
+                    <button type="submit" class="button btn-danger">Delete</button>
                 </form>
             </div>
         </div>
-}
+    }
 </table>
