@@ -52,6 +52,7 @@ namespace DentalClinic_1._1.Controllers
             };
 
             var user = await userManager.CreateAsync(createPatient);
+            
             if (!user.Succeeded)
             {
                 // TODO: handle error
@@ -73,14 +74,14 @@ namespace DentalClinic_1._1.Controllers
                 return NotFound();
             }
 
-            var movie = await db.Users
+            var patient = await db.Users
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (patient == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(patient);
         }
 
         [HttpPost, ActionName("RemovePatient")]
@@ -161,14 +162,14 @@ namespace DentalClinic_1._1.Controllers
                 return NotFound();
             }
 
-            var movie = await db.Users
+            var dentist = await db.Users
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (dentist == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(dentist);
         }
 
         [HttpPost, ActionName("RemoveDentist")]
@@ -221,9 +222,31 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllSpecializations");
         }
-        public IActionResult RemoveSpecialization()
+        public async Task<IActionResult> RemoveSpecialization(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var specialty = await db.Specializations
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (specialty == null)
+            {
+                return NotFound();
+            }
+
+            return View(specialty);
+        }
+
+        [HttpPost, ActionName("RemoveSpecialization")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveSpecializationConfirmed(int id)
+        {
+            var specialty = await db.Specializations.FindAsync(id);
+            db.Specializations.Remove(specialty);
+            await db.SaveChangesAsync();
+            return RedirectToAction("AllSpecializations");
         }
         public IActionResult AllSpecializations()
         {
@@ -235,6 +258,7 @@ namespace DentalClinic_1._1.Controllers
 
                 var models = new AllSpecializationViewModel
                 {
+                    Id = specialty.Id,
                     SpecialtyName = specialty.Name,
                     Description = specialty.Description
                 };
