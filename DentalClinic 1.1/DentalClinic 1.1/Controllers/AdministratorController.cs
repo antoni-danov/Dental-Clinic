@@ -66,32 +66,31 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllPatients");
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemovePatient(string userId)
+        public async Task<IActionResult> RemovePatient(string id)
         {
-            var user = await db.Users.FindAsync(userId);
-
-            if (user == null)
+            if (id == null)
             {
-                return View("User not found.");
-            }
-            else
-            {
-                var result = await userManager.DeleteAsync(user);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("AllPatients");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+                return NotFound();
             }
 
-            return View("AllPatients");
+            var movie = await db.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
+        [HttpPost, ActionName("RemovePatient")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemovePatientConfirmed(string id)
+        {
+            var user = await db.Users.FindAsync(id);
+            db.Users.Remove(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction("AllPatients");
         }
         public async Task<IActionResult> AllPatients()
         {
@@ -155,31 +154,31 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllDentists");
         }
-
-        [HttpDelete, ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveDentist(string userId)
+        public async Task<IActionResult> RemoveDentist(string id)
         {
-            var user = await db.Users.FindAsync(userId);
-
-            if (user == null)
+            if (id == null)
             {
-                return View("User not found.");
-            }
-            else
-            {
-                var result = await userManager.DeleteAsync(user);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("AllDentists");
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
+                return NotFound();
             }
 
-            return Redirect("AllDentists");
+            var movie = await db.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
+        [HttpPost, ActionName("RemoveDentist")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveDentistConfirmed(string id)
+        {
+            var user = await db.Users.FindAsync(id);
+            db.Users.Remove(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction("AllDentists");
         }
         public async Task<IActionResult> AllDentists()
         {

@@ -95,7 +95,7 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
                 string userName = address.User;
                 var createUser = new ApplicationUser
                 {
-                    UserName = userName,
+                    //UserName = userName,
                     Email = Input.Email,
                     Firstname = Input.Firstname,
                     Lastname = Input.Lastname
