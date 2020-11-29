@@ -52,6 +52,7 @@ namespace DentalClinic_1._1.Controllers
             };
 
             var user = await userManager.CreateAsync(createPatient);
+            
             if (!user.Succeeded)
             {
                 // TODO: handle error
@@ -66,15 +67,31 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllPatients");
         }
-        public IActionResult RemovePatient()
+        public async Task<IActionResult> RemovePatient(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var patient = await db.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            return View(patient);
         }
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemovePatient(string userId)
+
+        [HttpPost, ActionName("RemovePatient")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemovePatientConfirmed(string id)
         {
-           
-            return Redirect("AllPatients");
+            var user = await db.Users.FindAsync(id);
+            db.Users.Remove(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction("AllPatients");
         }
         public async Task<IActionResult> AllPatients()
         {
@@ -138,9 +155,31 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllDentists");
         }
-        public IActionResult RemoveDentist()
+        public async Task<IActionResult> RemoveDentist(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dentist = await db.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (dentist == null)
+            {
+                return NotFound();
+            }
+
+            return View(dentist);
+        }
+
+        [HttpPost, ActionName("RemoveDentist")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveDentistConfirmed(string id)
+        {
+            var user = await db.Users.FindAsync(id);
+            db.Users.Remove(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction("AllDentists");
         }
         public async Task<IActionResult> AllDentists()
         {
@@ -183,9 +222,31 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllSpecializations");
         }
-        public IActionResult RemoveSpecialization()
+        public async Task<IActionResult> RemoveSpecialization(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var specialty = await db.Specializations
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (specialty == null)
+            {
+                return NotFound();
+            }
+
+            return View(specialty);
+        }
+
+        [HttpPost, ActionName("RemoveSpecialization")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveSpecializationConfirmed(int id)
+        {
+            var specialty = await db.Specializations.FindAsync(id);
+            db.Specializations.Remove(specialty);
+            await db.SaveChangesAsync();
+            return RedirectToAction("AllSpecializations");
         }
         public IActionResult AllSpecializations()
         {
@@ -197,6 +258,7 @@ namespace DentalClinic_1._1.Controllers
 
                 var models = new AllSpecializationViewModel
                 {
+                    Id = specialty.Id,
                     SpecialtyName = specialty.Name,
                     Description = specialty.Description
                 };

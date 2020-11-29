@@ -15,9 +15,6 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                @*<div class="fixed-top">
-                    <img src="~/favicon-test.ico" alt="Alternate Text" />
-                </div>*@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dental Clinic</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +24,10 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="OurClinic">Our Clinic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="OurTeam">Our Team</a>
                         </li>
                         @if (User.Identity.IsAuthenticated == true)
                         {
@@ -40,7 +40,6 @@
                                     <button class="dropbtn">Patient</button>
                                     <div class="dropdown-content">
                                         <a href="/Administrator/AddPatient">Add Patient</a>
-                                        <a href="/Administrator/RemovePatient">Remove Patient</a>
                                         <a href="/Administrator/AllPatients">All Patients</a>
 
                                     </div>
@@ -49,7 +48,6 @@
                                     <button class="dropbtn">Dentist</button>
                                     <div class="dropdown-content">
                                         <a href="/Administrator/AddDentist">Add Dentist</a>
-                                        <a href="/Administrator/RemoveDentist">Remove Dentist</a>
                                         <a href="/Administrator/AllDentists">All Dentists</a>
                                     </div>
                                 </div>
@@ -57,7 +55,6 @@
                                     <button class="dropbtn">Specialization</button>
                                     <div class="dropdown-content">
                                         <a href="/Administrator/AddSpecialization">Add Specialization</a>
-                                        <a href="/Administrator/RemoveSpecialization">Remove Specialization</a>
                                         <a href="/Administrator/AllSpecializations">List of Specializations</a>
                                     </div>
                                 </div>
@@ -91,11 +88,8 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">About us</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Urgence">Urgence</a>
                         </li>
-                        @*<li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </li>*@
                     </ul>
                 </div>
             </div>

@@ -22,16 +22,19 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
+        public IActionResult OurClinic()
+        {
+            return View();
+        }
+        public IActionResult OurTeam()
+        {
+            return View();
+        }
         public IActionResult Contact()
         {
             return View();
         }
-        public IActionResult About()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Urgence()
         {
             return View();
         }
