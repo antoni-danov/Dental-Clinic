@@ -45,6 +45,12 @@ namespace DentalClinic_1._1
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
+            services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = Configuration["Authentication:Facebook:AppId"];
+                options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                options.AccessDeniedPath = "/AccessDeniedPathInfo";
+            });
             services.AddControllersWithViews(configure =>
                 {
                     configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());

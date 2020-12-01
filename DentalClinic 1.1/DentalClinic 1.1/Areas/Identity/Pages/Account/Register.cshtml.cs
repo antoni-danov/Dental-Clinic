@@ -89,19 +89,25 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
            
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
-                var result = await _userManager.CreateAsync(user, Input.Password);
-                MailAddress address = new MailAddress(Input.Email);
-                string userName = address.User;
-                var createUser = new ApplicationUser
-                {
-                    //UserName = userName,
+                var user = new ApplicationUser 
+                { UserName = Input.Email,
                     Email = Input.Email,
                     Firstname = Input.Firstname,
                     Lastname = Input.Lastname
                 };
+                var result = await _userManager.CreateAsync(user, Input.Password);
+                MailAddress address = new MailAddress(Input.Email);
+                string userName = address.User;
+                //var createUser = new ApplicationUser
+                //{
+                //    UserName = userName,
+                //    Email = Input.Email,
+                //    Firstname = Input.Firstname,
+                //    Lastname = Input.Lastname
+                //};
                 if (result.Succeeded)
                 {
+                    var role = await _userManager.AddToRoleAsync(user, ApplicationRoles.patient);
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

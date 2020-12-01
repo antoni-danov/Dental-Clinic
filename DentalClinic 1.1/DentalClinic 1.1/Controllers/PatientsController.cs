@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
+using DentalClinic_1._1.ViewModels.Dentist;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,25 @@ namespace DentalClinic_1._1.Controllers
         }
         public async Task<IActionResult> Dentists()
         {
-            return View();
+            List<AllDentistsViewModel> listOfDentists = new List<AllDentistsViewModel>();
+            var dentists = await userManager.GetUsersInRoleAsync("Dentist");
+
+            foreach (var dentist in dentists)
+            {
+
+                var users = new AllDentistsViewModel
+                {
+                    FirstName = dentist.Firstname,
+                    LastName = dentist.Lastname,
+                    PhoneNumber = dentist.PhoneNumber,
+                    Email = dentist.Email,
+                    Id = dentist.Id
+                };
+
+                listOfDentists.Add(users);
+            }
+
+            return View(listOfDentists);
         }
         public IActionResult Appointments()
         {
