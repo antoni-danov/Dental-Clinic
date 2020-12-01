@@ -28,5 +28,6 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
+       
     }
 }

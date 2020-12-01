@@ -9,8 +9,8 @@
 
     @foreach (var item in Model)
     {
-        <div class="card mb-3">
+<div class="card mb-3">
 
-            <button class="card-title btn-primary text-white">@item.FirstName @item.LastName</button>
-        </div>
+    <a href="/Patients/Hours" class="btn btn-info" role="button">@item.FirstName @item.LastName</a>
+</div>
     }
