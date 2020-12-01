@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels.Dentist;
+using DentalClinic_1._1.ViewModels.Patient;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
