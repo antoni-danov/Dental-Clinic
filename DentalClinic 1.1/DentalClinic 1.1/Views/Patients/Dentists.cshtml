@@ -6,19 +6,11 @@
 
 <h1>Dentists in our Clinic</h1>
 
-<table class="table">
+
     @foreach (var item in Model)
     {
         <div class="card mb-3">
-            
-            <div class="card-body">
-                <h5 class="card-title">@item.FirstName @item.LastName</h5>
-            </div>
-            <div class="card-footer">
-                <form asp-action="RemoveDentist" asp-route-id="@item.Id" method="post">
-                   
-                </form>
-            </div>
+
+            <button class="card-title btn-primary text-white">@item.FirstName @item.LastName</button>
         </div>
     }
-</table>
