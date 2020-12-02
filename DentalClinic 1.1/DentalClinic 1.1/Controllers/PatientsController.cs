@@ -55,7 +55,7 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-        public IActionResult Hours()
+        public async Task<IActionResult> Hours()
         {
             return View();
         }

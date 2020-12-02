@@ -114,8 +114,10 @@ namespace DentalClinic_1._1.Data.Migrations
 
             modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -173,8 +175,8 @@ namespace DentalClinic_1._1.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SpecialtyNameId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("SpecialtyNameId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TownId")
                         .HasColumnType("int");
