@@ -51,13 +51,15 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> GetAppointment(string id)
+        {
+            return View();
+        }
         public IActionResult History()
         {
             return View();
         }
-        public async Task<IActionResult> Hours()
-        {
-            return View();
-        }
+
     }
 }
