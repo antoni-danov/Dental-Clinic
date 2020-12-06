@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<DentalClinic_1._1.ViewModels.Dentist.AllDentistsViewModel>
 @{
     ViewData["Title"] = "Contact";
 }
@@ -17,11 +17,14 @@
         <label for="PhoneNumber">Phone number</label>
         <input type="tel" name="Phone number" placeholder="ex.(+359)123 456789" required />
         <br />
-        <label for="Dentist">Chose your Dentist to contact</label>
+        <label for="Dentist">Chose your Dentist to contact:</label>
         <select name="Dentist">
             <option>Chose a Dentist...</option>
-            <option value="Dr.GenadiEvgeniev">Dr.Genadi Evgeniev</option>
-            <option value="Dr.StephanGeorgiev">Dr.Stephan Georgiev</option>
+            @foreach (var item in @Model)
+            {
+                <option value="Dentist">@item.FirstName @item.LastName</option>
+
+            }
         </select>
         <br />
         <label for="Message">Message</label>

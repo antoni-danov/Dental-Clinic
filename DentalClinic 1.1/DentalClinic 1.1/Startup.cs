@@ -56,6 +56,7 @@ namespace DentalClinic_1._1
                     configure.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 });
             services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
