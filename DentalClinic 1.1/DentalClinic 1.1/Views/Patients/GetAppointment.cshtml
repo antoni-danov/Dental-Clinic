@@ -7,5 +7,6 @@
 <h1>Take an appointment:</h1>
 
 <form asp-controller="Patients" asp-action="GetAppointment">
-        <button class="btn btn-primary" value="@DateTime.Now" asp-format="{d/MMM/yy}" name="Appointment" >07:00</button>
+        <button class="btn btn-primary" value="@DateTime.UtcNow" name="Appointment" >07:00</button>
+    <input id="PatientId" name="PatientId" type="hidden" value="@Model.PatientId">
     </form>
