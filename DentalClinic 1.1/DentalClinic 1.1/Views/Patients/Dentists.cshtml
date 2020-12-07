@@ -7,10 +7,10 @@
 <h1 class=" text-lg-center">Dentists in our Clinic</h1>
 
 
-    @foreach (var item in Model)
-    {
-<div class="card mb-3">
-
-    <a href="/Patients/GetAppointment" class="btn btn-info" role="button">@item.FirstName @item.LastName</a>
-</div>
-    }
+@foreach (var item in Model)
+{
+    
+    <div class="card mb-3">
+        <a href="/Patients/GetAppointment/@item.Id" class="btn btn-info" role="button" >@item.FirstName @item.LastName</a>
+    </div>
+}

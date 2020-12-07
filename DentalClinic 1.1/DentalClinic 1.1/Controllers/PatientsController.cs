@@ -16,10 +16,13 @@ namespace DentalClinic_1._1.Controllers
     public class PatientsController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext db;
 
-        public PatientsController(UserManager<ApplicationUser> userManager)
+        public PatientsController(UserManager<ApplicationUser> userManager,
+            ApplicationDbContext db)
         {
             this.userManager = userManager;
+            this.db = db;
         }
         public async Task<IActionResult> Dentists()
         {
@@ -43,18 +46,45 @@ namespace DentalClinic_1._1.Controllers
 
             return View(listOfDentists);
         }
-        public IActionResult Appointments()
+
+        public async Task<IActionResult> AppointmentsAsync()
         {
-            return View();
+            var userId = (await userManager.GetUserAsync(User)).Id;
+            var appointments = db.Appointments.Where(a => a.Patient.Id == userId)
+                .Select(a => new AppointmentViewModel
+                {
+                    FirstName = a.Dentist.Firstname,
+                    LastName = a.Dentist.Lastname,
+                    Date = a.Date
+                });
+
+            return View(appointments);
         }
-        public IActionResult GetAppointment()
+
+        public IActionResult GetAppointment(string id)
         {
-            return View();
+            var dentist = new CreateAppointmentViewModel { DentistId = id };
+            return View(dentist);
         }
+
+        //TODO Security too much information
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> GetAppointment(string input)
+        public async Task<IActionResult> GetAppointmentAsync(CreateAppointmentViewModel input, string id)
         {
-            return View();
+            var currentUser = await userManager.GetUserAsync(User);
+            var dentist = await userManager.FindByIdAsync(id);
+
+            var appointment = new Appointment
+            {
+                Dentist = dentist,
+                Patient = currentUser,
+                Date = input.Appointment
+            };
+
+            db.Appointments.Add(appointment);
+            db.SaveChanges();
+
+            return View("Appointments");
         }
         public IActionResult History()
         {
