@@ -9,7 +9,6 @@
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-sketchy.css"/>*@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="shortcut icon" href="~/favicon-test.ico" />
-
 </head>
 <body>
     <header>
@@ -68,9 +67,6 @@
                                     <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="Appointments">Appointments</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="GetAppointment">Get Appointment</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="History">History</a>
                                 </li>
                             }
@@ -88,7 +84,28 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Urgence">Urgence</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Urgence" data-toggle="modal" data-target="#exampleModal">
+                                Urgence
+                            </a>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="Urgence">Urgence</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h2>Contact us at:</h2>
+                                            <div>+359 000 000 000</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -109,6 +126,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

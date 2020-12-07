@@ -1,15 +1,16 @@
-﻿
+﻿@model IEnumerable<DentalClinic_1._1.ViewModels.Dentist.AllDentistsViewModel>
+
 @{
-    ViewData["Title"] = "Dentists";
+    ViewData["Title"] = "All Dentists";
 }
 
-<h1>Dentists</h1>
+<h1 class=" text-lg-center">Dentists in our Clinic</h1>
 
-<table class="table table-striped table-sm">
-    <tr>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Specialty</td>
-    </tr>
+
+@foreach (var item in Model)
+{
     
-</table>
+    <div class="card mb-3">
+        <a href="/Patients/GetAppointment/@item.Id" class="btn btn-info" role="button" >@item.FirstName @item.LastName</a>
+    </div>
+}

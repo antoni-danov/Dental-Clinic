@@ -1,7 +1,11 @@
-﻿
+﻿@model DentalClinic_1._1.ViewModels.Patient.CreateAppointmentViewModel
+
 @{
     ViewData["Title"] = "GetAppointment";
 }
+<link href="~/css/Calendar.css" rel="stylesheet" />
+<h1>Take an appointment:</h1>
 
-<h1>GetAppointment</h1>
-
+<form asp-controller="Patients" asp-action="GetAppointment">
+        <button class="btn btn-primary" value="@DateTime.Now" asp-format="{d/MMM/yy}" name="Appointment" >07:00</button>
+    </form>

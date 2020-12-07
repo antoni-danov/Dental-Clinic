@@ -23,8 +23,7 @@
             </div>
             <div class="card-footer">
                 <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">
-                    @*<a asp-action="EditUser" asp-controller="Administrator" asp-route-id="@item.Id" class="button btn-primary">Edit</a>*@
-                    <button type="submit" class="button btn-danger">Delete</button>
+                    <button type="button" class="button btn-danger">Delete</button>
                 </form>
             </div>
         </div>

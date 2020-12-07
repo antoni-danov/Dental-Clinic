@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,14 +21,17 @@ namespace DentalClinic_1._1.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext db;
+        private readonly ILogger<ApplicationUser> logger;
 
         public AdministratorController(RoleManager<IdentityRole> roleManager,
                                        UserManager<ApplicationUser> userManager,
-                                       ApplicationDbContext db)
+                                       ApplicationDbContext db,
+                                       ILogger<ApplicationUser> logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.db = db;
+            this.logger = logger;
         }
 
         public IActionResult AddPatient()
@@ -48,14 +52,18 @@ namespace DentalClinic_1._1.Controllers
                 Address = input.Address,
                 Town = input.Town,
                 PhoneNumber = input.PhoneNumber,
-                UserName = input.Email
+                UserName = input.Email,
             };
 
             var user = await userManager.CreateAsync(createPatient);
 
             if (!user.Succeeded)
             {
-                // TODO: handle error
+                //var token = await userManager.GenerateEmailConfirmationTokenAsync(createPatient);
+                //var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                //    new { createPatient.Id, token = token }, Request.Scheme);
+                //logger.Log(LogLevel.Warning, confirmationLink);
+
             }
 
             var result = await userManager.AddToRoleAsync(createPatient, roleName);
@@ -143,7 +151,11 @@ namespace DentalClinic_1._1.Controllers
 
             if (!user.Succeeded)
             {
-                //TODO
+                //var token = await userManager.GenerateEmailConfirmationTokenAsync(createDentist);
+                //var confirmationLink = Url.Action("ConfirmEmail", "Account", 
+                //    new { createDentist.Id, token = token}, Request.Scheme );
+                //logger.Log(LogLevel.Warning, confirmationLink);
+
             }
 
             var result = await userManager.AddToRoleAsync(createDentist, roleName);
