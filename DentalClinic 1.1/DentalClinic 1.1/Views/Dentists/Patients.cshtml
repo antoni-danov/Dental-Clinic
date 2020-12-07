@@ -1,14 +1,25 @@
-﻿
+﻿@model IEnumerable<DentalClinic_1._1.ViewModels.Dentist.PatientsViewModel>
 @{
     ViewData["Title"] = "Patients";
 }
 
-<h1>Patients</h1>
+<h1>Patients:</h1>
 
 <table class="table table-striped table-sm">
-    <tr>
-        <td>First Name</td>
-        <td>Last Name</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>Patient names</th>
+        <tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var item in @Model)
+            {
+                <td>item.FirstName</td>
+                <td>item.LastName</td>
+
+            }
+        </tr>
+    </tbody>
 
 </table>
