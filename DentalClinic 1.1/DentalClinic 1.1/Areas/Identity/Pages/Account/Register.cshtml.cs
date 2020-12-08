@@ -93,7 +93,7 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
                 { UserName = Input.Email,
                     Email = Input.Email,
                     Firstname = Input.Firstname,
-                    Lastname = Input.Lastname
+                    Lastname = Input.Lastname,
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 MailAddress address = new MailAddress(Input.Email);

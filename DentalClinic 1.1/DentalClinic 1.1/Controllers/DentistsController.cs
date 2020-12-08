@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,9 +24,10 @@ namespace DentalClinic_1._1.Controllers
             this.userManager = userManager;
             this.db = db;
         }
-        public IActionResult Patients()
+        public async Task<IActionResult> Patients()
         {
                        return View();
+
         }
         public async Task<IActionResult> Appointments()
         {
