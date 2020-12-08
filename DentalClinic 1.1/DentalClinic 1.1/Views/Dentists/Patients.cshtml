@@ -6,19 +6,3 @@
 <h1>Patients:</h1>
 <p> Number of patients in database: @Model.Count()</p>
 
-<table class="table">
-    @foreach (var item in Model)
-    {
-
-        <div class="card mb-3">
-            <div class="card-header">
-                UserId : @item.Id
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">@item.FirstName @item.LastName</h5>
-                <p> @item.PhoneNumber </p>
-                <p> @item.Email </p>
-            </div>
-            </div>
-    }
-</table>
