@@ -26,26 +26,7 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult Patients()
         {
-            List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
-            var patients = await userManager.GetUsersInRoleAsync("Patient");
-
-            foreach (var patient in patients)
-            {
-
-                var users = new AllPatientsViewModel
-                {
-                    FirstName = patient.Firstname,
-                    LastName = patient.Lastname,
-                    PhoneNumber = patient.PhoneNumber,
-                    Email = patient.Email,
-                    Id = patient.Id
-                };
-
-
-                listOfPatients.Add(users);
-            }
-
-            return View(listOfPatients);
+                       return View();
         }
         public async Task<IActionResult> Appointments()
         {
