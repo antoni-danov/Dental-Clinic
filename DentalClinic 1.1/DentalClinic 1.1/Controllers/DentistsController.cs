@@ -24,9 +24,28 @@ namespace DentalClinic_1._1.Controllers
             this.userManager = userManager;
             this.db = db;
         }
-        public IActionResult Patients()
+        public async Task<IActionResult> Patients()
         {
-            return View();
+            List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
+            var patients = await userManager.GetUsersInRoleAsync("Patient");
+
+            foreach (var patient in patients)
+            {
+
+                var users = new AllPatientsViewModel
+                {
+                    FirstName = patient.Firstname,
+                    LastName = patient.Lastname,
+                    Email = patient.Email,
+                    PhoneNumber = patient.PhoneNumber,
+                    Id = patient.Id
+                };
+
+
+                listOfPatients.Add(users);
+            }
+
+            return View(listOfPatients);
         }
         public async Task<IActionResult> Appointments()
         {
