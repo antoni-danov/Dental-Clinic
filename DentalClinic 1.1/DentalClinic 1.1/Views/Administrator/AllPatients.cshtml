@@ -20,6 +20,9 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">@item.FirstName @item.LastName</h5>
+                <p> @item.PhoneNumber </p>
+                <p> @item.Email </p>
+            </div>
             </div>
             <div class="card-footer">
                 <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">

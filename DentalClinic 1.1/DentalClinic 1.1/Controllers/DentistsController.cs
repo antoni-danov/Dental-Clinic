@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,26 +26,8 @@ namespace DentalClinic_1._1.Controllers
         }
         public async Task<IActionResult> Patients()
         {
-            List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
-            var patients = await userManager.GetUsersInRoleAsync("Patient");
+                       return View();
 
-            foreach (var patient in patients)
-            {
-
-                var users = new AllPatientsViewModel
-                {
-                    FirstName = patient.Firstname,
-                    LastName = patient.Lastname,
-                    Email = patient.Email,
-                    PhoneNumber = patient.PhoneNumber,
-                    Id = patient.Id
-                };
-
-
-                listOfPatients.Add(users);
-            }
-
-            return View(listOfPatients);
         }
         public async Task<IActionResult> Appointments()
         {
