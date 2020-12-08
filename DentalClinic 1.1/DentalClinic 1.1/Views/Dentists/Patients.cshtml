@@ -4,22 +4,21 @@
 }
 
 <h1>Patients:</h1>
+<p> Number of patients in database: @Model.Count()</p>
 
-<table class="table table-striped table-sm">
-    <thead>
-        <tr>
-            <th>Patient names</th>
-        <tr>
-    </thead>
-    <tbody>
-        <tr>
-            @foreach (var item in @Model)
-            {
-                <td>item.FirstName</td>
-                <td>item.LastName</td>
+<table class="table">
+    @foreach (var item in Model)
+    {
 
-            }
-        </tr>
-    </tbody>
-
+        <div class="card mb-3">
+            <div class="card-header">
+                UserId : @item.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@item.FirstName @item.LastName</h5>
+                <p> @item.PhoneNumber </p>
+                <p> @item.Email </p>
+            </div>
+            </div>
+    }
 </table>
