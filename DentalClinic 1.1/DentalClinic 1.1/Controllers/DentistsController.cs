@@ -29,7 +29,7 @@ namespace DentalClinic_1._1.Controllers
         {
             List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
             var patients = await userManager.GetUsersInRoleAsync("Patient");
-           
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 patients = (List<ApplicationUser>)patients.Where(x => x.Firstname.Contains(searchString) || x.Lastname.Contains(searchString));
@@ -48,8 +48,8 @@ namespace DentalClinic_1._1.Controllers
                 };
                 listOfPatients.Add(users);
             }
-                return View(listOfPatients.ToList());
-           
+            return View(listOfPatients.ToList());
+
         }
         public async Task<IActionResult> Appointments()
         {
@@ -80,12 +80,7 @@ namespace DentalClinic_1._1.Controllers
 
             return View(patientDetails);
         }
-       
-        //public async Task<IActionResult> Search( string inputs)
-        //{
-        //    var usesr = db.Users.FirstOrDefault(x => x.)
-        //    return View();
-        //}
+
 
     }
 }
