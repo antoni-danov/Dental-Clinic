@@ -24,6 +24,8 @@ namespace DentalClinic_1._1.Controllers
             this.userManager = userManager;
             this.db = db;
         }
+        public string SearchTerm { get; set; }
+
         public async Task<IActionResult> Patients()
         {
             List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
@@ -50,6 +52,30 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> Appointments()
         {
             return View();
+        }
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var patient = db.Users
+                .FirstOrDefault(p => p.Id == id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            var patientDetails = new AllPatientsViewModel 
+            {
+                FirstName = patient.Firstname,
+                LastName = patient.Lastname,
+                PhoneNumber = patient.PhoneNumber,
+                Email = patient.Email
+            };
+
+            return View(patientDetails);
         }
 
     }
