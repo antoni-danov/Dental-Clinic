@@ -24,10 +24,16 @@ namespace DentalClinic_1._1.Controllers
             this.userManager = userManager;
             this.db = db;
         }
-        public async Task<IActionResult> Patients()
+
+        public async Task<IActionResult> Patients(string searchString)
         {
             List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
             var patients = await userManager.GetUsersInRoleAsync("Patient");
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                patients = (List<ApplicationUser>)patients.Where(x => x.Firstname.Contains(searchString) || x.Lastname.Contains(searchString));
+            }
 
             foreach (var patient in patients)
             {
@@ -40,17 +46,41 @@ namespace DentalClinic_1._1.Controllers
                     Email = patient.Email,
                     Id = patient.Id
                 };
-
-
                 listOfPatients.Add(users);
             }
+            return View(listOfPatients.ToList());
 
-            return View(listOfPatients);
         }
         public async Task<IActionResult> Appointments()
         {
             return View();
         }
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var patient = db.Users
+                .FirstOrDefault(p => p.Id == id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            var patientDetails = new AllPatientsViewModel
+            {
+                FirstName = patient.Firstname,
+                LastName = patient.Lastname,
+                PhoneNumber = patient.PhoneNumber,
+                Email = patient.Email,
+                Address = patient.Address
+            };
+
+            return View(patientDetails);
+        }
+
 
     }
 }

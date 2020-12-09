@@ -6,7 +6,12 @@
 
 <h1>Patients</h1>
 
-<table class="table">
+<div class="active-cyan-3 active-cyan-4 mb-4">
+    <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search your patient..." title="Type in a name">
+</div>
+
+<table id="myTable" class="table table-striped">
+    <tr class="header">
     <thead>
         <tr>
             <th>
@@ -18,9 +23,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th></th>
         </tr>
     </thead>
+    </tr>
     <tbody>
         @foreach (var item in Model)
         {
@@ -41,3 +46,25 @@
         }
     </tbody>
 </table>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
