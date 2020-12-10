@@ -45,49 +45,56 @@ namespace DentalClinic_1._1.Controllers
             }
 
             return View(listOfDentists);
-        }
+        } //OK
 
-        public async Task<IActionResult> AllAppointments(AppointmentViewModel input)
+        public async Task<IActionResult> AllAppointments(Appointment input)
         {
+            List<AppointmentViewModel> listOfAppointments = new List<AppointmentViewModel>();
             var userId = (await userManager.GetUserAsync(User)).Id;
-            var appointments = db.Appointments.Where(
-                a => a.Patient.Id == userId &&
-                a.Date > DateTime.Now)
-                .Select(a => new AppointmentViewModel
+
+            var appointments = db.Appointments.Where(a => a.Patient == userId && a.Date > DateTime.Now).ToList();
+
+            foreach (var appointment in appointments)
+            {
+                var dentistUser = db.Users.First(x => x.Id == appointment.Dentist);
+                
+                var user = new AppointmentViewModel
                 {
-                    FirstName = input.FirstName,
-                    LastName = input.LastName,
-                    Date = input.Date
-                });
-
-            return View(appointments);
-        }
-
-        public IActionResult GetAppointment(string id)
+                    FirstName = dentistUser.Firstname,
+                    LastName = dentistUser.Lastname,
+                    Date = appointment.Date.ToString("dd MMMM yyyy"),
+                    Hour = appointment.Date.ToString("HH"),
+                    Minutes = appointment.Date.ToString("mm")
+                };
+                listOfAppointments.Add(user);
+            }
+            
+            return View("AllAppointments", listOfAppointments);
+        } //OK
+        public IActionResult GetAppointment() //OK
         {
-            var dentist = new CreateAppointmentViewModel { DentistId = id };
-            return View(dentist);
+
+            return View();
         }
 
-        //TODO Security too much information
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> GetAppointmentAsync(CreateAppointmentViewModel input, string id)
+        public async Task<IActionResult> GetAppointment(DateTimeViewModel input, string id)
         {
             var currentUser = await userManager.GetUserAsync(User);
             var dentist = await userManager.FindByIdAsync(id);
 
             var appointment = new Appointment
             {
-                Dentist = dentist,
-                Patient = currentUser,
+                Dentist = dentist.Id,
+                Patient = currentUser.Id,
                 Date = input.Appointment
             };
 
             db.Appointments.Add(appointment);
             db.SaveChanges();
 
-            return Redirect("/Patients/AllAppointments");
-        }
+            return RedirectToAction("AllAppointments", appointment);
+        } //OK
         public IActionResult History()
         {
             return View();

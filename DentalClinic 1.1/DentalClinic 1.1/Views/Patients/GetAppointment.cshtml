@@ -1,12 +1,31 @@
-﻿@model DentalClinic_1._1.ViewModels.Patient.CreateAppointmentViewModel
+﻿@model DentalClinic_1._1.ViewModels.Patient.DateTimeViewModel
 
 @{
     ViewData["Title"] = "GetAppointment";
 }
-<link href="~/css/Calendar.css" rel="stylesheet" />
-<h1>Take an appointment:</h1>
 
-<form asp-controller="Patients" asp-action="GetAppointment">
-        <button class="btn btn-primary" value="@DateTime.UtcNow" name="Appointment" >07:00</button>
-    <input id="PatientId" name="PatientId" type="hidden" value="@Model.PatientId">
-    </form>
+<h1>Get appointment:</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetAppointment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                    <label asp-for="Appointment" class="control-label"></label>
+                    <input asp-for="Appointment" class="form-control" />
+                    <span asp-validation-for="Appointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

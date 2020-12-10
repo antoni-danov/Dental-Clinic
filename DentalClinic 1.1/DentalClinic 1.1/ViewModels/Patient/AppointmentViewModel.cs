@@ -11,6 +11,8 @@ namespace DentalClinic_1._1.ViewModels.Patient
         [Key]
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
+        public string Hour { get; set; }
+        public string Minutes { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using DentalClinic_1._1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DentalClinic_1._1.Data.Migrations
+namespace DentalClinic_1._1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201210125157_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,31 +112,6 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.HasIndex("TownId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("DentalClinic_1._1.Models.Appointment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DentistId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DentistId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
@@ -302,38 +279,6 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.ToTable("AllPatientsViewModel");
                 });
 
-            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Patient.AppointmentViewModel", b =>
-                {
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FirstName");
-
-                    b.ToTable("AppointmentViewModel");
-                });
-
-            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Patient.CreateAppointmentViewModel", b =>
-                {
-                    b.Property<string>("DentistId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Appointment")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("DentistId");
-
-                    b.ToTable("CreateAppointmentViewModel");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -479,21 +424,6 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.Navigation("Specialization");
 
                     b.Navigation("Town");
-                });
-
-            modelBuilder.Entity("DentalClinic_1._1.Models.Appointment", b =>
-                {
-                    b.HasOne("DentalClinic_1._1.Models.ApplicationUser", "Dentist")
-                        .WithMany()
-                        .HasForeignKey("DentistId");
-
-                    b.HasOne("DentalClinic_1._1.Models.ApplicationUser", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId");
-
-                    b.Navigation("Dentist");
-
-                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("DentalClinic_1._1.ViewModels.Dentist.AddDentistViewModel", b =>

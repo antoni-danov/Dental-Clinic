@@ -12,8 +12,9 @@ namespace DentalClinic_1._1.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public string Dentist { get; set; }
+        public string Patient { get; set; }
         public DateTime Date { get; set; }
-        public ApplicationUser Dentist { get; set; }
-        public ApplicationUser Patient { get; set; }
+
     }
 }

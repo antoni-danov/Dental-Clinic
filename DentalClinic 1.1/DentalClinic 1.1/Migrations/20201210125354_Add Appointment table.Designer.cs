@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DentalClinic_1._1.Data.Migrations
+namespace DentalClinic_1._1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201129155108_add delete behavior")]
-    partial class adddeletebehavior
+    [Migration("20201210125354_Add Appointment table")]
+    partial class AddAppointmenttable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,6 +112,27 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.HasIndex("TownId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.Models.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Dentist")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Patient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
@@ -255,6 +276,12 @@ namespace DentalClinic_1._1.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");

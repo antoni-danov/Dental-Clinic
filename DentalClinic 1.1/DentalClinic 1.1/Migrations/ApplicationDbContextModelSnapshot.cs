@@ -4,22 +4,20 @@ using DentalClinic_1._1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DentalClinic_1._1.Data.Migrations
+namespace DentalClinic_1._1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201119035302_Add column in Specialization")]
-    partial class AddcolumninSpecialization
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("DentalClinic_1._1.Models.ApplicationUser", b =>
                 {
@@ -43,8 +41,8 @@ namespace DentalClinic_1._1.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -62,12 +60,12 @@ namespace DentalClinic_1._1.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -94,17 +92,17 @@ namespace DentalClinic_1._1.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.HasIndex("SpecializationId");
@@ -114,12 +112,33 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("DentalClinic_1._1.Models.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Dentist")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Patient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appointments");
+                });
+
             modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -129,7 +148,7 @@ namespace DentalClinic_1._1.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialization");
+                    b.ToTable("Specializations");
                 });
 
             modelBuilder.Entity("DentalClinic_1._1.Models.Town", b =>
@@ -137,14 +156,146 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Town");
+                    b.ToTable("Towns");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Dentist.AddDentistViewModel", b =>
+                {
+                    b.Property<string>("Firstname")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SpecialtyNameId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TownId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Firstname");
+
+                    b.HasIndex("SpecialtyNameId");
+
+                    b.HasIndex("TownId");
+
+                    b.ToTable("AddDentistViewModel");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Dentist.AllDentistsViewModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AllDentistsViewModel");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Patient.AddPatientViewModel", b =>
+                {
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TownId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FirstName");
+
+                    b.HasIndex("TownId");
+
+                    b.ToTable("AddPatientViewModel");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Patient.AllPatientsViewModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AllPatientsViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -157,18 +308,18 @@ namespace DentalClinic_1._1.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
+                        .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Role");
@@ -179,7 +330,7 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -203,7 +354,7 @@ namespace DentalClinic_1._1.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -282,11 +433,40 @@ namespace DentalClinic_1._1.Data.Migrations
                 {
                     b.HasOne("DentalClinic_1._1.Models.Specialization", "Specialization")
                         .WithMany("Users")
-                        .HasForeignKey("SpecializationId");
+                        .HasForeignKey("SpecializationId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DentalClinic_1._1.Models.Town", "Town")
                         .WithMany("Users")
                         .HasForeignKey("TownId");
+
+                    b.Navigation("Specialization");
+
+                    b.Navigation("Town");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Dentist.AddDentistViewModel", b =>
+                {
+                    b.HasOne("DentalClinic_1._1.Models.Specialization", "SpecialtyName")
+                        .WithMany()
+                        .HasForeignKey("SpecialtyNameId");
+
+                    b.HasOne("DentalClinic_1._1.Models.Town", "Town")
+                        .WithMany()
+                        .HasForeignKey("TownId");
+
+                    b.Navigation("SpecialtyName");
+
+                    b.Navigation("Town");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Patient.AddPatientViewModel", b =>
+                {
+                    b.HasOne("DentalClinic_1._1.Models.Town", "Town")
+                        .WithMany()
+                        .HasForeignKey("TownId");
+
+                    b.Navigation("Town");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -338,6 +518,16 @@ namespace DentalClinic_1._1.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.Models.Town", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
