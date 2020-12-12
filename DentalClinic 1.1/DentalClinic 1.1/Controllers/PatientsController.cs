@@ -97,8 +97,9 @@ namespace DentalClinic_1._1.Controllers
         } //OK
         public IActionResult History()
         {
+
             return View();
-        }
+        } 
 
     }
 }

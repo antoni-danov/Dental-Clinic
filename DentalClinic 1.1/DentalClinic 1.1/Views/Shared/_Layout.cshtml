@@ -6,15 +6,16 @@
     <title>Dental Clinic</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/User.css" rel="stylesheet" />
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-sketchy.css"/>*@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="shortcut icon" href="~/favicon-test.ico" />
 </head>
-<body>
+<body style="        background-image: url(dentist-with-smile.jpg);
+        width: 100%;
+        height: 100%;">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-trans @*border-bottom box-shadow*@ mb-3" @*style="background-color: #cc9e11;"*@>
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dental Clinic</a>
+                <a class="navbar-brand text-dark " asp-area="" asp-controller="Home" asp-action="Index">Dental Clinic</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,17 +24,17 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="OurClinic">Our Clinic</a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="OurClinic">Our Clinic</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="OurTeam">Our Team</a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="OurTeam">Our Team</a>
                         </li>
                         @if (User.Identity.IsAuthenticated == true)
                         {
                             if (User.IsInRole("Administrator"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
+                                    <a class="nav-link text-dark font-italic" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
                                 </li>
                                 <div class="dropdown">
                                     <button class="dropbtn">Patient</button>
@@ -61,30 +62,30 @@
                             else if (User.IsInRole("Patient"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="Dentists">Dentists</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="Dentists">Dentists</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="AllAppointments">Appointments</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="AllAppointments">Appointments</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="" asp-controller="Patients" asp-action="History">History</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="History">History</a>
                                 </li>
                             }
                             else if (User.IsInRole("Dentist"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="/Dentists/Patients">Patients</a>
+                                    <a class="nav-link text-dark" href="/Dentists/Patients">Patients</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="/Dentists/Appointments">Appointments</a>
+                                    <a class="nav-link text-dark" href="/Dentists/Appointments">Appointments</a>
                                 </li>
                             }
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Urgence" data-toggle="modal" data-target="#exampleModal">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Urgence" data-toggle="modal" data-target="#exampleModal">
                                 Urgence
                             </a>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,7 +122,7 @@
     <footer class="border-top footer text-black-50">
         <div class="container">
             &copy; 2020 - Dental Clinic - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <a href='https://www.freepik.com/photos/health'>Health photo created by Racool_studio - www.freepik.com</a></div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

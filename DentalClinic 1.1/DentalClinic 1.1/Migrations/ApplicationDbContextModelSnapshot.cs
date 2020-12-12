@@ -133,6 +133,27 @@ namespace DentalClinic_1._1.Migrations
                     b.ToTable("Appointments");
                 });
 
+            modelBuilder.Entity("DentalClinic_1._1.Models.Intervention", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Dentist")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Patient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Interventions");
+                });
+
             modelBuilder.Entity("DentalClinic_1._1.Models.Specialization", b =>
                 {
                     b.Property<int>("Id")
@@ -296,6 +317,28 @@ namespace DentalClinic_1._1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AllPatientsViewModel");
+                });
+
+            modelBuilder.Entity("DentalClinic_1._1.ViewModels.Patient.AppointmentViewModel", b =>
+                {
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Hour")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Minutes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FirstName");
+
+                    b.ToTable("AppointmentViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
