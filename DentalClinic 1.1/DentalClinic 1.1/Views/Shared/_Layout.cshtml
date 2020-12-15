@@ -13,116 +13,123 @@
         width: 100%;
         height: 100%;">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-trans @*border-bottom box-shadow*@ mb-3" @*style="background-color: #cc9e11;"*@>
-            <div class="container">
-                <a class="navbar-brand text-dark " asp-area="" asp-controller="Home" asp-action="Index">Dental Clinic</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="OurClinic">Our Clinic</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="OurTeam">Our Team</a>
-                        </li>
-                        @if (User.Identity.IsAuthenticated == true)
-                        {
-                            if (User.IsInRole("Administrator"))
+        <h5>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-trans @*border-bottom box-shadow*@ mb-3">
+                <div class="container">
+                    <a class="navbar-brand text-dark " asp-area="" asp-controller="Home" asp-action="Index">Dental Clinic</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="OurClinic">Our Clinic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="OurTeam">Our Team</a>
+                            </li>
+                            @if (User.Identity.IsAuthenticated == true)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark font-italic" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
-                                </li>
-                                <div class="dropdown">
-                                    <button class="dropbtn">Patient</button>
-                                    <div class="dropdown-content">
-                                        <a href="/Administrator/AddPatient">Add Patient</a>
-                                        <a href="/Administrator/AllPatients">All Patients</a>
+                                if (User.IsInRole("Administrator"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark font-italic" asp-area="" asp-controller="Role" asp-action="Index">Role</a>
+                                    </li>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Patient</button>
+                                        <div class="dropdown-content">
+                                            <a href="/Administrator/AddPatient">Add Patient</a>
+                                            <a href="/Administrator/AllPatients">All Patients</a>
 
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="dropbtn">Dentist</button>
-                                    <div class="dropdown-content">
-                                        <a href="/Administrator/AddDentist">Add Dentist</a>
-                                        <a href="/Administrator/AllDentists">All Dentists</a>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="dropbtn">Specialization</button>
-                                    <div class="dropdown-content">
-                                        <a href="/Administrator/AddSpecialization">Add Specialization</a>
-                                        <a href="/Administrator/AllSpecializations">List of Specializations</a>
-                                    </div>
-                                </div>
-                            }
-                            else if (User.IsInRole("Patient"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="Dentists">Dentists</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="AllAppointments">Appointments</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="History">History</a>
-                                </li>
-                            }
-                            else if (User.IsInRole("Dentist"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" href="/Dentists/Patients">Patients</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" href="/Dentists/Appointments">Appointments</a>
-                                </li>
-                            }
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Urgence" data-toggle="modal" data-target="#exampleModal">
-                                Urgence
-                            </a>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="Urgence">Urgence</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h2>Contact us at:</h2>
-                                            <div>+359 000 000 000</div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Dentist</button>
+                                        <div class="dropdown-content">
+                                            <a href="/Administrator/AddDentist">Add Dentist</a>
+                                            <a href="/Administrator/AllDentists">All Dentists</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Specialization</button>
+                                        <div class="dropdown-content">
+                                            <a href="/Administrator/AddSpecialization">Add Specialization</a>
+                                            <a href="/Administrator/AllSpecializations">List of Specializations</a>
+                                        </div>
+                                    </div>
+                                }
+                                else if (User.IsInRole("Patient"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="Dentists">Dentists</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="AllAppointments">Appointments</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="History">History</a>
+                                    </li>
+                                }
+                                else if (User.IsInRole("Dentist"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="/Dentists/Patients">Patients</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="/Dentists/Appointments">Appointments</a>
+                                    </li>
+                                }
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Urgence" data-toggle="modal" data-target="#exampleModal">
+                                    Urgence
+                                </a>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="Urgence">Urgence</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h2>Contact us at:</h2>
+                                                <div>+359 000 000 000</div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </h5>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
+    
     <footer class="border-top footer text-black-50">
-        <div class="container">
-            &copy; 2020 - Dental Clinic - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    <a href='https://www.freepik.com/photos/health'>Health photo created by Racool_studio - www.freepik.com</a></div>
+        <div class="container text-black-50">
+            &copy; 2020 - Dental Clinic
+            <a class="text-sm-right" href='https://www.freepik.com/photos/health'>Health photo created by Racool_studio - www.freepik.com</a>
+        </div>
+        @*<ul class="social-media text-sm-center fixed-bottom">
+            <a href="http://www.facebook.com/antoni.danov" target="_blank"><img src='~/Social media icons/HexagonItems/iconfinder_facebook_2155341.png' /></a>
+            <a href="http://www.linkedin.com/in/antoni-danov-33393190" target="_blank"><img src="~/Social media icons/HexagonItems/iconfinder_linkedin_2155337.png" /></a>
+        </ul>*@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
