@@ -7,27 +7,160 @@
 <h1>Get appointment:</h1>
 
 @*https://www.jqueryscript.net/time-clock/pick-hours-availability-calendar.html*@
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="GetAppointment">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-Work corectly 
-<label asp -for= "Appointment" class="control-label"></label>
-                <input asp-for="Appointment" class="form-control" />
-                <span asp-validation-for="Appointment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+@*<hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="GetAppointment">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+    Work corectly
+    <label asp -for= "Appointment" class="control-label"></label>
+                    <input asp-for="Appointment" class="form-control" />
+                    <span asp-validation-for="Appointment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+<head>
+    <link href="~/css/mark-your-calendar.css" rel="stylesheet" />
+    <script src="~/js/jquery.slim.min.js"></script>
+    <script src="~/js/mark-your-calendar.js"></script>
+    <script src="~/js/moment.min.js"></script>
+</head>
+
+<div class="calendar-body">
+    <div id="picker"></div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<script>
+    const myHours = [
+        ['1:00', '2:00', '3:00', '4:00', '5:00'],
+        ['2:00'],
+        ['3:00'],
+        ['4:00'],
+        ['5:00'],
+        ['6:00'],
+        ['7:00']
+    ];
+    $('#picker').markyourcalendar({
+        availability: myAvailability
+    });
+    $('#picker').markyourcalendar({
+        availability: myAvailability,
+        isMultiple: true
+    });
+    $('#picker').markyourcalendar({
+        availability: myAvailability,
+        months: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
+        weekdays: ['sun', 'mon', 'tue', 'wed', 'thurs', 'fri', 'sat']
+    });
+    $('#picker').markyourcalendar({
+        availability: myAvailability,
+        startDate: new Date()
+    });
+    $('#picker').markyourcalendar({
+        availability: myAvailability,
+        selectedDates: []
+    });
+    $('#picker').markyourcalendar({
+        availability: myAvailability,
+        prevHtml: prevHtml,
+        nextHtml: nextHtml
+    });
+    $('#picker').markyourcalendar({
+        availability: myAvailability,
+        onClick: function (ev, data) {
+            // data is a list of datetimes
+            console.log(data);
+            var html = ``;
+            $.each(data, function () {
+                var d = this.split(' ')[0];
+                var t = this.split(' ')[1];
+                html += `<p>` + d + ` ` + t + `</p>`;
+            });
+            $('#output').html(html);
+        },
+    });
+    $('#picker').markyourcalendar({
+        availability: myAvailability,
+        onClickNavigator: function (ev, instance) {
+            var arr = [
+                [
+                    ['4:00', '5:00', '6:00', '7:00', '8:00'],
+                    ['1:00', '5:00'],
+                    ['2:00', '5:00'],
+                    ['3:30'],
+                    ['2:00', '5:00'],
+                    ['2:00', '5:00'],
+                    ['2:00', '5:00']
+                ],
+                [
+                    ['2:00', '5:00'],
+                    ['4:00', '5:00', '6:00', '7:00', '8:00'],
+                    ['4:00', '5:00'],
+                    ['2:00', '5:00'],
+                    ['2:00', '5:00'],
+                    ['2:00', '5:00'],
+                    ['2:00', '5:00']
+                ],
+                [
+                    ['4:00', '5:00'],
+                    ['4:00', '5:00'],
+                    ['4:00', '5:00', '6:00', '7:00', '8:00'],
+                    ['3:00', '6:00'],
+                    ['3:00', '6:00'],
+                    ['3:00', '6:00'],
+                    ['3:00', '6:00']
+                ],
+                [
+                    ['4:00', '5:00'],
+                    ['4:00', '5:00'],
+                    ['4:00', '5:00'],
+                    ['4:00', '5:00', '6:00', '7:00', '8:00'],
+                    ['4:00', '5:00'],
+                    ['4:00', '5:00'],
+                    ['4:00', '5:00']
+                ],
+                [
+                    ['4:00', '6:00'],
+                    ['4:00', '6:00'],
+                    ['4:00', '6:00'],
+                    ['4:00', '6:00'],
+                    ['4:00', '5:00', '6:00', '7:00', '8:00'],
+                    ['4:00', '6:00'],
+                    ['4:00', '6:00']
+                ],
+                [
+                    ['3:00', '6:00'],
+                    ['3:00', '6:00'],
+                    ['3:00', '6:00'],
+                    ['3:00', '6:00'],
+                    ['3:00', '6:00'],
+                    ['4:00', '5:00', '6:00', '7:00', '8:00'],
+                    ['3:00', '6:00']
+                ],
+                [
+                    ['3:00', '4:00'],
+                    ['3:00', '4:00'],
+                    ['3:00', '4:00'],
+                    ['3:00', '4:00'],
+                    ['3:00', '4:00'],
+                    ['3:00', '4:00'],
+                    ['4:00', '5:00', '6:00', '7:00', '8:00']
+                ]
+            ]
+            var rn = Math.floor(Math.random() * 10) % 7;
+            instance.setAvailability(arr[rn]);
+        }
+    });
+</script>
 <script>
     section Scripts
     {

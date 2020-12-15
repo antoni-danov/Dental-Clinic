@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.Models
 {
-    public class Appointment
+    public class AmbulatorySheet
     {
-       
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Dentist { get; set; }
-        public string Patient { get; set; }
+        public ApplicationUser Dentist { get; set; }
+        public ApplicationUser Patient { get; set; }
         public DateTime Date { get; set; }
-        public AmbulatorySheet AmbulatorySheets { get; set; }
-
+        public string Diagnose { get; set; }
+        public string Interventions { get; set; }
     }
+
+
 }
