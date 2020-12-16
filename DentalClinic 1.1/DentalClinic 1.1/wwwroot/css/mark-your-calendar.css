@@ -1,4 +1,3 @@
-
 #myc-container {
     width: inherit;
 }
@@ -54,10 +53,10 @@
     width: 40px;
 }
 
-#myc-prev-week:hover, #myc-next-week:hover {
-    border: 1px solid #bdbdbd;
-    color: #bdbdbd;
-}
+    #myc-prev-week:hover, #myc-next-week:hover {
+        border: 1px solid #bdbdbd;
+        color: #bdbdbd;
+    }
 
 #myc-week-container {
     border: 1px solid #e0e0e0;
@@ -76,14 +75,14 @@
     width: 13.77%;
 }
 
-.myc-date-header:first-of-type {
-    padding-left: 15px;
-}
+    .myc-date-header:first-of-type {
+        padding-left: 15px;
+    }
 
-.myc-date-header:last-of-type {
-    border-right: none;
-    width: 13%;
-}
+    .myc-date-header:last-of-type {
+        border-right: none;
+        width: 13%;
+    }
 
 #myc-available-time-container {
     border-top: 1px solid #e0e0e0;
@@ -99,14 +98,14 @@
     width: 13.77%;
 }
 
-.myc-day-time-container:first-of-type {
-    padding-left: 15px;
-}
+    .myc-day-time-container:first-of-type {
+        padding-left: 15px;
+    }
 
-.myc-day-time-container:last-of-type {
-    border-right: none;
-    width: 13%;
-}
+    .myc-day-time-container:last-of-type {
+        border-right: none;
+        width: 13%;
+    }
 
 .myc-date-number {
     font-size: 1.8em;
@@ -123,9 +122,9 @@
     text-align: center;
 }
 
-.myc-available-time.selected, .myc-available-time:hover {
-    background-color: #222;
-}
+    .myc-available-time.selected, .myc-available-time:hover {
+        background-color: #76ff03;
+    }
 
 .myc-date-display {
     font-weight: lighter;

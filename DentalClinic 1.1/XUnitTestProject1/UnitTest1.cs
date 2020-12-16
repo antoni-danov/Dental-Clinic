@@ -8,15 +8,7 @@ namespace XUnitTestProject1
 {
     public class UnitTest1
     {
-        private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManager;
-        private readonly ApplicationDbContext db;
 
-        public UnitTest1(UserManager<ApplicationUser> userManager,
-            ApplicationDbContext db)
-        {
-            this.userManager = userManager;
-            this.db = db;
-        }
         [Fact]
         public void ShouldAddPatientToTheDatabase()
         {
@@ -27,16 +19,16 @@ namespace XUnitTestProject1
                 Email = "j.dow@test.bg",
                 Birthdate = DateTime.Now,
                 Address = "34, Washington square",
-                Town = new Town (),
+                Town = new Town(),
                 PhoneNumber = "0329470294",
                 UserName = "j.dow@test.bg"
             };
 
-            var user = userManager.CreateAsync(createPatient);
-            
-           //TODO Act
 
-               //TODO Assert
+            //TODO Act
+
+
+            //TODO Assert
 
         }
     }

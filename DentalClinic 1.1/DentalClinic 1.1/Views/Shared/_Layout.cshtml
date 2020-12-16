@@ -8,16 +8,20 @@
     <link href="~/css/User.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="shortcut icon" href="~/favicon-test.ico" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body style="        background-image: url(dentist-with-smile.jpg);
         width: 100%;
         height: 100%;">
     <header>
         <h5>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-trans @*border-bottom box-shadow*@ mb-3">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-trans mb-3">
                 <div class="container">
-                    <a class="navbar-brand text-dark " asp-area="" asp-controller="Home" asp-action="Index">Dental Clinic</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    <a class="navbar-brand text-dark" asp-area="" asp-controller="Home" asp-action="Index">Dental Clinic</a>
+                    <button class="navbar-toggler text-dark" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -120,16 +124,15 @@
             @RenderBody()
         </main>
     </div>
-    
+
     <footer class="border-top footer text-black-50">
-        <div class="container text-black-50">
+        <div class="container text-black-50 text-center">
             &copy; 2020 - Dental Clinic
-            <a class="text-sm-right" href='https://www.freepik.com/photos/health'>Health photo created by Racool_studio - www.freepik.com</a>
         </div>
         @*<ul class="social-media text-sm-center fixed-bottom">
-            <a href="http://www.facebook.com/antoni.danov" target="_blank"><img src='~/Social media icons/HexagonItems/iconfinder_facebook_2155341.png' /></a>
-            <a href="http://www.linkedin.com/in/antoni-danov-33393190" target="_blank"><img src="~/Social media icons/HexagonItems/iconfinder_linkedin_2155337.png" /></a>
-        </ul>*@
+                <a href="http://www.facebook.com/antoni.danov" target="_blank"><img src='~/Social media icons/HexagonItems/iconfinder_facebook_2155341.png' /></a>
+                <a href="http://www.linkedin.com/in/antoni-danov-33393190" target="_blank"><img src="~/Social media icons/HexagonItems/iconfinder_linkedin_2155337.png" /></a>
+            </ul>*@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

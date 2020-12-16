@@ -3,25 +3,35 @@
     ViewData["Title"] = "OurClinic";
 }
 
-<h1>Our Clinic</h1>
-<div>
-    <p>
-        Situated in the heart of old city of Sofia, our clinic is located near by the major cultural and historic places of the city.
-        The National Opera and Balet and the Chatedral "St Alexander Nevski" are about five minutes walk. On the west you can explore the Largo of the capital,
-        with his historical buildings like TZUM - the city main department store, the Council of Ministers of Bulgaria and the President's office.
-    </p>
-    <p>
-        Our dental clinic, welcomes you in a discreet and professional setting. 
-        The care and manipulations were performed with the most strictly respect of the dental practices.
-        With her technical base at the point of the modern practices, we are able to perform all kind of operations.
-    </p>
+<body>
+
+    <div class="row">
+        <div class="col">
+
+            <img src="~/sofia-centre-ville.jpg" />
+        </div>
+        <div class="col">
+            <h1>Our Clinic</h1>
+
+            <p>
+                Situated in the heart of old city of Sofia, our clinic is located near by the major cultural and historic places of the city.
+                The National Opera and Balet and the Chatedral "St Alexander Nevski" are about five minutes walk. On the west you can explore the Largo of the capital,
+                with his historical buildings like TZUM - the city main department store, the Council of Ministers of Bulgaria and the President's office.
+            </p>
+            <p>
+                Our dental clinic, welcomes you in a discreet and professional setting.
+                The care and manipulations were performed with the most strictly respect of the dental practices.
+                With her technical base at the point of the modern technologies, we are able to perform all kind of dental manipulations.
+            </p>
+        </div>
+    </div>
 
     @*Описание на местоположението и работата*@
     @*пример:
         Tous les soins y sont pratiqués dans le respect le plus strict de la médecine dentaire.
         Enfin, afin de vous apporter les meilleures conditions d’asepsie, la clinique stérilise tous ses instruments par....
         (steriswiss) spécialisé notamment dans la stérilisation des instruments chirurgicaux respectant ainsi la réglementation en vigueur.*@
-</div>
+</body>
 <br />
 <hr />
 
@@ -32,8 +42,6 @@
     <a href="/Patients/Dentists" class="btn btn-primary mb-3 mt-3" role="button">Take an appointment</a>
 </div>
 
-@*google map*@
-
 <div class="container">
     <div class="row">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2932.102967596475!2d23.32499877284502!3d42.70154046702621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3b359d0ebb709359!2sD-R%20Ivanka%20Atanasova!5e0!3m2!1sfr!2sfr!4v1606947663883!5m2!1sfr!2sfr" width="1200" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
@@ -43,7 +51,7 @@
         @*спирки на градски транспорт в близост*@
         <div class="col-sm mt-3">
             <h4> Open hours:</h4>
-            From Monday to Saturday | From 07:00h To 19:00h
+            From Monday to Saturday | From 08:00h To 19:00h
         </div>
         <div class="col-sm mt-3">
             <h4>Contact:</h4>

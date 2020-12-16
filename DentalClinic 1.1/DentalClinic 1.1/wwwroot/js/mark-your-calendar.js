@@ -4,15 +4,15 @@
  * License: MIT License
  */
 
-(function($) {
+(function ($) {
     // https://stackoverflow.com/questions/563406/add-days-to-javascript-date
-    Date.prototype.addDays = function(days) {
+    Date.prototype.addDays = function (days) {
         var date = new Date(this.valueOf());
         date.setDate(date.getDate() + days);
         return date;
     }
 
-    $.fn.markyourcalendar = function(opts) {
+    $.fn.markyourcalendar = function (opts) {
         var prevHtml = `
             <div id="myc-prev-week">
                 <
@@ -37,11 +37,11 @@
         var instance = this;
 
         // kuhanin ang buwan
-        this.getMonthName = function(idx) {
+        this.getMonthName = function (idx) {
             return settings.months[idx];
         };
 
-        var formatDate = function(d) {
+        var formatDate = function (d) {
             var date = '' + d.getDate();
             var month = '' + (d.getMonth() + 1);
             var year = d.getFullYear();
@@ -56,7 +56,7 @@
 
         // Eto ang controller para lumipat ng linggo
         // Controller to change 
-        this.getNavControl = function() {
+        this.getNavControl = function () {
             var previousWeekHtml = `<div id="myc-prev-week-container">` + settings.prevHtml + `</div>`;
             var nextWeekHtml = `<div id="myc-prev-week-container">` + settings.nextHtml + `</div>`;
             var monthYearHtml = `
@@ -77,7 +77,7 @@
         };
 
         // kuhanin at ipakita ang mga araw
-        this.getDatesHeader = function() {
+        this.getDatesHeader = function () {
             var tmp = ``;
             for (i = 0; i < 7; i++) {
                 var d = settings.startDate.addDays(i);
@@ -93,11 +93,11 @@
         }
 
         // kuhanin ang mga pwedeng oras sa bawat araw ng kasalukuyang linggo
-        this.getAvailableTimes = function() {
+        this.getAvailableTimes = function () {
             var tmp = ``;
             for (i = 0; i < 7; i++) {
                 var tmpAvailTimes = ``;
-                $.each(settings.availability[i], function() {
+                $.each(settings.availability[i], function () {
                     tmpAvailTimes += `
                         <a href="javascript:;" class="myc-available-time" data-time="` + this + `" data-date="` + formatDate(settings.startDate.addDays(i)) + `">
                             ` + this + `
@@ -115,18 +115,18 @@
         }
 
         // i-set ang mga oras na pwedeng ilaan
-        this.setAvailability = function(arr) {
+        this.setAvailability = function (arr) {
             settings.availability = arr;
             render();
         }
 
         // clear
-        this.clearAvailability = function() {
+        this.clearAvailability = function () {
             settings.availability = [[], [], [], [], [], [], []];
         }
 
         // pag napindot ang nakaraang linggo
-        this.on('click', '#myc-prev-week', function() {
+        this.on('click', '#myc-prev-week', function () {
             settings.startDate = settings.startDate.addDays(-7);
             instance.clearAvailability();
             render(instance);
@@ -137,7 +137,7 @@
         });
 
         // pag napindot ang susunod na linggo
-        this.on('click', '#myc-next-week', function() {
+        this.on('click', '#myc-next-week', function () {
             settings.startDate = settings.startDate.addDays(7);
             instance.clearAvailability();
             render(instance);
@@ -148,7 +148,7 @@
         });
 
         // pag namili ng oras
-        this.on('click', '.myc-available-time', function() {
+        this.on('click', '.myc-available-time', function () {
             var date = $(this).data('date');
             var time = $(this).data('time');
             var tmp = date + ' ' + time;
@@ -176,7 +176,7 @@
             }
         });
 
-        var render = function() {
+        var render = function () {
             ret = `
                 <div id="myc-container">
                     <div id="myc-nav-container">` + instance.getNavControl() + `</div>

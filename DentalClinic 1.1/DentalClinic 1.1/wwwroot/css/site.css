@@ -83,9 +83,4 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
-body {
-    background-image: url('w3css.gif');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-}
+
