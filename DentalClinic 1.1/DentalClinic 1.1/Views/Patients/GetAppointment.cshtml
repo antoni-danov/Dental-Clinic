@@ -36,6 +36,10 @@
     <script src="~/js/jquery.slim.min.js"></script>
 </head>
 <body>
+    <div>
+        <p>Selected date: <span id="selected-date"></span></p>
+        <p>Selected time: <span id="selected-time"></span></p>
+    </div>
     <div id="picker">
         <div id="myc-container">
             <div id="myc-nav-container">
@@ -63,10 +67,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-        <p>Selected date: <span id="selected-date"></span></p>
-        <p>Selected time: <span id="selected-time"></span></p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -97,6 +97,7 @@
                         , '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00'
                         , '16:30', '17:00', '17:30', '18:00', '18:30', '19:00']
                 ],
+                
                 startDate: new Date("2020-10-25"),
                 onClick: function (ev, data) {
                     // data is a list of datetimes
