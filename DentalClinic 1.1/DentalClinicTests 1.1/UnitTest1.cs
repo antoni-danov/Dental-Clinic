@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace DentalClinic_1._1_XUnitTest
+namespace DentalClinicTests_1._1
 {
     public class UnitTest1
     {
