@@ -4,16 +4,19 @@
     ViewData["Title"] = "All Dentists";
 }
 
-<h1 class=" text-lg-center">Dentists in our Clinic</h1>
+<body style="background-image:(OurTeam.jpg) ">
+    <h1 class=" text-lg-center">Dentists in our Clinic</h1>
 
-<div class="row">
-    <div class="col">
-        @foreach (var item in Model)
-        {
+    <div class="row">
+        <div class="col">
+            @foreach (var item in Model)
+            {
 
-        <div class="card mb-3">
-            <a href="/Patients/GetAppointment/@item.Id" class="btn btn-info" role="button"><img src="~/doctor.png" alt="Avatar" class="avatar">@item.FirstName @item.LastName</a>
+                <div class="card mb-3">
+                    <a href="/Patients/GetAppointment/@item.Id" class="btn btn-info" role="button"><img src="~/doctor.png" alt="Avatar" class="avatar">@item.FirstName @item.LastName</a>
+                </div>
+            }
         </div>
-        }
     </div>
-</div>
+</body>
+

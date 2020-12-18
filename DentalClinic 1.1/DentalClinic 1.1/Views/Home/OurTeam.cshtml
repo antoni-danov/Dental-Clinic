@@ -1,34 +1,83 @@
-﻿
+﻿@model IEnumerable<DentalClinic_1._1.ViewModels.Dentist.AllDentistsViewModel>
+
 @{
     ViewData["Title"] = "OurTeam";
 }
 
-    <div>The team of our clinic is composed of highly experienced specialists with many years of practice.</div>
-
-    <hr />
-    <div class="text-justify">
-        @*снимка и кратка авотбиография на специалистите*@
-
+<div>The team of our clinic is composed of highly experienced specialists with many years of practice.</div>
+<br />
+<div class="text-justify">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-6 col-sm-3">
+                <figure>
+                    <figcaption>
+                        <img src="~/myAvatar .png" />
+                        <div>@item.FirstName @item.LastName</div>
+                    </figcaption>
+                </figure>
+            </div>
+        }
+    <div class="col-xs-6 col-sm-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <br />
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <br />
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        <br />
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
-    <hr />
-    <div class="container">
-        <div class="row">
-            <div class="col-sm mt-3">
-                <a href="OurClinic">Our Clinic</a>
-                <br />
-                <a href="OurTeam">Our Team</a>
-                <br />
-                <a href="Contact">Contact</a>
-            </div>
-            <div class="col-sm mt-3">
-                Address:
-                1 Benkovska str. 1000, Sofia
-                +359 000 000 000
-                <a href="contact">dentalclinic@test.bg</a>
-            </div>
-            <div class="col-sm mt-3">
-                <p>Dental Clinic Sofia</p>
-            </div>
+    <div class="col-xs-6 col-sm-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <br />
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <br />
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        <br />
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <br />
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <br />
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        <br />
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div class="col-xs-6 col-sm-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        <br />
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <br />
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        <br />
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    </div>
+    @*снимка и кратка авотбиография на специалистите*@
+
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm mt-3">
+            <a href="OurClinic">Our Clinic</a>
+            <br />
+            <a href="OurTeam">Our Team</a>
+            <br />
+            <a href="Contact">Contact</a>
+        </div>
+        <div class="col-sm mt-3">
+            Address:
+            1 Benkovska str. 1000, Sofia
+            +359 000 000 000
+            <a href="contact">dentalclinic@test.bg</a>
+        </div>
+        <div class="col-sm mt-3">
+            <p>Dental Clinic Sofia</p>
         </div>
     </div>
+</div>
 

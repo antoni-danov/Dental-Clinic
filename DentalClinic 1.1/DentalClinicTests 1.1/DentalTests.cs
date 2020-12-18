@@ -3,10 +3,10 @@ using Xunit;
 
 namespace DentalClinicTests_1._1
 {
-    public class UnitTest1
+    public class DentalTests
     {
         [Fact]
-        public void Test1()
+        public void AddPatientAddUserSuccesfully()
         {
 
         }
