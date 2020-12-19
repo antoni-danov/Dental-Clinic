@@ -49,7 +49,8 @@ namespace DentalClinic_1._1.Controllers
                     LastName = dentist.Lastname,
                     PhoneNumber = dentist.PhoneNumber,
                     Email = dentist.Email,
-                    Id = dentist.Id
+                    Id = dentist.Id,
+                    Specialty = input.Specialty
                 };
 
                 listOfDentists.Add(users);
