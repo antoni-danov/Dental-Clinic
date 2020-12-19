@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DentalClinic_1._1.ViewModels.Specialty;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,13 +10,17 @@ namespace DentalClinic_1._1.Models
 {
     public class ApplicationUser: IdentityUser
     {
+        public ApplicationUser()
+        {
+            Specialization = new HashSet<Specialization>();
+        }
         public string Firstname { get; set; }
         public string Lastname { get; set; } 
         public DateTime Birthdate { get; set; }
         public byte[] ProfilePicture { get; set; }
         public string Address { get; set; }
         public Town Town { get; set; }
-        public Specialization Specialization { get; set; }
+        public ICollection<Specialization> Specialization { get; set; }
         public string Description { get; set; }
 
     }

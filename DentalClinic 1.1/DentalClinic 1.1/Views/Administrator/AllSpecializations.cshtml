@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DentalClinic_1._1.ViewModels.Specialty.AllSpecializationViewModel>
+﻿@model IEnumerable<DentalClinic_1._1.Models.Specialization>
 
 @{
     ViewData["Title"] = "AllSpecializations";
@@ -19,7 +19,7 @@
                 SpecialtyId : @item.Id
             </div>
             <div class="card-body">
-                <h5 class="card-title">@item.SpecialtyName</h5>
+                <h5 class="card-title">@item.Name</h5>
             </div>
             <div class="card-footer">
                 <form asp-action="RemoveSpecialization" asp-route-id="@item.Id" method="post">

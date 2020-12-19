@@ -27,10 +27,10 @@ namespace DentalClinic_1._1.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<ApplicationUser>()
-                .HasOne(u => u.Specialization)
-                .WithMany(s => s.Users)
-                .OnDelete(DeleteBehavior.SetNull);
+            //builder.Entity<ApplicationUser>()
+            //    .HasOne(u => u.Specialization)
+            //    .WithMany(s => s.Users)
+            //    .OnDelete(DeleteBehavior.SetNull);
 
             builder.Entity<AllPatientsViewModel>().HasKey(x => x.Id);
            

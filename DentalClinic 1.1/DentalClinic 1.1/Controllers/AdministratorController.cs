@@ -124,27 +124,33 @@ namespace DentalClinic_1._1.Controllers
 
             return View(listOfPatients);
         }
-        public IActionResult AddDentist()
+        public IActionResult AddDentist(AddDentists input)
         {
-            return View();
+            var specialties = db.Specializations.ToList();
+            var user = new AddDentists
+            {
+                Specialty = specialties
+            };
+
+            return View(user);
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddDentist(AddDentistViewModel input)
+        public async Task<IActionResult> AddDentist(AddDentists input, Specialization specialty)
         {
             var roleName = "Dentist";
 
             var createDentist = new ApplicationUser
             {
-                Firstname = input.Firstname,
-                Lastname = input.Lastname,
-                Email = input.Email,
-                Birthdate = input.Birthdate,
-                Address = input.Address,
-                Town = input.Town,
-                PhoneNumber = input.PhoneNumber,
-                Description = input.Description,
-                Specialization = input.SpecialtyName,
-                UserName = input.Email
+                Firstname = input.Dentist.Firstname,
+                Lastname = input.Dentist.Lastname,
+                Email = input.Dentist.Email,
+                Birthdate = input.Dentist.Birthdate,
+                Address = input.Dentist.Address,
+                Town = input.Dentist.Town,
+                PhoneNumber = input.Dentist.PhoneNumber,
+                Description = input.Dentist.Description,
+                Specialization = input.Specialty,
+                UserName = input.Dentist.Email
             };
 
             var user = await userManager.CreateAsync(createDentist);
@@ -262,16 +268,16 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult AllSpecializations()
         {
-            List<AllSpecializationViewModel> listOfSpecializations = new List<AllSpecializationViewModel>();
+            List<Specialization> listOfSpecializations = new List<Specialization>();
             var specializations = db.Specializations.ToList();
 
             foreach (var specialty in specializations)
             {
 
-                var models = new AllSpecializationViewModel
+                var models = new Specialization
                 {
                     Id = specialty.Id,
-                    SpecialtyName = specialty.Name,
+                    Name = specialty.Name,
                     Description = specialty.Description
                 };
 
