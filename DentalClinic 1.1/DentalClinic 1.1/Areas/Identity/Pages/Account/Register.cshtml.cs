@@ -90,7 +90,8 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser 
-                { UserName = Input.Email,
+                {
+                    UserName = Input.Email,
                     Email = Input.Email,
                     Firstname = Input.Firstname,
                     Lastname = Input.Lastname,
