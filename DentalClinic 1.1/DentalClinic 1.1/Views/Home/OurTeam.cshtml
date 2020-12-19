@@ -10,56 +10,19 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-xs-6 col-sm-3">
+            <div class="col-sm-3">
                 <figure>
                     <figcaption>
                         <img src="~/myAvatar .png" />
                         <div>@item.Specialty</div>
 
                         <h4>@item.FirstName @item.LastName</h4>
+                        <div>@item.Autobiography</div>
                     </figcaption>
                 </figure>
             </div>
         }
-    <div class="col-xs-6 col-sm-3">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        <br />
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        <br />
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br />
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div>
-    <div class="col-xs-6 col-sm-3">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        <br />
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        <br />
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br />
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        <br />
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        <br />
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br />
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </div>
-    <div class="col-xs-6 col-sm-3">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        <br />
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        <br />
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br />
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </div>
-    </div>
-    @*снимка и кратка авотбиография на специалистите*@
-
 </div>
 <hr />
 <div class="container">
@@ -74,11 +37,12 @@
         <div class="col-sm mt-3">
             Address:
             1 Benkovska str. 1000, Sofia
+            <br />
             +359 000 000 000
-            <a href="contact">dentalclinic@test.bg</a>
         </div>
         <div class="col-sm mt-3">
             <p>Dental Clinic Sofia</p>
+            <a href="contact">dentalclinic@test.bg</a>
         </div>
     </div>
 </div>

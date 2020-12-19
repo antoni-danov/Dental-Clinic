@@ -37,13 +37,18 @@
                 <span asp-validation-for="@Model.Dentist.Address" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="@Model.Dentist.Town" class="control-label"></label>
+                <input asp-for="@Model.Dentist.Town" class="form-control" />
+                <span asp-validation-for="@Model.Dentist.Town" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="@Model.Dentist.PhoneNumber" class="control-label"></label>
                 <input asp-for="@Model.Dentist.PhoneNumber" class="form-control" />
                 <span asp-validation-for="@Model.Dentist.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.SpecialtyName" class="control-label"></label>
-                <select name="Dentist">
+                <select class="selectpicker" name="Dentist">
                     <option>Chose a Specialty...</option>
                     @foreach (var item in @Model.Specialty)
                     {
