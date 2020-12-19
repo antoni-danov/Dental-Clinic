@@ -39,7 +39,7 @@ namespace DentalClinic_1._1.Data
             builder.Entity<ApplicationUser>()
             .HasMany(c => c.Appointments)
             .WithOne(e => e.User)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<AllPatientsViewModel>().HasKey(x => x.Id);
            

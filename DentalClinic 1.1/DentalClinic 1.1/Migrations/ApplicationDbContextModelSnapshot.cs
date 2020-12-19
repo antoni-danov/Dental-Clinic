@@ -553,7 +553,7 @@ namespace DentalClinic_1._1.Migrations
                     b.HasOne("DentalClinic_1._1.Models.ApplicationUser", "User")
                         .WithMany("Appointments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AmbulatorySheets");
 

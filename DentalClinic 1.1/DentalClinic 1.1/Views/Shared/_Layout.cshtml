@@ -89,7 +89,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                             </li>
-                            @if(!User.IsInRole("Dentist"))
+                            @if (!User.IsInRole("Dentist") || !User.IsInRole("Administrator"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Urgence" data-toggle="modal" data-target="#exampleModal">
@@ -99,17 +99,19 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="Urgence"></h5>
+                                                    <h3 class="modal-title" id="Urgence">
+                                                        Contact Us at:
+                                                    </h3>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true"></span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h2></h2>
+                                                    <h4> +359 00 000 000</h4>
                                                     <div></div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>

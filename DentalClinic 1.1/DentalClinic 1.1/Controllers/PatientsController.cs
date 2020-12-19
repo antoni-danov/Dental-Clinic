@@ -58,7 +58,7 @@ namespace DentalClinic_1._1.Controllers
             {
                 foreach (var appointment in appointments)
                 {
-                    var dentistUser = db.Users.FirstOrDefault(x => x.Id == appointment.Dentist);
+                    var dentistUser = db.Users.FirstOrDefault(x => x.Id == appointment.Id.ToString());
 
                     var user = new AppointmentViewModel
                     {

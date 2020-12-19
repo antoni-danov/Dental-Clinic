@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentalClinic_1._1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201219184949_just update delete behavior")]
-    partial class justupdatedeletebehavior
+    [Migration("20201219191747_Add columns ")]
+    partial class Addcolumns
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -555,7 +555,7 @@ namespace DentalClinic_1._1.Migrations
                     b.HasOne("DentalClinic_1._1.Models.ApplicationUser", "User")
                         .WithMany("Appointments")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AmbulatorySheets");
 
