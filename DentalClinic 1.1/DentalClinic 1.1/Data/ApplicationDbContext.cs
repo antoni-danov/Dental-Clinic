@@ -31,6 +31,15 @@ namespace DentalClinic_1._1.Data
             //    .HasOne(u => u.Specialization)
             //    .WithMany(s => s.Users)
             //    .OnDelete(DeleteBehavior.SetNull);
+           
+            builder.Entity<Appointment>()
+            .HasOne(a => a.User)
+            .WithMany(a => a.Appointments);
+
+            builder.Entity<ApplicationUser>()
+            .HasMany(c => c.Appointments)
+            .WithOne(e => e.User)
+            .OnDelete(DeleteBehavior.SetNull);
 
             builder.Entity<AllPatientsViewModel>().HasKey(x => x.Id);
            

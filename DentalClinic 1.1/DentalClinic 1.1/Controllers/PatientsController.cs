@@ -47,28 +47,31 @@ namespace DentalClinic_1._1.Controllers
             return View(listOfDentists);
         } //OK
 
-        public async Task<IActionResult> AllAppointments(Appointment input)
+        public async Task<IActionResult> AllAppointments()
         {
             List<AppointmentViewModel> listOfAppointments = new List<AppointmentViewModel>();
             var userId = (await userManager.GetUserAsync(User)).Id;
 
             var appointments = db.Appointments.Where(a => a.Patient == userId && a.Date > DateTime.Now).ToList();
-
-            foreach (var appointment in appointments)
-            {
-                var dentistUser = db.Users.First(x => x.Id == appointment.Dentist);
-                
-                var user = new AppointmentViewModel
-                {
-                    FirstName = dentistUser.Firstname,
-                    LastName = dentistUser.Lastname,
-                    Date = appointment.Date.ToString("dd MMMM yyyy"),
-                    Hour = appointment.Date.ToString("HH"),
-                    Minutes = appointment.Date.ToString("mm")
-                };
-                listOfAppointments.Add(user);
-            }
             
+            if (ModelState.IsValid)
+            {
+                foreach (var appointment in appointments)
+                {
+                    var dentistUser = db.Users.FirstOrDefault(x => x.Id == appointment.Dentist);
+
+                    var user = new AppointmentViewModel
+                    {
+                        FirstName = dentistUser.Firstname,
+                        LastName = dentistUser.Lastname,
+                        Date = appointment.Date.ToString("dd MMMM yyyy"),
+                        Hour = appointment.Date.ToString("HH"),
+                        Minutes = appointment.Date.ToString("mm")
+                    };
+                    listOfAppointments.Add(user);
+                }
+            }
+
             return View("AllAppointments", listOfAppointments);
         } //OK
         public IActionResult GetAppointment() //OK
@@ -99,7 +102,7 @@ namespace DentalClinic_1._1.Controllers
         {
 
             return View();
-        } 
+        }
 
     }
 }

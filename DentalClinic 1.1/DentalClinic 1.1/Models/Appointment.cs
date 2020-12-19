@@ -17,6 +17,7 @@ namespace DentalClinic_1._1.Models
         public string Patient { get; set; }
         public DateTime Date { get; set; }
         public AmbulatorySheet AmbulatorySheets { get; set; }
+        public ApplicationUser User { get; set; }
 
     }
 }
