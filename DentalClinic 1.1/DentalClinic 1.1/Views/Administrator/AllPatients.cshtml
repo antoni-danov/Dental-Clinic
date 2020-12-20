@@ -22,11 +22,13 @@
                 <p> @item.PhoneNumber </p>
                 <p> @item.Email </p>
             </div>
-        </div>
-        <div class="card-footer">
-            <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">
-                <button type="button" class="button btn-danger">Delete</button>
-            </form>
+            <div class="card-footer">
+                <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">
+                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button class="btn btn-info"><a asp-action="Details" asp-route-id="@item.Id" class="text-white">Details</a></button>
+
+                </form>
+            </div>
         </div>
     }
 </table>

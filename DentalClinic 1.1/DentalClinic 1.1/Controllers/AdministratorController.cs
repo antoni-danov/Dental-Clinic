@@ -42,7 +42,6 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
             var roleName = "Patient";
-
             var createPatient = new ApplicationUser
             {
                 Firstname = input.FirstName,
@@ -54,6 +53,7 @@ namespace DentalClinic_1._1.Controllers
                 PhoneNumber = input.PhoneNumber,
                 UserName = input.Email,
             };
+
 
             var user = await userManager.CreateAsync(createPatient);
 
