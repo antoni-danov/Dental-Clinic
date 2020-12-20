@@ -1,7 +1,7 @@
 ﻿@model DentalClinic_1._1.ViewModels.Patient.AllPatientsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "DetailsPatient";
 }
 
 <h1>Details</h1>
@@ -45,11 +45,10 @@
                 @Html.DisplayFor(model => model.Address)
             </dd>
         </div>
-        <div class="col"><h5>Interventions:</h5></div>
     </dl>
 </div>
 <div>
-    <button class="btn btn-success"><a asp-action="Patients" class="text-white">Back to List</a></button>
+    <button class="btn btn-success"><a asp-action="AllPatients" class="text-white">Back to List</a></button>
 </div>
 <br />
 <a href="https://www.freepik.com/vectors/people" class="text-sm-left">People vector created by Sapann-Design - www.freepik.com</a>

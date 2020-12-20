@@ -126,6 +126,31 @@ namespace DentalClinic_1._1.Controllers
 
             return View(listOfPatients);
         }
+        public IActionResult DetailsPatient(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var patient = db.Users
+                .FirstOrDefault(p => p.Id == id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            var patientDetails = new AllPatientsViewModel
+            {
+                FirstName = patient.Firstname,
+                LastName = patient.Lastname,
+                PhoneNumber = patient.PhoneNumber,
+                Email = patient.Email,
+                Address = patient.Address
+            };
+
+            return View(patientDetails);
+        } //TODO
         public IActionResult AddDentist(AddDentists input)
         {
             var specialties = db.Specializations.ToList();
@@ -224,6 +249,33 @@ namespace DentalClinic_1._1.Controllers
 
             return View(listOfDentists);
         }
+        public IActionResult DetailsDentist(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dentist = db.Users
+                .FirstOrDefault(p => p.Id == id);
+            if (dentist == null)
+            {
+                return NotFound();
+            }
+
+            var dentistDetails = new AllDentistsViewModel
+            {
+                FirstName = dentist.Firstname,
+                LastName = dentist.Lastname,
+                PhoneNumber = dentist.PhoneNumber,
+                Email = dentist.Email,
+                Address = dentist.Address,
+                Autobiography = dentist.Description
+            };
+
+            return View(dentistDetails);
+        } //TODO
+
         public IActionResult AddSpecialization()
         {
             return View();

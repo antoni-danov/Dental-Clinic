@@ -1,32 +1,74 @@
 ﻿@model IEnumerable<DentalClinic_1._1.ViewModels.Dentist.AllDentistsViewModel>
 
 @{
-    ViewData["Title"] = "All Dentists";
+    ViewData["Title"] = "AllPatients";
 }
 
-<h1>All Dentists</h1>
+<h1>All Dentists:</h1>
 
 <p>
-    <a asp-action="AddDentist">Add new Dentist</a>
-<p> Number of dentists in database: @Model.Count()</p>
-
+    <button class="btn btn-primary">
+        <a asp-action="AddDentist" class="text-white">Add new Dentist</a>
+    </button>
+    <h4> Number of dentists in database: @Model.Count()</h4>
 </p>
-<table class="table">
-    @foreach (var item in Model)
-    {
-        <div class="card mb-3">
-            <div class="card-header">
-                UserId : @item.Id
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">@item.FirstName @item.LastName</h5>
-            </div>
-            <div class="card-footer">
-                <form asp-action="RemoveDentist" asp-route-id="@item.Id" method="post">
-                    @*<a asp-action="EditUser" asp-controller="Administrator" asp-route-id="@item.Id" class="button btn-primary">Edit</a>*@
-                    <button type="submit" class="button btn-danger">Delete</button>
-                </form>
-            </div>
-        </div>
-    }
+<div class="active-cyan-3 active-cyan-4 mb-4">
+    <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search your patient..." title="Type in a name">
+</div>
+
+<table id="myTable" class="table table-striped">
+    <tr class="header">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName) @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+    </thead>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <form asp-action="RemoveDentist" asp-route-id="@item.Id" method="post">
+                        <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                    </form>
+                    <button class="btn btn-info"><a asp-action="Details" asp-route-id="@item.Id" class="text-white">Details</a></button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
