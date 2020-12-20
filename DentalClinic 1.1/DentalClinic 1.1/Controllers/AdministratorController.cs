@@ -42,6 +42,8 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
             var roleName = "Patient";
+            var password = "#A123b456";
+
             var createPatient = new ApplicationUser
             {
                 Firstname = input.FirstName,
@@ -51,11 +53,11 @@ namespace DentalClinic_1._1.Controllers
                 Address = input.Address,
                 Town = input.Town,
                 PhoneNumber = input.PhoneNumber,
-                UserName = input.Email,
+                UserName = input.Email
             };
 
 
-            var user = await userManager.CreateAsync(createPatient);
+            var user = await userManager.CreateAsync(createPatient, password);
 
             if (!user.Succeeded)
             {
@@ -138,6 +140,7 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddDentist(AddDentists input, Specialization specialty)
         {
             var roleName = "Dentist";
+            var password = "$A123b456";
 
             var createDentist = new ApplicationUser
             {
@@ -153,7 +156,7 @@ namespace DentalClinic_1._1.Controllers
                 UserName = input.Dentist.Email
             };
 
-            var user = await userManager.CreateAsync(createDentist);
+            var user = await userManager.CreateAsync(createDentist, password);
 
             if (!user.Succeeded)
             {
