@@ -41,7 +41,7 @@
                 </td>
                 <td>
                     <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">
-                        <button type="button" class="btn btn-danger mb-2">Delete</button>
+                        <button type="submit" class="btn btn-danger mb-2">Delete</button>
                     </form>
                     <button class="btn btn-info"><a asp-action="DetailsPatient" asp-route-id="@item.Id" class="text-white">Details</a></button>
                 </td>

@@ -177,7 +177,7 @@ namespace DentalClinic_1._1.Controllers
                 Town = input.Dentist.Town,
                 PhoneNumber = input.Dentist.PhoneNumber,
                 Description = input.Dentist.Description,
-                Specialization = input.Specialty,
+                Specialty = (Specialization)input.Specialty,
                 UserName = input.Dentist.Email
             };
 
