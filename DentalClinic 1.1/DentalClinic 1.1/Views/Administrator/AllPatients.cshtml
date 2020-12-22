@@ -4,8 +4,8 @@
     ViewData["Title"] = "AllPatients";
 }
 
-<h1>AllPatients</h1>
-
+<h1>List of patients:</h1>
+<br />
 <p>
     <button class="btn btn-primary">
         <a asp-action="AddPatient" class="text-white">Add new Patient</a>
@@ -39,12 +39,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                <td>
-                    <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">
-                        <button type="submit" class="btn btn-danger mb-2">Delete</button>
-                    </form>
-                    <button class="btn btn-info"><a asp-action="DetailsPatient" asp-route-id="@item.Id" class="text-white">Details</a></button>
-                </td>
+                <div class="card-foo">
+                    <td>
+                        <form asp-action="RemovePatient" asp-route-id="@item.Id" method="post">
+                            <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                        </form>
+                        <button class="btn btn-info"><a asp-action="DetailsPatient" asp-route-id="@item.Id" class="text-white">Details</a></button>
+                    </td>
+                </div>
             </tr>
         }
     </tbody>

@@ -341,5 +341,12 @@ namespace DentalClinic_1._1.Controllers
 
             return View(listOfSpecializations);
         }
+        [HttpPost]
+        public IActionResult EditDetails(int id)
+        {
+            var specialty = db.Specializations.First(x => x.Id == id);
+            
+            return View();
+        }
     }
 }

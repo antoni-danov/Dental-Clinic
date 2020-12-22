@@ -9,7 +9,7 @@ namespace DentalClinic_1._1.ViewModels.Specialty
 {
     public class AddSpecializationViewModel
     {
-        private const string RegexSpecialty = @"^[A-z]*$";
+        private const string RegexSpecialty = @"^[A-z]* [A-z]*$";
 
         [Key]
         [Required]

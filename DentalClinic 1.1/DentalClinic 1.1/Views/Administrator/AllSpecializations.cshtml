@@ -4,28 +4,30 @@
     ViewData["Title"] = "AllSpecializations";
 }
 
-<h1>Specialties:</h1>
+<h1>List of Specialties:</h1>
 
+<br />
 <p>
-    <a asp-action="AddSpecialization">Create New</a>
-<p> Number of spcializiations: @Model.Count()</p>
+    <button class="btn btn-primary">
+        <a asp-action="AddSpecialization" class="text-white">Create new specialty</a>
+    </button>
+    <h4>
+<p> Number of specialties: @Model.Count()</p>
 </p>
+</h4>
 <table class="table">
     @foreach (var item in Model)
     {
 
         <div class="card mb-3">
-            <div class="card-header">
-                SpecialtyId : @item.Id
-            </div>
             <div class="card-body">
                 <h5 class="card-title">@item.Name</h5>
                 <div>@item.Description</div>
             </div>
             <div class="card-footer">
                 <form asp-action="RemoveSpecialization" asp-route-id="@item.Id" method="post">
-                    @*<a asp-action="EditUser" asp-controller="Administrator" asp-route-id="@item.Id" class="button btn-primary">Edit</a>*@
                     <button type="submit" class="btn btn-danger">Delete</button>
+                    @*<a asp-action="EditDetails" asp-controller="Administrator" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>*@
                 </form>
             </div>
         </div>
