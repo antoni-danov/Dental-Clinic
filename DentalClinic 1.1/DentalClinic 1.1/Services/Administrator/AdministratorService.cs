@@ -23,7 +23,25 @@ namespace DentalClinic_1._1.Services.Administrator
             this.userManager = userManager;
             this.db = db;
         }
-        public ApplicationUser CreateUser(string firstname, string lastname, string email, DateTime birthdate, string address, Town town, string phonenumber)
+
+        public ApplicationUser CreateDentist(string firstname, string lastname, string email, DateTime birthdate, string address, Town town, string phonenumber)
+        {
+            var user = new ApplicationUser()
+            {
+                Firstname = firstname,
+                Lastname = lastname,
+                Email = email,
+                Birthdate = birthdate,
+                Address = address,
+                Town = town,
+                PhoneNumber = phonenumber,
+                UserName = lastname,
+            };
+
+            return user;
+        }
+
+        public ApplicationUser CreatePatient(string firstname, string lastname, string email, DateTime birthdate, string address, Town town, string phonenumber)
         {
 
             var user = new ApplicationUser()

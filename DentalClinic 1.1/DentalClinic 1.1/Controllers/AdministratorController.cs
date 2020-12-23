@@ -49,7 +49,7 @@ namespace DentalClinic_1._1.Controllers
 
             var roleName = "Patient";
 
-            var patient = administratorService.CreateUser(input.FirstName, input.LastName, input.Email, input.BirthDate, input.Address, input.Town, input.PhoneNumber);
+            var patient = administratorService.CreatePatient(input.FirstName, input.LastName, input.Email, input.BirthDate, input.Address, input.Town, input.PhoneNumber);
 
             var user = await userManager.CreateAsync(patient, password);
 
@@ -148,42 +148,31 @@ namespace DentalClinic_1._1.Controllers
             return View(user);
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddDentist(AddDentists input, Specialization specialty)
+        public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
             var roleName = "Dentist";
             var password = "$A123b456";
 
-            var createDentist = new ApplicationUser
-            {
-                Firstname = input.Dentist.Firstname,
-                Lastname = input.Dentist.Lastname,
-                Email = input.Dentist.Email,
-                Birthdate = input.Dentist.Birthdate,
-                Address = input.Dentist.Address,
-                Town = input.Dentist.Town,
-                PhoneNumber = input.Dentist.PhoneNumber,
-                Description = input.Dentist.Description,
-                Specialty = (Specialization)input.Specialty,
-                UserName = input.Dentist.Email
-            };
+            var patient = administratorService.CreateDentist(input.Firstname, input.Lastname, input.Email, input.Birthdate, input.Address, input.Town, input.PhoneNumber);
 
-            var user = await userManager.CreateAsync(createDentist, password);
+            var user = await userManager.CreateAsync(patient, password);
 
             if (!user.Succeeded)
             {
-                //var token = await userManager.GenerateEmailConfirmationTokenAsync(createDentist);
-                //var confirmationLink = Url.Action("ConfirmEmail", "Account", 
-                //    new { createDentist.Id, token = token}, Request.Scheme );
+                //var token = await userManager.GenerateEmailConfirmationTokenAsync(createPatient);
+                //var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                //    new { createPatient.Id, token = token }, Request.Scheme);
                 //logger.Log(LogLevel.Warning, confirmationLink);
 
             }
 
-            var result = await userManager.AddToRoleAsync(createDentist, roleName);
+            var result = await userManager.AddToRoleAsync(patient, roleName);
 
-            if (!user.Succeeded)
+            if (!result.Succeeded)
             {
-                //TODO
+                //  TODO: handle
             }
+
 
             return Redirect("AllDentists");
         }

@@ -15,21 +15,39 @@
 <p> Number of specialties: @Model.Count()</p>
 </p>
 </h4>
-<table class="table">
-    @foreach (var item in Model)
-    {
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <div>@item.Description</div>
-            </div>
-            <div class="card-footer">
-                <form asp-action="RemoveSpecialization" asp-route-id="@item.Id" method="post">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    @*<a asp-action="EditDetails" asp-controller="Administrator" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>*@
-                </form>
-            </div>
-        </div>
-    }
+<table class="table table-striped">
+    <tr class="header">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        </tr>
+    </thead>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>@item.Description</td>
+                <div class="card-foo">
+                    <td>
+                        <form asp-action="RemoveSpecialization" asp-route-id="@item.Id" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            @*<a asp-action="EditDetails" asp-controller="Administrator" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>*@
+                        </form>
+                    </td>
+                </div>
+            </tr>
+        }
+    </tbody>
 </table>
+
+
