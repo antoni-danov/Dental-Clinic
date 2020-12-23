@@ -46,9 +46,10 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
             var password = "#A123b456";
+
             var roleName = "Patient";
 
-            var patient = administratorService.CreateUser(input.FirstName,input.LastName,input.Email, input.BirthDate,input.Address, input.Town, input.PhoneNumber);
+            var patient = administratorService.CreateUser(input.FirstName, input.LastName, input.Email, input.BirthDate, input.Address, input.Town, input.PhoneNumber);
 
             var user = await userManager.CreateAsync(patient, password);
 
@@ -72,17 +73,7 @@ namespace DentalClinic_1._1.Controllers
         }
         public async Task<IActionResult> RemovePatient(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var patient = await db.Users
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (patient == null)
-            {
-                return NotFound();
-            }
+            var patient = administratorService.GetPatientById(id);
 
             return View(patient);
         }
@@ -92,8 +83,10 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> RemovePatientConfirmed(string id)
         {
             var user = await db.Users.FindAsync(id);
+
             db.Users.Remove(user);
             await db.SaveChangesAsync();
+            
             return RedirectToAction("AllPatients");
         }
         public async Task<IActionResult> AllPatients()
