@@ -3,34 +3,37 @@
     ViewData["Title"] = "Contact";
 }
 <link href="~/css/ContactForm.css" rel="stylesheet" />
+<div>
+    <div>
+        <div class="container">
+            <form id="contact" action="contact" method="post">
+                <h3>Contact Form</h3>
 
-<div class="container">
-    <form id="contact" action="contact" method="post">
-        <h3>Contact Form</h3>
+                <label for="Names">First and Last name</label>
+                <input type="text" name="First and Last name" placeholder="Enter your names" required />
+                <br />
+                <label for="Email">Email</label>
+                <input type="text" name="Email" placeholder="Enter your email" required />
+                <br />
+                <label for="PhoneNumber">Phone number</label>
+                <input type="tel" name="Phone number" placeholder="ex.(+359)123 456789" required />
+                <br />
+                <label for="Dentist">Chose your Dentist to contact:</label>
+                <select name="Dentist">
+                    <option>Chose a Dentist...</option>
+                    @foreach (var item in @Model)
+                    {
+                        <option value="Dentist">@item.FirstName @item.LastName</option>
 
-        <label for="Names">First and Last name</label>
-        <input type="text" name="First and Last name" placeholder="Enter your names" required />
-        <br />
-        <label for="Email">Email</label>
-        <input type="text" name="Email" placeholder="Enter your email" required />
-        <br />
-        <label for="PhoneNumber">Phone number</label>
-        <input type="tel" name="Phone number" placeholder="ex.(+359)123 456789" required />
-        <br />
-        <label for="Dentist">Chose your Dentist to contact:</label>
-        <select name="Dentist">
-            <option>Chose a Dentist...</option>
-            @foreach (var item in @Model)
-            {
-                <option value="Dentist">@item.FirstName @item.LastName</option>
-
-            }
-        </select>
-        <br />
-        <label for="Message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us about your situation..." style="height:100px">
+                    }
+                </select>
+                <br />
+                <label for="Message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your situation..." style="height:100px">
            
         </textarea>
-        <input type="submit" name="Send" value="Submit" />
-    </form>
+                <input type="submit" name="Send" value="Submit" />
+            </form>
+        </div>
+    </div>
 </div>

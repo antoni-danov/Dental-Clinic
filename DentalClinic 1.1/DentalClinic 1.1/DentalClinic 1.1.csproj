@@ -33,8 +33,4 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="87.0.4280.2000" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>
