@@ -13,42 +13,42 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.Firstname" class="control-label"></label>
-                <input asp-for="@Model.Dentist.Firstname" class="form-control" />
+                <input asp-for="@Model.Dentist.Firstname" class="form-control" name="Firstname"/>
                 <span asp-validation-for="@Model.Dentist.Firstname" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.Lastname" class="control-label"></label>
-                <input asp-for="@Model.Dentist.Lastname" class="form-control" />
+                <input asp-for="@Model.Dentist.Lastname" class="form-control" name="Lastname"/>
                 <span asp-validation-for="@Model.Dentist.Lastname" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.Email" class="control-label"></label>
-                <input asp-for="@Model.Dentist.Email" class="form-control" />
+                <input asp-for="@Model.Dentist.Email" class="form-control" name="Email"/>
                 <span asp-validation-for="@Model.Dentist.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.Birthdate" class="control-label"></label>
-                <input asp-for="@Model.Dentist.Birthdate" class="form-control" />
+                <input asp-for="@Model.Dentist.Birthdate" class="form-control" name="Birthdate"/>
                 <span asp-validation-for="@Model.Dentist.Birthdate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.Address" class="control-label"></label>
-                <input asp-for="@Model.Dentist.Address" class="form-control" />
+                <input asp-for="@Model.Dentist.Address" class="form-control" name="Address"/>
                 <span asp-validation-for="@Model.Dentist.Address" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.Town" class="control-label"></label>
-                <input asp-for="@Model.Dentist.Town" class="form-control" />
+                <input asp-for="@Model.Dentist.Town" class="form-control" name="Town"/>
                 <span asp-validation-for="@Model.Dentist.Town" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Dentist.PhoneNumber" class="control-label"></label>
-                <input asp-for="@Model.Dentist.PhoneNumber" class="form-control" />
+                <input asp-for="@Model.Dentist.PhoneNumber" class="form-control" name="Phonenumber"/>
                 <span asp-validation-for="@Model.Dentist.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group" method="post">
                 <label asp-for="@Model.Dentist.SpecialtyName" class="control-label"></label>
-                <select class="selectpicker" name="Dentist">
+                <select class="selectpicker" name="SpecialtyName">
                     <option>Chose a Specialty...</option>
                     @foreach (var item in @Model.Specialty)
                     {
@@ -60,7 +60,7 @@
             <div class="form-group">
                 <label asp-for="@Model.Dentist.Description" class="control-label"></label>
                 <textarea asp-for="@Model.Dentist.Description" class="form-control" id="message"
-                          name="message" placeholder="Tell me something about your careere..." style="height:100px">
+                          name="Description" placeholder="Tell me something about your careere..." style="height:100px">
                 </textarea>
             </div>
             <div class="form-group">

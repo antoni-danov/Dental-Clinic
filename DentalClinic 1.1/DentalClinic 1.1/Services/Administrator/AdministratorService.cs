@@ -40,7 +40,7 @@ namespace DentalClinic_1._1.Services.Administrator
 
             return user;
         }
-
+        //OK
         public ApplicationUser CreatePatient(string firstname, string lastname, string email, DateTime birthdate, string address, Town town, string phonenumber)
         {
 
@@ -58,7 +58,7 @@ namespace DentalClinic_1._1.Services.Administrator
 
             return user;
         }
-
+        //OK
         public string GetPatientById(string id)
         {
             if (id == null)
@@ -75,6 +75,7 @@ namespace DentalClinic_1._1.Services.Administrator
 
             return patient.Id.ToString();
         }
+        //OK
 
     }
 }

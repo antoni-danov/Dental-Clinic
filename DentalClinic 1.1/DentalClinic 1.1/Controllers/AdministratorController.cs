@@ -71,12 +71,14 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllPatients");
         }
+        //OK
         public async Task<IActionResult> RemovePatient(string id)
         {
             var patient = administratorService.GetPatientById(id);
 
             return View(patient);
         }
+        //OK
 
         [HttpPost, ActionName("RemovePatient")]
         [ValidateAntiForgeryToken]
@@ -136,7 +138,7 @@ namespace DentalClinic_1._1.Controllers
             };
 
             return View(patientDetails);
-        } //TODO
+        } //OK
         public IActionResult AddDentist(AddDentists input)
         {
             var specialties = db.Specializations.ToList();
@@ -175,7 +177,7 @@ namespace DentalClinic_1._1.Controllers
 
 
             return Redirect("AllDentists");
-        }
+        } //OK
         public async Task<IActionResult> RemoveDentist(string id)
         {
             if (id == null)
