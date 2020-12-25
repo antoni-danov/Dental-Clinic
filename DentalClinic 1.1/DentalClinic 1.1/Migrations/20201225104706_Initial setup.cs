@@ -3,25 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DentalClinic_1._1.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initialsetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AllDentistsViewModel",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AllDentistsViewModel", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AllPatientsViewModel",
                 columns: table => new
@@ -37,6 +22,20 @@ namespace DentalClinic_1._1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AllPatientsViewModel", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AllSpecializationViewModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SpecialtyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AllSpecializationViewModel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,72 +101,19 @@ namespace DentalClinic_1._1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AddDentistViewModel",
-                columns: table => new
-                {
-                    Firstname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Lastname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TownId = table.Column<int>(type: "int", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    SpecialtyNameId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AddDentistViewModel", x => x.Firstname);
-                    table.ForeignKey(
-                        name: "FK_AddDentistViewModel_Specializations_SpecialtyNameId",
-                        column: x => x.SpecialtyNameId,
-                        principalTable: "Specializations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AddDentistViewModel_Towns_TownId",
-                        column: x => x.TownId,
-                        principalTable: "Towns",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AddPatientViewModel",
-                columns: table => new
-                {
-                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TownId = table.Column<int>(type: "int", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AddPatientViewModel", x => x.FirstName);
-                    table.ForeignKey(
-                        name: "FK_AddPatientViewModel_Towns_TownId",
-                        column: x => x.TownId,
-                        principalTable: "Towns",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProfilePicture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TownId = table.Column<int>(type: "int", nullable: true),
-                    SpecializationId = table.Column<int>(type: "int", nullable: true),
+                    Specialty = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SpecializationId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -191,11 +137,40 @@ namespace DentalClinic_1._1.Migrations
                         column: x => x.SpecializationId,
                         principalTable: "Specializations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Users_Towns_TownId",
                         column: x => x.TownId,
                         principalTable: "Towns",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AmbulatorySheet",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DentistId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PatientId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Diagnose = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Interventions = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AmbulatorySheet", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AmbulatorySheet_Users_DentistId",
+                        column: x => x.DentistId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AmbulatorySheet_Users_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -285,20 +260,54 @@ namespace DentalClinic_1._1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AddDentistViewModel_SpecialtyNameId",
-                table: "AddDentistViewModel",
-                column: "SpecialtyNameId");
+            migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Dentist = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Patient = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AmbulatorySheetsId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Appointments_AmbulatorySheet_AmbulatorySheetsId",
+                        column: x => x.AmbulatorySheetsId,
+                        principalTable: "AmbulatorySheet",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddDentistViewModel_TownId",
-                table: "AddDentistViewModel",
-                column: "TownId");
+                name: "IX_AmbulatorySheet_DentistId",
+                table: "AmbulatorySheet",
+                column: "DentistId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddPatientViewModel_TownId",
-                table: "AddPatientViewModel",
-                column: "TownId");
+                name: "IX_AmbulatorySheet_PatientId",
+                table: "AmbulatorySheet",
+                column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_AmbulatorySheetsId",
+                table: "Appointments",
+                column: "AmbulatorySheetsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_UserId",
+                table: "Appointments",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -353,16 +362,13 @@ namespace DentalClinic_1._1.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AddDentistViewModel");
-
-            migrationBuilder.DropTable(
-                name: "AddPatientViewModel");
-
-            migrationBuilder.DropTable(
-                name: "AllDentistsViewModel");
-
-            migrationBuilder.DropTable(
                 name: "AllPatientsViewModel");
+
+            migrationBuilder.DropTable(
+                name: "AllSpecializationViewModel");
+
+            migrationBuilder.DropTable(
+                name: "Appointments");
 
             migrationBuilder.DropTable(
                 name: "RoleClaim");
@@ -378,6 +384,9 @@ namespace DentalClinic_1._1.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserToken");
+
+            migrationBuilder.DropTable(
+                name: "AmbulatorySheet");
 
             migrationBuilder.DropTable(
                 name: "Role");
