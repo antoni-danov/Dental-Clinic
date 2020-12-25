@@ -16,9 +16,5 @@ namespace DentalClinic_1._1.Models
         public string Description { get; set; }
         public ICollection<ApplicationUser> Users { get; set; }
 
-        public static implicit operator Specialization(string v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -24,7 +24,7 @@ namespace DentalClinic_1._1.ViewModels.Patient
         [Required(ErrorMessage = "Enter valid last name.")]
         public string LastName { get; set; }
        
-        [Required(ErrorMessage = "Enter valide email address.")]
+        [Required(ErrorMessage = "Enter a valid email address.")]
         [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string Email { get; set; }
        
@@ -37,8 +37,8 @@ namespace DentalClinic_1._1.ViewModels.Patient
         public Town Town { get; set; }
 
         [Required]
-        [RegularExpression(RegexPhoneNumber)]
-        [Phone]
+        [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
     }
 }

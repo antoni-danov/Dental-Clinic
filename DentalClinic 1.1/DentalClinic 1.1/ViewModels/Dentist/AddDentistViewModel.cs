@@ -35,9 +35,9 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         [Required(ErrorMessage = "Enter valid town name.")]
         public Town Town { get; set; }
 
-        [RegularExpression(RegexPhoneNumber)]
-        [Phone]
-        [Required(ErrorMessage = "The Phone number must be exactly 10 chiffres.")]
+        [Required]
+        [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
       
         [Required]

@@ -50,7 +50,7 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(100, ErrorMessage ="The first name should be at least {2} characters long.", MinimumLength = 3)]
+            [StringLength(100, ErrorMessage = "The first name should be at least {2} characters long.", MinimumLength = 3)]
             [RegularExpression(@"[A-z]+", ErrorMessage = "The name format is not correct.")]
             [Display(Name = "First name")]
             public string Firstname { get; set; }
@@ -67,6 +67,11 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
+            [Display(Name = "Phone number")]
+            public string PhoneNumber { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -77,10 +82,6 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
-            [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -93,10 +94,10 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-           
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser 
+                var user = new ApplicationUser
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
