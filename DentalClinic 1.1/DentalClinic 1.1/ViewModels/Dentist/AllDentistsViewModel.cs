@@ -10,13 +10,26 @@ namespace DentalClinic_1._1.ViewModels.Dentist
 {
     public class AllDentistsViewModel
     {
+        private const string RegexFirstName = @"^[A-z]*$";
+
         [Key]
         public string Id { get; set; }
-        [Required]
+        [StringLength(20, MinimumLength = 3)]
+        [RegularExpression(RegexFirstName)]
+        [Required(ErrorMessage = "Enter valid first name.")]
         public string FirstName { get; set; }
-        [Required]
+        [StringLength(20, MinimumLength = 3)]
+        [RegularExpression(RegexFirstName)]
+        [Required(ErrorMessage = "Enter valid last name.")]
         public string LastName { get; set; }
+        
+        [Required]
+        [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "Enter valide email address.")]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string Email { get; set; }
         public string Specialty { get; set; }
         public string Address { get; set; }

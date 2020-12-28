@@ -3,8 +3,8 @@
     ViewData["Title"] = "AllAppointments";
 }
 
-<h1>Appointments:</h1>
-
+<h1>Your appointments:</h1>
+<br />
 <table class="table table-success">
     <thead>
         <tr>
@@ -21,7 +21,7 @@
                 <td>@item.FirstName @item.LastName</td>
 
                 <td>@item.Date</td>
-                <td>@item.Hour:@item.Minutes h</td>
+                <td>@item.Hour:@item.Minutes</td>
             </tr>
         }
     </tbody>

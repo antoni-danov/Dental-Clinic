@@ -10,7 +10,6 @@ namespace DentalClinic_1._1.ViewModels.Dentist
     public class AddDentistViewModel
     {
         private const string RegexFirstName = @"^[A-z]*$";
-        private const string RegexPhoneNumber = @"^[0-9]{10}$";
 
         [Key]
         [StringLength(20, MinimumLength = 3)]
@@ -30,6 +29,8 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         [Required]
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
+
+        [Required(ErrorMessage = "Enter valid address.")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Enter valid town name.")]
@@ -39,7 +40,7 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
-      
+
         [Required]
         [StringLength(1000)]
         public string Description { get; set; }

@@ -50,6 +50,7 @@ namespace DentalClinic_1._1.Controllers
             var roleName = "Patient";
 
             var user = administratorService.CreatePatient(input.FirstName, input.LastName, input.Email, input.BirthDate, input.Address, input.Town, input.PhoneNumber, input.Email);
+           
             var patient = await userManager.CreateAsync(user, password);
 
             if (!patient.Succeeded)
@@ -157,18 +158,10 @@ namespace DentalClinic_1._1.Controllers
             var roleName = "Dentist";
             var password = "$A123b456";
 
-            var user = new ApplicationUser()
-            {
-                Firstname = input.Firstname,
-                Lastname = input.Lastname,
-                Email = input.Email,
-                Birthdate = input.Birthdate,
-                Address = input.Address,
-                Town = input.Town,
-                PhoneNumber = input.PhoneNumber,
-                Description = input.Description,
-                UserName = input.Email
-            };
+            var user = administratorService.CreateDentist(input.Firstname, input.Lastname,
+                                                         input.Email, input.Birthdate, input.Address,
+                                                         input.Town, input.PhoneNumber, input.Description,
+                                                         input.Email);
             var dentist = await userManager.CreateAsync(user, password);
 
             if (!dentist.Succeeded)
