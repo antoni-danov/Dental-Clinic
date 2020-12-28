@@ -41,9 +41,8 @@ namespace DentalClinic_1._1.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
-            var password = "#A123b456";
+            string password = "#A123b456";
             var roleName = "Patient";
-
 
             var user = new ApplicationUser()
             {
@@ -54,7 +53,7 @@ namespace DentalClinic_1._1.Controllers
                 Address = input.Address,
                 Town = input.Town,
                 PhoneNumber = input.PhoneNumber,
-                UserName = input.LastName
+                UserName = input.Email
             };
 
             var patient = await userManager.CreateAsync(user, password);
@@ -162,7 +161,7 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
             var roleName = "Dentist";
-            var password = "#A123b456";
+            var password = "$A123b456";
 
             var user = new ApplicationUser()
             {
@@ -174,7 +173,7 @@ namespace DentalClinic_1._1.Controllers
                 Town = input.Town,
                 PhoneNumber = input.PhoneNumber,
                 Description = input.Description,
-                UserName = input.Lastname
+                UserName = input.Email
             };
             var dentist = await userManager.CreateAsync(user, password);
 

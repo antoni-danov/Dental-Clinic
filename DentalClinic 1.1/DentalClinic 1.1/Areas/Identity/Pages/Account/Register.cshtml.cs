@@ -107,13 +107,7 @@ namespace DentalClinic_1._1.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 MailAddress address = new MailAddress(Input.Email);
                 string userName = address.User;
-                //var createUser = new ApplicationUser
-                //{
-                //    UserName = userName,
-                //    Email = Input.Email,
-                //    Firstname = Input.Firstname,
-                //    Lastname = Input.Lastname
-                //};
+               
                 if (result.Succeeded)
                 {
                     var role = await _userManager.AddToRoleAsync(user, ApplicationRoles.patient);
