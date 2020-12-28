@@ -1,6 +1,5 @@
 ﻿using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
-using DentalClinic_1._1.Services.Administrator;
 using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
@@ -23,19 +22,16 @@ namespace DentalClinic_1._1.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext db;
         private readonly ILogger<ApplicationUser> logger;
-        private readonly IAdministratorService administratorService;
 
         public AdministratorController(RoleManager<IdentityRole> roleManager,
                                        UserManager<ApplicationUser> userManager,
                                        ApplicationDbContext db,
-                                       ILogger<ApplicationUser> logger,
-                                       IAdministratorService administratorService)
+                                       ILogger<ApplicationUser> logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.db = db;
             this.logger = logger;
-            this.administratorService = administratorService;
         }
 
         public IActionResult AddPatient()
@@ -45,14 +41,25 @@ namespace DentalClinic_1._1.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
-
+            var password = "#A123b456";
             var roleName = "Patient";
 
-            var patient = administratorService.CreatePatient(input.FirstName, input.LastName, input.Email, input.BirthDate, input.Address, input.Town, input.PhoneNumber);
 
-            var user = await userManager.CreateAsync(patient);
+            var user = new ApplicationUser()
+            {
+                Firstname = input.FirstName,
+                Lastname = input.LastName,
+                Email = input.Email,
+                Birthdate = input.BirthDate,
+                Address = input.Address,
+                Town = input.Town,
+                PhoneNumber = input.PhoneNumber,
+                UserName = input.LastName
+            };
 
-            if (!user.Succeeded)
+            var patient = await userManager.CreateAsync(user, password);
+
+            if (!patient.Succeeded)
             {
                 //var token = await userManager.GenerateEmailConfirmationTokenAsync(createPatient);
                 //var confirmationLink = Url.Action("ConfirmEmail", "Account",
@@ -61,7 +68,7 @@ namespace DentalClinic_1._1.Controllers
 
             }
 
-            var result = await userManager.AddToRoleAsync(patient, roleName);
+            var result = await userManager.AddToRoleAsync(user, roleName);
 
             if (!result.Succeeded)
             {
@@ -73,9 +80,12 @@ namespace DentalClinic_1._1.Controllers
         //OK
         public async Task<IActionResult> RemovePatient(string id)
         {
-            var patient = administratorService.GetPatientById(id);
+            var user = await db.Users.FindAsync(id);
 
-            return View(patient);
+            db.Users.Remove(user);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("AllPatients");
         }
         //OK
 
@@ -87,7 +97,7 @@ namespace DentalClinic_1._1.Controllers
 
             db.Users.Remove(user);
             await db.SaveChangesAsync();
-            
+
             return RedirectToAction("AllPatients");
         }
         public async Task<IActionResult> AllPatients()
@@ -152,12 +162,23 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
             var roleName = "Dentist";
+            var password = "#A123b456";
 
-            var patient = administratorService.CreateDentist(input.Firstname, input.Lastname, input.Email, input.Birthdate, input.Address, input.Town, input.PhoneNumber);
+            var user = new ApplicationUser()
+            {
+                Firstname = input.Firstname,
+                Lastname = input.Lastname,
+                Email = input.Email,
+                Birthdate = input.Birthdate,
+                Address = input.Address,
+                Town = input.Town,
+                PhoneNumber = input.PhoneNumber,
+                Description = input.Description,
+                UserName = input.Lastname
+            };
+            var dentist = await userManager.CreateAsync(user, password);
 
-            var user = await userManager.CreateAsync(patient);
-
-            if (!user.Succeeded)
+            if (!dentist.Succeeded)
             {
                 //var token = await userManager.GenerateEmailConfirmationTokenAsync(createPatient);
                 //var confirmationLink = Url.Action("ConfirmEmail", "Account",
@@ -166,7 +187,7 @@ namespace DentalClinic_1._1.Controllers
 
             }
 
-            var result = await userManager.AddToRoleAsync(patient, roleName);
+            var result = await userManager.AddToRoleAsync(user, roleName);
 
             if (!result.Succeeded)
             {
@@ -245,7 +266,7 @@ namespace DentalClinic_1._1.Controllers
                 PhoneNumber = dentist.PhoneNumber,
                 Email = dentist.Email,
                 Address = dentist.Address,
-                Autobiography = dentist.Description
+                Description = dentist.Description
             };
 
             return View(dentistDetails);

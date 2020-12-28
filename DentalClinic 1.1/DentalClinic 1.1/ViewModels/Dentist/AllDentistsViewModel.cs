@@ -20,7 +20,7 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         public string Email { get; set; }
         public string Specialty { get; set; }
         public string Address { get; set; }
-        public string Autobiography { get; set; }
+        public string Description { get; set; }
 
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DentalClinic_1._1.Migrations
 {
-    public partial class Initialsetup : Migration
+    public partial class initialsetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -107,13 +107,13 @@ namespace DentalClinic_1._1.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TownId = table.Column<int>(type: "int", nullable: true),
+                    Town = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Specialty = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SpecializationId = table.Column<int>(type: "int", nullable: true),
+                    TownId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),

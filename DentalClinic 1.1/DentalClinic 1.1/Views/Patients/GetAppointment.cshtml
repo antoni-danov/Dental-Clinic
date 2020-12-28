@@ -6,25 +6,154 @@
 
 <h1>Get appointment:</h1>
 
-@*https://www.jqueryscript.net/time-clock/pick-hours-availability-calendar.html*@
+@*https://www.jqueryscript.net/time-clock/pick-hours-availability-calendar.html
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="GetAppointment">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                Work corectly
-                <label asp -for="Appointment" class="control-label"></label>
-                <input asp-for="Appointment" class="form-control" />
-                <span asp-validation-for="Appointment" class="text-danger"></span>
+        <div class="col-md-4">
+            <form asp-action="GetAppointment">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    Work corectly
+                    <label asp -for="Appointment" class="control-label"></label>
+                    <input asp-for="Appointment" class="form-control" />
+                    <span asp-validation-for="Appointment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>*@
+<link href="~/css/CalendarCss.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+<div>
+    Your appointment:
+    <div>Date:</div>
+    <div>Time:</div>
+</div>
+<div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col container-fluid px-0 px-sm-5 mx-auto">
+        <div class="row justify-content-center mx-0">
+            <div class="col-lg-10">
+                <div class="card border-0">
+                    <form autocomplete="off">
+                        <div class="card-header bg-info">
+                            <div>Available hours:</div>
+                        </div>
+                        <div class=" btn-group-vertical">
+                            <div class="row text-center mx-4">
+                                <div class="col-md-2 my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">8:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">8:30</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">9:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">9:30</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">10:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">10:30</button>
+                                </div>
+                            </div>
+                            <div class="row text-center mx-0">
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">11:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">11:30</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">12:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">12:30</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">13:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">13:30</button>
+                                </div>
+                                <div class="row text-center mx-0">
+                                    <div class="col-md my-1 px-2">
+                                        <button type="submit" class="btn btn-primary">14:00</button>
+                                    </div>
+                                    <div class="col-md my-1 px-2">
+                                        <button type="submit" class="btn btn-primary">14:30</button>
+                                    </div>
+                                    <div class="col-md my-1 px-2">
+                                        <button type="submit" class="btn btn-primary">15:00</button>
+                                    </div>
+                                    <div class="col-md my-1 px-2">
+                                        <button type="submit" class="btn btn-primary">15:30</button>
+                                    </div>
+                                    <div class="col-md my-1 px-2">
+                                        <button type="submit" class="btn btn-primary">16:00</button>
+                                    </div>
+                                    <div class="col-md my-1 px-2">
+                                        <button type="submit" class="btn btn-primary">16:30</button>
+                                    </div>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">17:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">17:30</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">18:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">18:30</button>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">19:00</button>
+                                </div>
+                                <div class="col-md my-1 px-2">
+                                    <button type="submit" class="btn btn-primary">19:30</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="text-center">
+    <a asp-action="Dentists" class="btn btn-warning text-black">
+       Back to List
+    </a>
 </div>
+<br />
+<script>
+    $(document).ready(function () {
+
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            startDate: '0d'
+        });
+
+        $('.cell').click(function () {
+            $('.cell').removeClass('select');
+            $(this).addClass('select');
+        });
+
+    });
+</script>

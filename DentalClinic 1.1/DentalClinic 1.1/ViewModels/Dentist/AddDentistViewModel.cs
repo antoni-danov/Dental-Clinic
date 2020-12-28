@@ -33,7 +33,7 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Enter valid town name.")]
-        public Town Town { get; set; }
+        public string Town { get; set; }
 
         [Required]
         [StringLength(10, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]

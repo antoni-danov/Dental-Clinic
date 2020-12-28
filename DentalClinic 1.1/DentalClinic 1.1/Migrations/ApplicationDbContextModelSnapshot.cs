@@ -98,9 +98,6 @@ namespace DentalClinic_1._1.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -117,6 +114,9 @@ namespace DentalClinic_1._1.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Specialty")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Town")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TownId")
@@ -408,11 +408,9 @@ namespace DentalClinic_1._1.Migrations
                         .WithMany("Users")
                         .HasForeignKey("SpecializationId");
 
-                    b.HasOne("DentalClinic_1._1.Models.Town", "Town")
+                    b.HasOne("DentalClinic_1._1.Models.Town", null)
                         .WithMany("Users")
                         .HasForeignKey("TownId");
-
-                    b.Navigation("Town");
                 });
 
             modelBuilder.Entity("DentalClinic_1._1.Models.Appointment", b =>

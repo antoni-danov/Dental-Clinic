@@ -52,7 +52,7 @@
                     <option>Chose a Specialty...</option>
                     @foreach (var item in @Model.Specialty)
                     {
-                        <option value="Specialty">@item.Name</option>
+                        <option value="Specialty" name="SpecialtyName">@item.Name</option>
 
                     }
                 </select>

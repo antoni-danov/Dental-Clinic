@@ -15,7 +15,6 @@ using Microsoft.Extensions.Hosting;
 using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using DentalClinic_1._1.Services.Administrator;
 
 namespace DentalClinic_1._1
 {
@@ -31,7 +30,6 @@ namespace DentalClinic_1._1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IAdministratorService, AdministratorService>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

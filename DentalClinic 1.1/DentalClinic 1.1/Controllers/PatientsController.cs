@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DentalClinic_1._1.Controllers
 {
-    [Authorize(Roles = "Aministrator, Patient")]
+    [Authorize(Roles = "Patient")]
     public class PatientsController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
