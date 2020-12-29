@@ -84,17 +84,17 @@ namespace DentalClinic_1._1.Controllers
         public async Task<IActionResult> GetAppointment(DateTimeViewModel input, string id)
         {
             var currentUser = await userManager.GetUserAsync(User);
-            //var dentist = await userManager.FindByIdAsync(id);
+            var dentist = await userManager.FindByIdAsync(id);
 
-            //var appointment = new Appointment
-            //{
-            //    Dentist = dentist.Id,
-            //    Patient = currentUser.Id,
-            //    Date = input.Appointment
-            //};
+            var appointment = new Appointment
+            {
+                Dentist = dentist.Id,
+                Patient = currentUser.Id,
+                Date = input.Appointment
+            };
 
-            //db.Appointments.Add(appointment);
-            //db.SaveChanges();
+            db.Appointments.Add(appointment);
+            db.SaveChanges();
 
             return RedirectToAction("AllAppointments", appointment);
         } //OK

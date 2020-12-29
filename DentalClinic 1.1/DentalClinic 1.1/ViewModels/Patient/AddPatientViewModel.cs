@@ -31,6 +31,7 @@ namespace DentalClinic_1._1.ViewModels.Patient
         [Required]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+        [Required]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Enter valid town name.")]

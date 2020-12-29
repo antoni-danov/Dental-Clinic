@@ -44,6 +44,7 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         [Required]
         [StringLength(1000)]
         public string Description { get; set; }
+        [Required]
         public string Specialty { get; set; }
 
     }
