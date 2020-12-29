@@ -23,6 +23,20 @@ namespace DentalClinic_1._1.Services.AdministratorService
             this.db = db;
         }
 
+        public Specialization AddSpecialization(string name, string description)
+        {
+            var specialty = new Specialization
+            {
+                Name = name,
+                Description = description
+            };
+
+            this.db.Specializations.Add(specialty);
+            db.SaveChanges();
+
+            return specialty;
+        }
+
         public ApplicationUser CreateDentist(string firstname, string lastname, string email, DateTime birthdate, string address, string town, string phonenumber, string specialty, string description, string username)
         {
             var user = new ApplicationUser()
@@ -124,6 +138,18 @@ namespace DentalClinic_1._1.Services.AdministratorService
             var user = db.Users.Find(id);
 
             db.Users.Remove(user);
+            db.SaveChanges();
+
+            string result = "Successfuly deleted.";
+
+            return result;
+        }
+
+        public string RemoveSpecialization(int id)
+        {
+            var specialty = db.Specializations.Find(id);
+
+            db.Specializations.Remove(specialty);
             db.SaveChanges();
 
             string result = "Successfuly deleted.";

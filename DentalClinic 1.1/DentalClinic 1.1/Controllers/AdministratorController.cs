@@ -223,17 +223,10 @@ namespace DentalClinic_1._1.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult AddSpecialization(AddSpecializationViewModel input)
         {
-            var specialty = new Specialization
-            {
-                Name = input.Name,
-                Description = input.Description
-            };
-
-            this.db.Specializations.Add(specialty);
-            db.SaveChanges();
+            var specialty = administratorService.AddSpecialization(input.Name, input.Description);
 
             return Redirect("AllSpecializations");
-        }
+        } //OK
         public async Task<IActionResult> RemoveSpecialization(int? id)
         {
             if (id == null)
@@ -255,12 +248,10 @@ namespace DentalClinic_1._1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveSpecializationConfirmed(int id)
         {
-            var specialty = await db.Specializations.FindAsync(id);
-            db.Specializations.Remove(specialty);
-            await db.SaveChangesAsync();
+            var result = administratorService.RemoveSpecialization(id);
 
             return RedirectToAction("AllSpecializations");
-        }
+        }//OK
         public IActionResult AllSpecializations()
         {
             List<Specialization> listOfSpecializations = new List<Specialization>();
@@ -282,11 +273,5 @@ namespace DentalClinic_1._1.Controllers
             return View(listOfSpecializations);
         }
         [HttpPost]
-        public IActionResult EditDetails(int id)
-        {
-            var specialty = db.Specializations.First(x => x.Id == id);
-
-            return View();
-        }
     }
 }
