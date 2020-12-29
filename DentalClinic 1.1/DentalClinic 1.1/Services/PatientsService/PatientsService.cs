@@ -1,9 +1,7 @@
 ﻿using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.Services.PatientsService
@@ -19,6 +17,7 @@ namespace DentalClinic_1._1.Services.PatientsService
             this.userManager = userManager;
             this.db = db;
         }
+
         //public Appointment GetAppointment(DateTime appointment, string id)
         //{
         //    //var currentUser = userManager.GetUserAsync(User);
@@ -42,6 +41,5 @@ namespace DentalClinic_1._1.Services.PatientsService
 
             return dentists;
         }
-
     }
 }

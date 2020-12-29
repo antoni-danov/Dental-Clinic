@@ -1,9 +1,5 @@
-﻿using DentalClinic_1._1.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.ViewModels.Dentist
 {
@@ -44,8 +40,8 @@ namespace DentalClinic_1._1.ViewModels.Dentist
         [Required]
         [StringLength(1000)]
         public string Description { get; set; }
+
         [Required]
         public string Specialty { get; set; }
-
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace DentalClinic_1._1.Models
 {
     public class ErrorViewModel

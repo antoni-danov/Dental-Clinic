@@ -27,6 +27,7 @@ namespace DentalClinic_1._1.Services.DentistsController
 
             return patients;
         }
+
         public async Task<IList<ApplicationUser>> AllPatients(string searchString)
         {
             var patients = await userManager.GetUsersInRoleAsync("Patient");

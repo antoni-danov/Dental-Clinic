@@ -1,7 +1,6 @@
 ﻿using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.Services.AdministratorService;
-using DentalClinic_1._1.ViewModels;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
 using DentalClinic_1._1.ViewModels.Specialty;
@@ -10,7 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,6 +41,7 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
+
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPatient(AddPatientViewModel input)
         {
@@ -59,7 +58,6 @@ namespace DentalClinic_1._1.Controllers
                 //var confirmationLink = Url.Action("ConfirmEmail", "Account",
                 //    new { createPatient.Id, token = token }, Request.Scheme);
                 //logger.Log(LogLevel.Warning, confirmationLink);
-
             }
 
             var result = await userManager.AddToRoleAsync(user, roleName);
@@ -71,6 +69,7 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllPatients");
         }
+
         //OK
         public async Task<IActionResult> RemovePatient(string id)
         {
@@ -81,6 +80,7 @@ namespace DentalClinic_1._1.Controllers
 
             return RedirectToAction("AllPatients");
         }
+
         //OK
 
         [HttpPost, ActionName("RemovePatient")]
@@ -91,6 +91,7 @@ namespace DentalClinic_1._1.Controllers
 
             return RedirectToAction("AllPatients");
         } //OK
+
         public async Task<IActionResult> AllPatients()
         {
             var patients = (await administratorService.AllPatients()).Select(patient => new AllPatientsViewModel
@@ -102,15 +103,16 @@ namespace DentalClinic_1._1.Controllers
                 Id = patient.Id
             });
 
-
             return View(patients);
         } //OK
+
         public IActionResult DetailsPatient(string id)
         {
             var patientDetails = administratorService.PatientDetails(id);
 
             return View(patientDetails);
         } //OK
+
         public IActionResult AddDentist(AddDentists input)
         {
             var specialties = db.Specializations.ToList();
@@ -121,6 +123,7 @@ namespace DentalClinic_1._1.Controllers
 
             return View(user);
         }
+
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddDentist(AddDentistViewModel input)
         {
@@ -139,7 +142,6 @@ namespace DentalClinic_1._1.Controllers
                 //var confirmationLink = Url.Action("ConfirmEmail", "Account",
                 //    new { createPatient.Id, token = token }, Request.Scheme);
                 //logger.Log(LogLevel.Warning, confirmationLink);
-
             }
 
             var result = await userManager.AddToRoleAsync(user, roleName);
@@ -149,9 +151,9 @@ namespace DentalClinic_1._1.Controllers
                 //  TODO: handle
             }
 
-
             return Redirect("AllDentists");
         } //OK
+
         public async Task<IActionResult> RemoveDentist(string id)
         {
             if (id == null)
@@ -177,6 +179,7 @@ namespace DentalClinic_1._1.Controllers
 
             return RedirectToAction("AllDentists");
         } //OK
+
         public async Task<IActionResult> AllDentists()
         {
             var dentists = (await administratorService.AllDentists()).Select(dentist => new AllDentistsViewModel
@@ -190,6 +193,7 @@ namespace DentalClinic_1._1.Controllers
 
             return View(dentists);
         } //OK
+
         public IActionResult DetailsDentist(string id)
         {
             var dentistDetails = administratorService.DentistDetails(id);
@@ -209,6 +213,7 @@ namespace DentalClinic_1._1.Controllers
 
             return Redirect("AllSpecializations");
         } //OK
+
         public async Task<IActionResult> RemoveSpecialization(int? id)
         {
             if (id == null)
@@ -234,18 +239,17 @@ namespace DentalClinic_1._1.Controllers
 
             return RedirectToAction("AllSpecializations");
         }//OK
+
         public IActionResult AllSpecializations()
         {
-            var specializations = db.Specializations.ToList().Select(specialty => new Specialization 
+            var specializations = db.Specializations.ToList().Select(specialty => new Specialization
             {
                 Id = specialty.Id,
                 Name = specialty.Name,
                 Description = specialty.Description
             });
 
-            
             return View(specializations);
         }
-
     }
 }

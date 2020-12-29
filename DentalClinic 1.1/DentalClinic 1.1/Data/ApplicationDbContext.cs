@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DentalClinic_1._1.Models;
+﻿using DentalClinic_1._1.Models;
+using DentalClinic_1._1.ViewModels.Patient;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using DentalClinic_1._1.ViewModels.Patient;
-using DentalClinic_1._1.ViewModels.Dentist;
-using DentalClinic_1._1.ViewModels.Specialty;
 
 namespace DentalClinic_1._1.Data
 {
@@ -15,12 +10,11 @@ namespace DentalClinic_1._1.Data
     {
         public ApplicationDbContext()
         {
-
         }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -31,7 +25,7 @@ namespace DentalClinic_1._1.Data
             //    .HasOne(u => u.Specialization)
             //    .WithMany(s => s.Users)
             //    .OnDelete(DeleteBehavior.SetNull);
-           
+
             builder.Entity<Appointment>()
             .HasOne(a => a.User)
             .WithMany(a => a.Appointments);
@@ -42,7 +36,7 @@ namespace DentalClinic_1._1.Data
             .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<AllPatientsViewModel>().HasKey(x => x.Id);
-           
+
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "Users");
@@ -71,14 +65,11 @@ namespace DentalClinic_1._1.Data
             {
                 entity.ToTable(name: "RoleClaim");
             });
-            
-            
         }
-       
+
         public DbSet<DentalClinic_1._1.Models.Specialization> Specializations { get; set; }
         public DbSet<DentalClinic_1._1.Models.Town> Towns { get; set; }
         public DbSet<DentalClinic_1._1.Models.Appointment> Appointments { get; set; }
         public DbSet<DentalClinic_1._1.ViewModels.Specialty.AllSpecializationViewModel> AllSpecializationViewModel { get; set; }
-
     }
 }

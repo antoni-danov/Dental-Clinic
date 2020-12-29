@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DentalClinic_1._1.Data;
+﻿using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
+using DentalClinic_1._1.Services.PatientsService;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using DentalClinic_1._1.Services.PatientsService;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.Controllers
 {
@@ -28,6 +28,7 @@ namespace DentalClinic_1._1.Controllers
             this.db = db;
             this.patientsService = patientsService;
         }
+
         public async Task<IActionResult> Dentists()
         {
             var dentists = (await patientsService.AllDentists()).Select(dentist => new AllDentistsViewModel
@@ -48,7 +49,7 @@ namespace DentalClinic_1._1.Controllers
             var userId = (await userManager.GetUserAsync(User)).Id;
 
             var appointments = db.Appointments.Where(a => a.Patient == userId && a.Date > DateTime.Now).ToList();
-            
+
             if (ModelState.IsValid)
             {
                 foreach (var appointment in appointments)
@@ -69,9 +70,9 @@ namespace DentalClinic_1._1.Controllers
 
             return View("AllAppointments", listOfAppointments);
         } //OK
+
         public IActionResult GetAppointment() //OK
         {
-
             return View();
         }
 
@@ -93,11 +94,10 @@ namespace DentalClinic_1._1.Controllers
 
             return RedirectToAction("AllAppointments", appointment);
         } //OK
+
         public IActionResult History()
         {
-
             return View();
         }
-
     }
 }

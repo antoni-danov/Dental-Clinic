@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using DentalClinic_1._1.Models;
+﻿using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.Areas.Identity.Pages.Account.Manage
 {

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels.Dentist;
-using DentalClinic_1._1.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace DentalClinic_1._1.Controllers
 {
@@ -31,10 +29,12 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
+
         public IActionResult OurClinic()
         {
             return View();
         }
+
         public async Task<IActionResult> OurTeam(AllDentistsViewModel input)
         {
             List<AllDentistsViewModel> listOfDentists = new List<AllDentistsViewModel>();
@@ -42,7 +42,6 @@ namespace DentalClinic_1._1.Controllers
 
             foreach (var dentist in dentists)
             {
-
                 var users = new AllDentistsViewModel
                 {
                     FirstName = dentist.Firstname,
@@ -58,6 +57,7 @@ namespace DentalClinic_1._1.Controllers
             }
             return View(listOfDentists);
         }
+
         public async Task<IActionResult> Contact(AllDentistsViewModel input)
         {
             List<AllDentistsViewModel> listOfDentists = new List<AllDentistsViewModel>();
@@ -65,7 +65,6 @@ namespace DentalClinic_1._1.Controllers
 
             foreach (var dentist in dentists)
             {
-
                 var users = new AllDentistsViewModel
                 {
                     FirstName = dentist.Firstname,
@@ -80,6 +79,7 @@ namespace DentalClinic_1._1.Controllers
 
             return View(listOfDentists);
         }
+
         public IActionResult Urgence()
         {
             return View();
