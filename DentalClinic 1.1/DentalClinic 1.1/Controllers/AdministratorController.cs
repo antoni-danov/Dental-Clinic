@@ -301,6 +301,7 @@ namespace DentalClinic_1._1.Controllers
             var specialty = await db.Specializations.FindAsync(id);
             db.Specializations.Remove(specialty);
             await db.SaveChangesAsync();
+
             return RedirectToAction("AllSpecializations");
         }
         public IActionResult AllSpecializations()
