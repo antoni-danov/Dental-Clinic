@@ -85,7 +85,7 @@ namespace DentalClinic_1._1.Controllers
 
         [HttpPost, ActionName("RemovePatient")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemovePatientConfirmed(string id)
+        public IActionResult RemovePatientConfirmed(string id)
         {
             var patient = administratorService.RemovePatient(id);
 
@@ -180,7 +180,7 @@ namespace DentalClinic_1._1.Controllers
 
         [HttpPost, ActionName("RemoveDentist")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveDentistConfirmed(string id)
+        public IActionResult RemoveDentistConfirmed(string id)
         {
             var removeDentist = administratorService.RemoveDentist(id);
 
@@ -246,7 +246,7 @@ namespace DentalClinic_1._1.Controllers
 
         [HttpPost, ActionName("RemoveSpecialization")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveSpecializationConfirmed(int id)
+        public IActionResult RemoveSpecializationConfirmed(int id)
         {
             var result = administratorService.RemoveSpecialization(id);
 
@@ -272,6 +272,6 @@ namespace DentalClinic_1._1.Controllers
 
             return View(listOfSpecializations);
         }
-        [HttpPost]
+        
     }
 }

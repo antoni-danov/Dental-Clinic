@@ -16,6 +16,8 @@ using DentalClinic_1._1.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using DentalClinic_1._1.Services.AdministratorService;
+using DentalClinic_1._1.Services.PatientsService;
+using DentalClinic_1._1.Services.DentistsController;
 
 namespace DentalClinic_1._1
 {
@@ -57,6 +59,8 @@ namespace DentalClinic_1._1
                 });
             services.AddRazorPages();
             services.AddTransient<IAdministratorService, AdministratorService>();
+            services.AddTransient<IPatientsService, PatientsService>();
+            services.AddTransient<IDentistsService, DentistsService>();
 
         }
 
