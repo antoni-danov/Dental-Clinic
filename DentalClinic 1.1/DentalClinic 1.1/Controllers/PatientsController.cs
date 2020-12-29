@@ -9,6 +9,7 @@ using DentalClinic_1._1.ViewModels.Patient;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using DentalClinic_1._1.Services.PatientsService;
 
 namespace DentalClinic_1._1.Controllers
 {
@@ -17,34 +18,28 @@ namespace DentalClinic_1._1.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext db;
+        private readonly IPatientsService patientsService;
 
         public PatientsController(UserManager<ApplicationUser> userManager,
-            ApplicationDbContext db)
+            ApplicationDbContext db,
+            IPatientsService patientsService)
         {
             this.userManager = userManager;
             this.db = db;
+            this.patientsService = patientsService;
         }
         public async Task<IActionResult> Dentists()
         {
-            List<AllDentistsViewModel> listOfDentists = new List<AllDentistsViewModel>();
-            var dentists = await userManager.GetUsersInRoleAsync("Dentist");
-
-            foreach (var dentist in dentists)
+            var dentists = (await patientsService.AllDentists()).Select(dentist => new AllDentistsViewModel
             {
+                FirstName = dentist.Firstname,
+                LastName = dentist.Lastname,
+                PhoneNumber = dentist.PhoneNumber,
+                Email = dentist.Email,
+                Id = dentist.Id
+            });
 
-                var users = new AllDentistsViewModel
-                {
-                    FirstName = dentist.Firstname,
-                    LastName = dentist.Lastname,
-                    PhoneNumber = dentist.PhoneNumber,
-                    Email = dentist.Email,
-                    Id = dentist.Id
-                };
-
-                listOfDentists.Add(users);
-            }
-
-            return View(listOfDentists);
+            return View(dentists);
         } //OK
 
         public async Task<IActionResult> AllAppointments()

@@ -9,5 +9,7 @@ namespace DentalClinic_1._1.Services.PatientsService
     public interface IPatientsService
     {
         //public Appointment GetAppointment(DateTime appointment, string id);
+        public Task<IList<ApplicationUser>> AllDentists();
+
     }
 }

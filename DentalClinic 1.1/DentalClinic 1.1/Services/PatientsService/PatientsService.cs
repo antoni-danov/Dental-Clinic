@@ -36,5 +36,12 @@ namespace DentalClinic_1._1.Services.PatientsService
 
         //    return "";
         //}
+        public async Task<IList<ApplicationUser>> AllDentists()
+        {
+            var dentists = await userManager.GetUsersInRoleAsync("Dentist");
+
+            return dentists;
+        }
+
     }
 }
