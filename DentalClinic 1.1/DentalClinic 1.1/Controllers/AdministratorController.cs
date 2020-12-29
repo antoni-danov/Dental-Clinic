@@ -50,7 +50,7 @@ namespace DentalClinic_1._1.Controllers
             var roleName = "Patient";
 
             var user = administratorService.CreatePatient(input.FirstName, input.LastName, input.Email, input.BirthDate, input.Address, input.Town, input.PhoneNumber, input.Email);
-           
+
             var patient = await userManager.CreateAsync(user, password);
 
             if (!patient.Succeeded)
@@ -87,13 +87,10 @@ namespace DentalClinic_1._1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePatientConfirmed(string id)
         {
-            var user = await db.Users.FindAsync(id);
-
-            db.Users.Remove(user);
-            await db.SaveChangesAsync();
+            var patient = administratorService.RemovePatient(id);
 
             return RedirectToAction("AllPatients");
-        }
+        } //OK
         public async Task<IActionResult> AllPatients()
         {
             List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
@@ -119,26 +116,7 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult DetailsPatient(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var patient = db.Users
-                .FirstOrDefault(p => p.Id == id);
-            if (patient == null)
-            {
-                return NotFound();
-            }
-
-            var patientDetails = new AllPatientsViewModel
-            {
-                FirstName = patient.Firstname,
-                LastName = patient.Lastname,
-                PhoneNumber = patient.PhoneNumber,
-                Email = patient.Email,
-                Address = patient.Address
-            };
+            var patientDetails = administratorService.PatientDetails(id);
 
             return View(patientDetails);
         } //OK
@@ -204,11 +182,10 @@ namespace DentalClinic_1._1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveDentistConfirmed(string id)
         {
-            var user = await db.Users.FindAsync(id);
-            db.Users.Remove(user);
-            await db.SaveChangesAsync();
+            var removeDentist = administratorService.RemoveDentist(id);
+
             return RedirectToAction("AllDentists");
-        }
+        } //OK
         public async Task<IActionResult> AllDentists()
         {
             List<AllDentistsViewModel> listOfDentists = new List<AllDentistsViewModel>();
@@ -233,30 +210,10 @@ namespace DentalClinic_1._1.Controllers
         }
         public IActionResult DetailsDentist(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var dentist = db.Users
-                .FirstOrDefault(p => p.Id == id);
-            if (dentist == null)
-            {
-                return NotFound();
-            }
-
-            var dentistDetails = new AllDentistsViewModel
-            {
-                FirstName = dentist.Firstname,
-                LastName = dentist.Lastname,
-                PhoneNumber = dentist.PhoneNumber,
-                Email = dentist.Email,
-                Address = dentist.Address,
-                Description = dentist.Description
-            };
+            var dentistDetails = administratorService.DentistDetails(id);
 
             return View(dentistDetails);
-        } //TODO
+        } //OK
 
         public IActionResult AddSpecialization()
         {

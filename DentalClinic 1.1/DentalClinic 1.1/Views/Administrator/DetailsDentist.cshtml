@@ -53,9 +53,12 @@
             <td>
                 @Html.DisplayFor(modelItem => modelItem.Address)
             </td>
-            <td>
+            <td class="col-sm">
                 @Html.DisplayFor(modelItem => modelItem.Description)
             </td>
         </tr>
     </tbody>
 </table>
+<div>
+    <button class="btn btn-success"><a asp-action="AllDentists" class="text-white">Back to List</a></button>
+</div>

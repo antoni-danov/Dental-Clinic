@@ -1,5 +1,9 @@
-﻿using DentalClinic_1._1.Models;
+﻿using DentalClinic_1._1.Data;
+using DentalClinic_1._1.Models;
+using DentalClinic_1._1.ViewModels.Dentist;
+using DentalClinic_1._1.ViewModels.Patient;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +14,13 @@ namespace DentalClinic_1._1.Services.AdministratorService
     public class AdministratorService : IAdministratorService
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext db;
 
-        public AdministratorService(UserManager<ApplicationUser> userManager)
+        public AdministratorService(UserManager<ApplicationUser> userManager,
+                                    ApplicationDbContext db)
         {
             this.userManager = userManager;
+            this.db = db;
         }
 
         public ApplicationUser CreateDentist(string firstname, string lastname, string email, DateTime birthdate, string address, string town, string phonenumber, string specialty, string description, string username)
@@ -49,6 +56,79 @@ namespace DentalClinic_1._1.Services.AdministratorService
             };
 
             return user;
+        }
+
+        public AllDentistsViewModel DentistDetails(string id)
+        {
+            if (id == null)
+            {
+            }
+
+            var dentist = db.Users
+                .FirstOrDefault(p => p.Id == id);
+            if (dentist == null)
+            {
+            }
+
+            var dentistDetails = new AllDentistsViewModel
+            {
+                FirstName = dentist.Firstname,
+                LastName = dentist.Lastname,
+                PhoneNumber = dentist.PhoneNumber,
+                Email = dentist.Email,
+                Address = dentist.Address,
+                Description = dentist.Description
+            };
+
+            return dentistDetails;
+        }
+
+        public AllPatientsViewModel PatientDetails(string id)
+        {
+            if (id == null)
+            {
+            }
+
+            var patient = db.Users
+                .FirstOrDefault(p => p.Id == id);
+            if (patient == null)
+            {
+            }
+
+            var patientDetails = new AllPatientsViewModel
+            {
+                FirstName = patient.Firstname,
+                LastName = patient.Lastname,
+                PhoneNumber = patient.PhoneNumber,
+                Email = patient.Email,
+                Address = patient.Address
+            };
+
+            return patientDetails;
+        }
+
+        public string RemoveDentist(string id)
+        {
+            var user = db.Users.Find(id);
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+
+            string result = "Successfuly deleted.";
+
+            return result;
+        }
+
+        public string RemovePatient(string id)
+        {
+            var user = db.Users.Find(id);
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+
+            string result = "Successfuly deleted.";
+
+            return result;
         }
     }
 }
