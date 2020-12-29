@@ -47,12 +47,12 @@
                 <span asp-validation-for="@Model.Dentist.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group" method="post">
-                <label asp-for="@Model.Dentist.SpecialtyName" class="control-label"></label>
-                <select class="selectpicker" name="SpecialtyName">
+                <label asp-for="@Model.Dentist.Specialty" class="control-label"></label>
+                <select class="selectpicker" name="Specialty">
                     <option>Chose a Specialty...</option>
                     @foreach (var item in @Model.Specialty)
                     {
-                        <option value="Specialty" name="SpecialtyName">@item.Name</option>
+                        <option value="Specialty" name="Specialty">@item.Name</option>
 
                     }
                 </select>

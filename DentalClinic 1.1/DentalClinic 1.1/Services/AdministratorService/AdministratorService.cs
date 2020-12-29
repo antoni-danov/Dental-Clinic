@@ -16,7 +16,7 @@ namespace DentalClinic_1._1.Services.AdministratorService
             this.userManager = userManager;
         }
 
-        public ApplicationUser CreateDentist(string firstname, string lastname, string email, DateTime birthdate, string address, string town, string phonenumber, string description, string username)
+        public ApplicationUser CreateDentist(string firstname, string lastname, string email, DateTime birthdate, string address, string town, string phonenumber, string specialty, string description, string username)
         {
             var user = new ApplicationUser()
             {

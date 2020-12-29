@@ -160,7 +160,7 @@ namespace DentalClinic_1._1.Controllers
 
             var user = administratorService.CreateDentist(input.Firstname, input.Lastname,
                                                          input.Email, input.Birthdate, input.Address,
-                                                         input.Town, input.PhoneNumber, input.Description,
+                                                         input.Town, input.PhoneNumber, input.Specialty, input.Description,
                                                          input.Email);
             var dentist = await userManager.CreateAsync(user, password);
 
