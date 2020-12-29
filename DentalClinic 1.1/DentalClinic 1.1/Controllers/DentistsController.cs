@@ -31,30 +31,19 @@ namespace DentalClinic_1._1.Controllers
 
         public async Task<IActionResult> Patients(string searchString)
         {
-            List<AllPatientsViewModel> listOfPatients = new List<AllPatientsViewModel>();
-            var patients = await userManager.GetUsersInRoleAsync("Patient");
-
-            if (!String.IsNullOrEmpty(searchString))
+            var patients = (await dentistsService.AllPatients(searchString)).Select(patient => new AllPatientsViewModel
             {
-                patients = (List<ApplicationUser>)patients.Where(x => x.Firstname.Contains(searchString) || x.Lastname.Contains(searchString));
-            }
+                FirstName = patient.Firstname,
+                LastName = patient.Lastname,
+                PhoneNumber = patient.PhoneNumber,
+                Email = patient.Email,
+                Id = patient.Id
+            });
 
-            foreach (var patient in patients)
-            {
 
-                var users = new AllPatientsViewModel
-                {
-                    FirstName = patient.Firstname,
-                    LastName = patient.Lastname,
-                    PhoneNumber = patient.PhoneNumber,
-                    Email = patient.Email,
-                    Id = patient.Id
-                };
-                listOfPatients.Add(users);
-            }
-            return View(listOfPatients.ToList());
+            return View(patients);
 
-        }
+        }//OK
         public async Task<IActionResult> Appointments()
         {
             return View();

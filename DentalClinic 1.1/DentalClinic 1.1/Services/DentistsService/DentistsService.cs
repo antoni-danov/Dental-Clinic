@@ -1,5 +1,7 @@
 ﻿using DentalClinic_1._1.Data;
+using DentalClinic_1._1.Models;
 using DentalClinic_1._1.ViewModels.Patient;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,33 @@ namespace DentalClinic_1._1.Services.DentistsController
     public class DentistsService : IDentistsService
     {
         private readonly ApplicationDbContext db;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public DentistsService(ApplicationDbContext db)
+        public DentistsService(ApplicationDbContext db,
+            UserManager<ApplicationUser> userManager)
         {
             this.db = db;
+            this.userManager = userManager;
         }
+
+        public async Task<IList<ApplicationUser>> AllPatients()
+        {
+            var patients = await userManager.GetUsersInRoleAsync("Patient");
+
+            return patients;
+        }
+        public async Task<IList<ApplicationUser>> AllPatients(string searchString)
+        {
+            var patients = await userManager.GetUsersInRoleAsync("Patient");
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                patients = (List<ApplicationUser>)patients.Where(x => x.Firstname.Contains(searchString) || x.Lastname.Contains(searchString));
+            }
+
+            return patients;
+        }
+
         public AllPatientsViewModel PatientDetails(string id)
         {
             if (id == null)

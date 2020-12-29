@@ -37,6 +37,27 @@ namespace DentalClinic_1._1.Services.AdministratorService
             return specialty;
         }
 
+        public async Task<IList<ApplicationUser>> AllDentists()
+        {
+            var dentists = await userManager.GetUsersInRoleAsync("Dentist");
+
+            return dentists;
+        }
+
+        public async Task<IList<ApplicationUser>> AllPatients()
+        {
+            var patients = await userManager.GetUsersInRoleAsync("Patient");
+
+            return patients;
+        }
+
+        public async Task<IList<Specialization>> AllSpecializations()
+        {
+            var specialties = db.Specializations.ToList();
+
+            return specialties;
+        }
+
         public ApplicationUser CreateDentist(string firstname, string lastname, string email, DateTime birthdate, string address, string town, string phonenumber, string specialty, string description, string username)
         {
             var user = new ApplicationUser()

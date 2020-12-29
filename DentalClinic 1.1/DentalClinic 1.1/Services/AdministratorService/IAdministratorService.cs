@@ -16,6 +16,9 @@ namespace DentalClinic_1._1.Services.AdministratorService
         public string RemoveDentist(string id);
         public string RemovePatient(string id);
         public string RemoveSpecialization(int id);
+        public Task<IList<ApplicationUser>> AllPatients();
+        public Task<IList<ApplicationUser>> AllDentists();
+        public Task<IList<Specialization>> AllSpecializations();
         public AllPatientsViewModel PatientDetails(string id);
         public AllDentistsViewModel DentistDetails(string id);
     }
