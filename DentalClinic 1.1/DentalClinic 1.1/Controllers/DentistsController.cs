@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DentalClinic_1._1.Data;
 using DentalClinic_1._1.Models;
+using DentalClinic_1._1.Services.DentistsController;
 using DentalClinic_1._1.ViewModels.Dentist;
 using DentalClinic_1._1.ViewModels.Patient;
 using Microsoft.AspNetCore.Authorization;
@@ -17,12 +18,15 @@ namespace DentalClinic_1._1.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext db;
+        private readonly IDentistsService dentistsService;
 
         public DentistsController(UserManager<ApplicationUser> userManager,
-                                  ApplicationDbContext db)
+                                  ApplicationDbContext db,
+                                  IDentistsService dentistsService)
         {
             this.userManager = userManager;
             this.db = db;
+            this.dentistsService = dentistsService;
         }
 
         public async Task<IActionResult> Patients(string searchString)
@@ -55,31 +59,12 @@ namespace DentalClinic_1._1.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var patient = db.Users
-                .FirstOrDefault(p => p.Id == id);
-            if (patient == null)
-            {
-                return NotFound();
-            }
-
-            var patientDetails = new AllPatientsViewModel
-            {
-                FirstName = patient.Firstname,
-                LastName = patient.Lastname,
-                PhoneNumber = patient.PhoneNumber,
-                Email = patient.Email,
-                Address = patient.Address
-            };
+            var patientDetails = dentistsService.PatientDetails(id);
 
             return View(patientDetails);
-        }
-       
+        } //OK
+
     }
 }
