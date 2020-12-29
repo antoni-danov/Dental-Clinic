@@ -21,6 +21,8 @@ namespace DentalClinic_1._1.Models
         public DateTime Date { get; set; }
 
         public AmbulatorySheet AmbulatorySheets { get; set; }
+
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

@@ -21,6 +21,13 @@ namespace DentalClinic_1._1.Services.DentistsController
             this.userManager = userManager;
         }
 
+        public List<Appointment> AllAppointments(string id)
+        {
+            var appointments = db.Appointments.Where(x => x.Dentist == id).ToList();
+            
+            return appointments;
+        }
+
         public async Task<IList<ApplicationUser>> AllPatients()
         {
             var patients = await userManager.GetUsersInRoleAsync("Patient");

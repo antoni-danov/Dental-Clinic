@@ -12,5 +12,6 @@ namespace DentalClinic_1._1.Services.DentistsController
         public Task<IList<ApplicationUser>> AllPatients();
 
         public Task<IList<ApplicationUser>> AllPatients(string searchString);
+        public List<Appointment> AllAppointments(string id);
     }
 }

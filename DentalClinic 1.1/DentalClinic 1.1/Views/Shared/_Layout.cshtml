@@ -1,6 +1,14 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css">
+    @RenderSection("Scripts", false/*required*/)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/locales-all.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dental Clinic</title>
@@ -138,10 +146,8 @@
                 <a href="http://www.linkedin.com/in/antoni-danov-33393190" target="_blank"><img src="~/Social media icons/HexagonItems/iconfinder_linkedin_2155337.png" /></a>
             </ul>*@
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    
 
-    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

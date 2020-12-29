@@ -40,10 +40,24 @@ namespace DentalClinic_1._1.Controllers
             return View(patients);
         }//OK
 
+
+        public async Task<IActionResult> DataAppointments()
+        {
+            var currentUser = await userManager.GetUserAsync(User);
+
+            var allApointments = dentistsService.AllAppointments(currentUser.Id);
+            var viewModels =
+            allApointments.Select(a => a.Date.ToString());
+
+            return Json(viewModels);
+        }
+
         public async Task<IActionResult> Appointments()
         {
             return View();
         }
+
+
 
         public IActionResult Details(string id)
         {

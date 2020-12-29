@@ -86,7 +86,8 @@ namespace DentalClinic_1._1.Controllers
             {
                 Dentist = dentist.Id,
                 Patient = currentUser.Id,
-                Date = input.Appointment
+                Date = input.Appointment,
+                UserId = currentUser.Id
             };
 
             db.Appointments.Add(appointment);
